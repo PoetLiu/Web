@@ -1,0 +1,18 @@
+//
+   Created by LP on 2017/8/16.
+
+title Number Guessing Game
+body.container
+    header
+        h1 Number Guessing Game
+    div.content
+        p.h3.well#introduce We have selected a random number between 1 and 100. See if you can guess it in 10 turns or fewer. We'll tell you if your guess was too high or too low.
+        div.row
+            div.input-group.input-group-lg
+                input#input-box(type="text" class="form-control" placeholder="Input your number")
+                button#check-btn(type="submit" class="btn btn-primary") Check
+        div.well#history
+        div.well#result
+        button#reset-btn(type="submit" class="btn btn-primary") Start New Game!
+    footer
+        p Code is poetry.<br/>Albert Liu.

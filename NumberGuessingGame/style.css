@@ -1,0 +1,32 @@
+body {
+    margin: 20% auto;
+    text-align: center;
+}
+
+header, footer {
+    margin: 20px auto;
+}
+
+#introduce, .input-group, #reset-btn {
+    margin: 20px auto;
+}
+
+.content {
+    padding: 0 20%;
+}
+
+.wrong {
+    background: red;
+}
+
+.right {
+    background: green;
+}
+
+#history {
+    text-align: left;
+}
+
+#reset-btn {
+    display: none;
+}
