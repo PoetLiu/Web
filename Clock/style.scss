@@ -1,0 +1,93 @@
+@import "bourbon";
+
+@import url(https://fonts.googleapis.com/css?family=Pacifico|Open+Sans:300);
+
+// colors
+$green: #99CC00;
+$black: #333333;
+$white: #fff;
+
+// sizes
+$clockWidth:300px;
+$clockHeight:300px;
+$secHandWidth:2px;
+$secHandHeight:180px;
+$minHandWidth:8px;
+$minHandHeight:160px;
+$hourHandWidth:12px;
+$hourHandHeight:90px;
+$coverWidth:14px;
+$coverHeight:14px;
+
+// variables
+$font: Open Sans, Arial;
+
+* {
+  margin: 0;
+  font-family: $font;
+  color:$white;
+  overflow:hidden;
+}
+
+body {
+  background-color:$black;
+}
+
+h1 {
+  text-align:center;
+}
+
+.clock {
+  width:$clockWidth;
+  height:$clockHeight;
+  position:relative;
+  border-radius:50%;
+  border:$white 2px solid;
+  margin: 20px auto;
+  z-index:-3;
+}
+
+.cover {
+  position: absolute;
+  width: $coverWidth;
+  height: $coverHeight;
+  border-radius:50%;
+  background:red;
+  top:$clockHeight*0.5 - $coverHeight*0.5;
+  left: $clockWidth*0.5 - $coverWidth*0.5;
+}
+
+.secHand, .minHand, .hourHand {
+  transform-origin:50% 80%;
+  transition:transform 1s ease;
+  position: absolute;
+  background: white;
+}
+.secHand{
+  background:red;
+  width: $secHandWidth;
+  height: $secHandHeight;
+  z-index:0;
+  top:$clockHeight*0.5 - $secHandHeight*0.8;
+  left: $clockWidth*0.5 - $secHandWidth*0.5;
+}
+
+.minHand{
+  width: $minHandWidth;
+  height: $minHandHeight;
+  z-index:-2;
+  top:$clockHeight*0.5 - $minHandHeight*0.8;
+  left: $clockWidth*0.5 - $minHandWidth*0.5;
+}
+.hourHand{
+  width: $hourHandWidth;
+  height: $hourHandHeight;
+  z-index:-1;
+  top:$clockHeight*0.5 - $hourHandHeight*0.8;
+  left: $clockWidth*0.5 - $hourHandWidth*0.5;
+}
+
+p {
+  margin-top:20px;
+  text-align:center;
+}

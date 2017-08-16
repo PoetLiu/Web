@@ -1,0 +1,72 @@
+@import url(https://fonts.googleapis.com/css?family=Pacifico|Open+Sans:300);
+* {
+    margin: 0;
+    font-family: Open Sans, Arial;
+    color: #fff;
+    overflow: hidden;
+}
+
+body {
+    background-color: #333333;
+}
+
+h1 {
+    text-align: center;
+}
+
+.clock {
+    width: 300px;
+    height: 300px;
+    position: relative;
+    border-radius: 50%;
+    border: #fff 2px solid;
+    margin: 20px auto;
+    z-index: -3;
+}
+
+.cover {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: red;
+    top: 143px;
+    left: 143px;
+}
+
+.secHand, .minHand, .hourHand {
+    transform-origin: 50% 80%;
+    transition: transform 1s ease;
+    position: absolute;
+    background: white;
+}
+
+.secHand {
+    background: red;
+    width: 2px;
+    height: 180px;
+    z-index: 0;
+    top: 6px;
+    left: 149px;
+}
+
+.minHand {
+    width: 8px;
+    height: 160px;
+    z-index: -2;
+    top: 22px;
+    left: 146px;
+}
+
+.hourHand {
+    width: 12px;
+    height: 90px;
+    z-index: -1;
+    top: 78px;
+    left: 144px;
+}
+
+p {
+    margin-top: 20px;
+    text-align: center;
+}

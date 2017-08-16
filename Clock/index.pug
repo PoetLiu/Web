@@ -1,0 +1,10 @@
+//
+   Created by LP on 2017/8/16.
+h1 Clock
+div(ng-app='ClockApp' ng-controller='MainCtrl')
+    div.clock
+        div.secHand(rotate degrees='secDegrees')
+        div.minHand(rotate degrees='minDegrees')
+        div.hourHand(rotate degrees='hourDegrees')
+        div.cover
+    p {{ time }}

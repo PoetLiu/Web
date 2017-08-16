@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Clock</title>
+    <<link href="style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+<h1>Clock</h1>
+<div ng-app="ClockApp" ng-controller="MainCtrl">
+    <div class="clock">
+        <div class="secHand" rotate="rotate" degrees="secDegrees"></div>
+        <div class="minHand" rotate="rotate" degrees="minDegrees"></div>
+        <div class="hourHand" rotate="rotate" degrees="hourDegrees"></div>
+        <div class="cover"></div>
+    </div>
+    <p>{{ time }}</p>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
