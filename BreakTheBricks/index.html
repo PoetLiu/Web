@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <title>Break The Bricks</title>
+</head>
+<body>
+<canvas class="game-canvas" id="canvas" height="650" width="800"></canvas>
+<script src="js/game.js" type="text/javascript"></script>
+<script src="js/utility.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+    var canvas = document.getElementById("canvas");
+    var game = new Game(canvas);
+    game.start();
+</script>
+</body>
+</html>
