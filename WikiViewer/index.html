@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <title>Wiki Viewer</title>
+</head>
+<body>
+<div>
+    <div id="jumbotron" class="jumbotron vertical-center">
+        <div class="container">
+            <a href="https://en.wikipedia.org/wiki/Special:Random" target="_blank"><h3 class="text-center">Click here for a random article</h3></a>
+            <div class="text-center">
+                <div id="search-btn">
+                    <button type="button" class="btn btn-lg" aria-label="search">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                    </button>
+                </div>
+                <div class="row">
+                    <div id="search-box" class="input-group col-lg-6 col-lg-offset-3" style="display:none">
+                        <input id="search-input" type="text" class="form-control" placeholder="Search for..." onkeydown="keyPressCheck()">
+                        <span class="input-group-btn">
+          <button id="search-go-btn" class="btn btn-default" type="button">Go!</button>
+        </span>
+                    </div><!-- /input-group -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1" id="results" style="display:none">
+            <p id="searchTips">Search result for "<span id="keyWords"></span>":</p>
+            <ul id="results-list">
+            </ul>
+        </div>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
