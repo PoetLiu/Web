@@ -26,7 +26,7 @@ Game.prototype.init = function () {
         if (event.defaultPrevented) {
             return; // Do nothing if the event was already processed
         }
-        if (k === 'p' || k === 'P' || k === ' ') {
+        if (_this.debugMode && (k === 'p' || k === 'P' || k === ' ')) {
             _this.paused = !_this.paused;
             event.preventDefault();
         }
