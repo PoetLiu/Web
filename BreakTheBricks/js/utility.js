@@ -1,3 +1,13 @@
 function log(...args) {
     console.log(args);
 }
+
+function numInSection(num, min, max) {
+    if (num < min) {
+        return min;
+    } else if (num > max) {
+        return max;
+    } else {
+        return num;
+    }
+}
