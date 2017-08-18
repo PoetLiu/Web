@@ -78,7 +78,7 @@ Game.prototype.update = function () {
         _this.update();
     }, 1000/_this.fps);
 
-    if (this.status !== 'init' && this.paused && this.debugMode) {
+    if (this.status !== 'init' && (this.paused || this.debugMode)) {
         return;
     }
 
