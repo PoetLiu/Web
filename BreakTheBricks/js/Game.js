@@ -55,7 +55,7 @@ Game.prototype.init = function () {
         }
     });
     window.addEventListener('mouseup', function (event) {
-        drage = false;
+        drag = false;
     });
 
     var input = document.getElementById('game-input');
