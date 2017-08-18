@@ -1,6 +1,6 @@
-function Paddle(ctx, x, y, width, height) {
-    Rect.apply(this, [ctx, x, y, width, height]);
-    this.speedX = 15;
+function Paddle(ctx, x, y, width, height, color) {
+    Rect.apply(this, [ctx, x, y, width, height, color]);
+    this.speedX = 30;
     var _this = this;
     window.addEventListener('keydown', function (event) {
         var k = event.key;
@@ -40,8 +40,11 @@ Paddle.prototype.movedRight = function () {
 
 Paddle.prototype.draw = function () {
     if (this.reDraw) {
-        this.ctx.clearRect(this.oldX, this.oldY, this.w, this.h);
-        this.ctx.fillRect(this.x, this.y, this.w, this.h);
+        log('paddle:redraw.');
+        var c = this.ctx;
+        c.fillStyle = this.color;
+        c.clearRect(this.oldX, this.oldY, this.w, this.h);
+        c.fillRect(this.x, this.y, this.w, this.h);
         this.reDraw = false;
         this.oldX = this.x;
         this.oldY = this.y;

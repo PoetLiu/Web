@@ -11,3 +11,7 @@ function numInSection(num, min, max) {
         return num;
     }
 }
+
+function numIsInSection(num, min, max) {
+    return numInSection(num, min, max) === num;
+}
