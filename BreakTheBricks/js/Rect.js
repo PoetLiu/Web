@@ -4,7 +4,6 @@ function Rect(ctx, x, y, width, heigth, color) {
     this.w = width;
     this.h = heigth;
     this.ctx = ctx;
-    this.needReDraw = true;
     this.oldX = x;
     this.oldY = y;
     this.color = color;
