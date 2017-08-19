@@ -12,7 +12,12 @@ function Game(canvas, fps) {
         bricks: null,
         ball:null,
         paddle:null,
+        debugText:null,
     };
+}
+
+Game.prototype.getDebugText = function () {
+    return 'FPS:'+this.fps+' Status:'+this.status+' Paused:'+this.paused+' Score:'+this.score+' Level'+this.level;
 }
 
 Game.prototype.init = function () {
@@ -21,6 +26,11 @@ Game.prototype.init = function () {
     this.images['ball']     = new Ball(this.ctx, 300, 20, 20, 'red');
     this.images['bricks']   = new Brick(this.ctx, 0, 0, 100, 20, 'gray');
     this.images['paddle']   = new Paddle(this.ctx, 300, 500, 200, 30, 'black');
+    if (this.debugMode) {
+        var text = this.getDebugText();
+        this.images['debugText'] = new Text(this.ctx, 0, 630, 20, 'gray', 'serif', text);
+    }
+
     var _this = this;
     window.addEventListener('keydown', function (event) {
         var k = event.key;
@@ -93,6 +103,12 @@ Game.prototype.update = function () {
         this.status = 'running';
     }
 
+    if (this.debugMode) {
+       var text = this.getDebugText();
+       this.images['debugText'].setText(text);
+    }
+
+    // collide check.
     var ball = this.images['ball'];
     var paddle = this.images['paddle'];
     var brick = this.images['bricks'];
