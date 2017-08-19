@@ -127,8 +127,8 @@ Game.prototype.update = function () {
         }
     }
 
-    c = ball.collideWith(brick);
-    if (c.collide) {
+    c = brick.visible && ball.collideWith(brick);
+    if (c && c.collide) {
         this.score += brick.point;
         brick.hide();
         if (c.w > c.h) {
