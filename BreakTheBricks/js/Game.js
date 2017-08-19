@@ -7,6 +7,7 @@ function Game(canvas, fps) {
     this.paused = true;
     this.intervalId = 0;
     this.debugMode = true;
+    this.input = document.getElementById('game-input');
     this.images = {
         bricks: null,
         ball:null,
@@ -36,6 +37,10 @@ Game.prototype.init = function () {
         }
     }, true);
 
+    if (!this.debugMode) {
+       return;
+    }
+
     var _this = this;
     var drag = false;
     window.addEventListener('mousedown', function (event) {
@@ -58,8 +63,9 @@ Game.prototype.init = function () {
         drag = false;
     });
 
-    var input = document.getElementById('game-input');
+    var input = this.input;
     input.value = this.fps.toString();
+    input.style.display = 'block';
     window.addEventListener('change', function (event) {
         if (event.target === input) {
             _this.fps   = Number(event.target.value);
