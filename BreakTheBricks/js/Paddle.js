@@ -38,6 +38,10 @@ Paddle.prototype.movedRight = function () {
     this.moveTo(this.x + this.speedX, this.y);
 }
 
+Paddle.prototype.onCollideWithRectArea = function (area) {
+    this.reDraw = true;
+}
+
 Paddle.prototype.draw = function () {
     if (this.reDraw) {
         log('paddle:redraw.');

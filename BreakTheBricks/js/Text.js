@@ -4,6 +4,7 @@ function Text(ctx, x, y, size, color, font, text) {
     this.text   = text;
     this.size   = size;
     this.font   = font;
+    this.collideAble    = false;
 }
 
 Text.prototype  = Object.create(Rect.prototype);

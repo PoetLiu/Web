@@ -108,30 +108,24 @@ Game.prototype.update = function () {
        this.images['debugText'].setText(text);
     }
 
-    // collide check.
-    var ball = this.images['ball'];
-    var paddle = this.images['paddle'];
-    var c = ball.collideWith(paddle);
-    if (c.collide) {
-        //log('Paddle collide');
-        paddle.reDraw = true;
-        ball.onCollideWithRectArea(c.area);
-    }
-
-    var brick = this.images['bricks'];
-    c = brick.visible && ball.collideWith(brick);
-    if (c && c.collide) {
-        this.score += brick.point;
-        brick.hide();
-        ball.onCollideWithRectArea(c.area);
-    }
-
     //log('update');
     // update
     var names = Object.getOwnPropertyNames(this.images);
+    var ball = this.images['ball'];
     for (var i = 0; i < names.length; i++) {
         var name = names[i];
         var img = this.images[name];
+        // collide check.
+        if (img !== ball && img.collideAble) {
+            var c = ball.collideWith(img);
+            if (c.collide) {
+                ball.onCollideWithRectArea(c.area);
+                img.onCollideWithRectArea(c.area);
+                if (name === 'bricks') {
+                    this.score += img.point;
+                }
+            }
+        }
         img.update();
     }
 }

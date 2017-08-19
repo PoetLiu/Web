@@ -25,6 +25,7 @@ Ball.prototype.draw = function () {
 
 Ball.prototype.onCollideWithRectArea = function (area) {
     var a = area;
+
     if (a.w > a.h) {
         this.bounceY();
     } else if (a.w < a.h) {
@@ -33,6 +34,7 @@ Ball.prototype.onCollideWithRectArea = function (area) {
         this.bounceX();
         this.bounceY();
     }
+    this.update();
 }
 
 Ball.prototype.bounceX = function () {
@@ -61,7 +63,11 @@ Ball.prototype.moveTo = function (x, y) {
     this.reDraw = (this.x !== this.oldX || this.y !== this.oldY);
 }
 
-Ball.prototype.update = function () {
+Ball.prototype.move = function () {
     this.moveTo(this.x + this.speedX, this.y + this.speedY);
+}
+
+Ball.prototype.update = function () {
+    this.move();
     this.draw();
 }

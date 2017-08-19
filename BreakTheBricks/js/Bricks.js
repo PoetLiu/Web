@@ -24,11 +24,16 @@ Brick.prototype.draw = function () {
     }
 }
 
+Brick.prototype.onCollideWithRectArea = function (area) {
+    this.hide();
+}
+
 Brick.prototype.update = function () {
     this.draw();
 }
 
 Brick.prototype.hide = function () {
     this.visible = false;
+    this.collideAble = false;
     this.clearSelf();
 }
