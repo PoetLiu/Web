@@ -12,7 +12,7 @@ Ball.prototype.draw = function () {
     // draw balls
     if (this.reDraw) {
         var c = this.ctx;
-        c.clearRect(this.oldX, this.oldY, this.r*2, this.r*2);
+        this.clearSelf();
         c.beginPath();
         c.arc(this.x+this.r, this.y+this.r, this.r, 0, Math.PI * 2, true);
         c.fillStyle = this.color;

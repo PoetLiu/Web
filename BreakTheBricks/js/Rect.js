@@ -10,6 +10,11 @@ function Rect(ctx, x, y, width, heigth, color) {
     this.reDraw = true;
 }
 
+Rect.prototype.clearSelf = function () {
+   var c = this.ctx;
+    c.clearRect(this.oldX, this.oldY, this.w, this.h);
+}
+
 Rect.prototype.collideWith = function (rect) {
     var a = rect;
     var b = this;

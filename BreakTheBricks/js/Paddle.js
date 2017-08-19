@@ -41,9 +41,9 @@ Paddle.prototype.movedRight = function () {
 Paddle.prototype.draw = function () {
     if (this.reDraw) {
         log('paddle:redraw.');
+        this.clearSelf();
         var c = this.ctx;
         c.fillStyle = this.color;
-        c.clearRect(this.oldX, this.oldY, this.w, this.h);
         c.fillRect(this.x, this.y, this.w, this.h);
         this.reDraw = false;
         this.oldX = this.x;

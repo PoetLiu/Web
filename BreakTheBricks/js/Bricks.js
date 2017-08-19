@@ -6,15 +6,11 @@ function Brick(ctx, x, y, width, height, color) {
 
 Brick.prototype = Object.create(Rect.prototype);
 Brick.prototype.constructor = Brick;
-Brick.prototype.clear = function () {
-    var c = this.ctx;
-    c.clearRect(this.oldX, this.oldY, this.w, this.h);
-}
 
 Brick.prototype.draw = function () {
     if (this.visible && this.reDraw) {
         // clear old.
-        this.clear();
+        this.clearSelf();
 
         // draw new.
         var c = this.ctx;
@@ -34,5 +30,5 @@ Brick.prototype.update = function () {
 
 Brick.prototype.hide = function () {
     this.visible = false;
-    this.clear();
+    this.clearSelf();
 }
