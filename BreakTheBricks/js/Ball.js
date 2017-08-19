@@ -23,6 +23,18 @@ Ball.prototype.draw = function () {
     }
 }
 
+Ball.prototype.onCollideWithRectArea = function (area) {
+    var a = area;
+    if (a.w > a.h) {
+        this.bounceY();
+    } else if (a.w < a.h) {
+        this.bounceX();
+    } else {
+        this.bounceX();
+        this.bounceY();
+    }
+}
+
 Ball.prototype.bounceX = function () {
     this.speedX *= -1;
 }

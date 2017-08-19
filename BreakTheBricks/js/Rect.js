@@ -21,7 +21,7 @@ Rect.prototype.collideWith = function (rect) {
     var w1 = Math.max(Math.min(a.x+a.w-b.x, b.x+b.w-a.x, a.w, b.w), 0);
     var h1 = Math.max(Math.min(a.y+a.h-b.y, b.y+b.h-a.y, a.h, b.h), 0);
 
-    return {collide:w1*h1, w:w1, h:h1};
+    return {collide:w1*h1>0, area:{w:w1, h:h1}};
 }
 
 Rect.prototype.hasPoint = function (x, y) {

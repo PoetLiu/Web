@@ -111,36 +111,20 @@ Game.prototype.update = function () {
     // collide check.
     var ball = this.images['ball'];
     var paddle = this.images['paddle'];
-    var brick = this.images['bricks'];
     var c = ball.collideWith(paddle);
-
     if (c.collide) {
-        log('Paddle collide');
+        //log('Paddle collide');
         paddle.reDraw = true;
-        if (c.w > c.h) {
-            ball.bounceY();
-        } else if (c.w < c.h) {
-            ball.bounceX();
-        } else {
-            ball.bounceX();
-            ball.bounceY();
-        }
+        ball.onCollideWithRectArea(c.area);
     }
 
+    var brick = this.images['bricks'];
     c = brick.visible && ball.collideWith(brick);
     if (c && c.collide) {
         this.score += brick.point;
         brick.hide();
-        if (c.w > c.h) {
-            ball.bounceY();
-        } else if (c.w < c.h) {
-            ball.bounceX();
-        } else {
-            ball.bounceX();
-            ball.bounceY();
-        }
+        ball.onCollideWithRectArea(c.area);
     }
-
 
     //log('update');
     // update
