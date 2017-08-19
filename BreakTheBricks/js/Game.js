@@ -73,12 +73,13 @@ Game.prototype.clearCanvas = function () {
 }
 
 Game.prototype.update = function () {
+    //log('update');
     var _this = this;
     setTimeout(function () {
         _this.update();
     }, 1000/_this.fps);
 
-    if (this.status !== 'init' && (this.paused || this.debugMode)) {
+    if (this.status !== 'init' && this.paused) {
         return;
     }
 
@@ -140,5 +141,5 @@ Game.prototype.start = function () {
 }
 
 Game.prototype.stop = function () {
-    window.clearInterval(this.intervalId);
+    window.clearTimeout(this.intervalId);
 }
