@@ -28,13 +28,10 @@ Ball.prototype.onCollide = function (collideResult) {
     var a = c.area;
 
     log(c, this);
-    if (a.w > a.h) {
+    if (a.w >= a.h) {
         this.bounceY();
-    } else if (a.w < a.h) {
-        this.bounceX();
     } else {
         this.bounceX();
-        this.bounceY();
     }
 
     // wait until the ball escaped from target.
