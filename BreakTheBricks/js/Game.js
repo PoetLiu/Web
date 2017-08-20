@@ -14,6 +14,7 @@ function Game(canvas, fps) {
         paddle:null,
         debugText:null,
     };
+    this.dragItems = [];
 }
 
 Game.prototype.getDebugText = function () {
@@ -28,6 +29,8 @@ Game.prototype.init = function () {
     this.images['paddle']   = new Paddle(this.ctx, 300, 500, 200, 30, 'black');
     if (this.debugMode) {
         var text = this.getDebugText();
+        this.dragItems.push(this.images['ball']);
+        this.dragItems.push(this.images['paddle']);
         this.images['debugText'] = new Text(this.ctx, 0, 630, 20, 'gray', 'serif', text);
     }
 
@@ -52,25 +55,36 @@ Game.prototype.init = function () {
     }
 
     var _this = this;
-    var drag = false;
     window.addEventListener('mousedown', function (event) {
         var x = event.offsetX, y = event.offsetY;
-        var b = _this.images['ball'];
-        if (b.hasPoint(x, y)) {
-            drag = true;
+        var items = _this.dragItems;
+        for (var i = 0; i < items.length; i++) {
+            var t = items[i];
+            if (t.dragble && t.hasPoint(x, y)) {
+                t.onDraging = true;
+            }
         }
     });
+
     window.addEventListener('mousemove', function (event) {
-        if (drag) {
-            var x = event.offsetX, y = event.offsetY;
-            var b = _this.images['ball'];
-            b.moveTo(x-b.r, y-b.r);
-            b.draw();
-            //log('Drag.', event);
+        var x = event.offsetX, y = event.offsetY;
+        var items = _this.dragItems;
+        for (var i = 0; i < items.length; i++) {
+            var t = items[i];
+            if (t.onDraging) {
+                t.onDragTo && t.onDragTo(x, y);
+            }
         }
     });
+
     window.addEventListener('mouseup', function (event) {
-        drag = false;
+        var items = _this.dragItems;
+        for (var i = 0; i < items.length; i++) {
+            var t = items[i];
+            if (t.onDraging) {
+                t.onDraging = false;
+            }
+        }
     });
 
     var input = this.input;

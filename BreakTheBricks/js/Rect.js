@@ -9,6 +9,8 @@ function Rect(ctx, x, y, width, heigth, color) {
     this.color = color;
     this.reDraw = true;
     this.collideAble = true;
+    this.dragble = false;
+    this.onDraging = false;
 }
 
 Rect.prototype.clearSelf = function () {

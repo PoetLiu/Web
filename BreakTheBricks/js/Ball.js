@@ -3,6 +3,7 @@ function Ball(ctx, x, y, radius, color) {
     this.speedX = 8;
     this.speedY = 8;
     this.r = radius;
+    this.dragble    = true;
 }
 
 Ball.prototype = Object.create(Rect.prototype);
@@ -45,6 +46,12 @@ Ball.prototype.bounceX = function () {
 }
 Ball.prototype.bounceY = function () {
     this.speedY *= -1;
+}
+
+Ball.prototype.onDragTo = function (x, y) {
+    log(this, x, y);
+    this.moveTo(x-this.r, y-this.r);
+    this.draw();
 }
 
 Ball.prototype.moveTo = function (x, y) {

@@ -2,6 +2,7 @@ function Paddle(ctx, x, y, width, height, color) {
     Rect.apply(this, [ctx, x, y, width, height, color]);
     this.speedX = 30;
     var _this = this;
+    this.dragble = true;
     window.addEventListener('keydown', function (event) {
         var k = event.key;
         if (event.defaultPrevented) {
@@ -23,7 +24,10 @@ function Paddle(ctx, x, y, width, height, color) {
 
 Paddle.prototype = Object.create(Rect.prototype);
 Paddle.prototype.constructor = Paddle;
-
+Paddle.prototype.onDragTo = function (x, y) {
+   this.moveTo(x-this.w/2, this.y);
+   this.draw();
+}
 Paddle.prototype.moveTo = function (x, y) {
     var c = this.ctx.canvas;
     this.x = numInSection(x, 0, c.width - this.w);
