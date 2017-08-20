@@ -36,7 +36,11 @@ Ball.prototype.onCollide = function (collideResult) {
         this.bounceX();
         this.bounceY();
     }
-    this.update();
+
+    // wait until the ball escaped from target.
+    do {
+        this.update();
+    } while (this.checkCollideWith(c.target).collide);
 }
 
 Ball.prototype.bounceX = function () {
