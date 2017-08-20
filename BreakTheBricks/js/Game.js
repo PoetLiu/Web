@@ -5,7 +5,7 @@ function Game(canvas, fps) {
     this.canvas = canvas;
     this.fps = fps;
     this.paused = true;
-    this.intervalId = 0;
+    this.timeoutId = 0;
     this.debugMode = true;
     this.input = document.getElementById('game-input');
     this.images = {
@@ -91,7 +91,7 @@ Game.prototype.clearCanvas = function () {
 Game.prototype.update = function () {
     //log('update');
     var _this = this;
-    setTimeout(function () {
+    this.timeoutId  = setTimeout(function () {
         _this.update();
     }, 1000/_this.fps);
 
@@ -141,5 +141,5 @@ Game.prototype.start = function () {
 }
 
 Game.prototype.stop = function () {
-    window.clearTimeout(this.intervalId);
+    window.clearTimeout(this.timeoutId);
 }
