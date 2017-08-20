@@ -26,6 +26,7 @@ Ball.prototype.draw = function () {
 Ball.prototype.onCollideWithRectArea = function (area) {
     var a = area;
 
+    log(area, this);
     if (a.w > a.h) {
         this.bounceY();
     } else if (a.w < a.h) {

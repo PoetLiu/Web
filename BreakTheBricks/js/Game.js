@@ -116,7 +116,7 @@ Game.prototype.update = function () {
         var name = names[i];
         var img = this.images[name];
         // collide check.
-        if (img !== ball && img.collideAble) {
+        if (img && img.collideAble) {
             var c = ball.collideWith(img);
             if (c.collide) {
                 ball.onCollideWithRectArea(c.area);

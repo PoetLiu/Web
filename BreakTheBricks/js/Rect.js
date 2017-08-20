@@ -17,6 +17,9 @@ Rect.prototype.clearSelf = function () {
 }
 
 Rect.prototype.collideWith = function (rect) {
+    if (this === rect) {
+        return {collide:false, area:{w:0, h:0}};
+    }
     var a = rect;
     var b = this;
     var w1 = Math.max(Math.min(a.x+a.w-b.x, b.x+b.w-a.x, a.w, b.w), 0);

@@ -39,12 +39,13 @@ Paddle.prototype.movedRight = function () {
 }
 
 Paddle.prototype.onCollideWithRectArea = function (area) {
+    //log(area);
     this.reDraw = true;
 }
 
 Paddle.prototype.draw = function () {
     if (this.reDraw) {
-        log('paddle:redraw.');
+        // log('paddle:redraw.');
         this.clearSelf();
         var c = this.ctx;
         c.fillStyle = this.color;
