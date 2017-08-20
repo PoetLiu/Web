@@ -24,7 +24,7 @@ Brick.prototype.draw = function () {
     }
 }
 
-Brick.prototype.onCollideWithRectArea = function (area) {
+Brick.prototype.onCollide = function (collideResult) {
     this.hide();
 }
 

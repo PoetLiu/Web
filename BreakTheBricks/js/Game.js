@@ -117,10 +117,10 @@ Game.prototype.update = function () {
         var img = this.images[name];
         // collide check.
         if (img && img.collideAble) {
-            var c = ball.collideWith(img);
+            var c = ball.checkCollideWith(img);
             if (c.collide) {
-                ball.onCollideWithRectArea(c.area);
-                img.onCollideWithRectArea(c.area);
+                ball.onCollide(c);
+                img.onCollide(c);
                 if (name === 'bricks') {
                     this.score += img.point;
                 }

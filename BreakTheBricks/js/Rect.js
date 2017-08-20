@@ -16,16 +16,16 @@ Rect.prototype.clearSelf = function () {
     c.clearRect(this.oldX, this.oldY, this.w, this.h);
 }
 
-Rect.prototype.collideWith = function (rect) {
-    if (this === rect) {
-        return {collide:false, area:{w:0, h:0}};
+Rect.prototype.checkCollideWith = function (rect) {
+    if (this === rect || !rect) {
+        return collideResult(false, 0, 0, rect);
     }
     var a = rect;
     var b = this;
-    var w1 = Math.max(Math.min(a.x+a.w-b.x, b.x+b.w-a.x, a.w, b.w), 0);
-    var h1 = Math.max(Math.min(a.y+a.h-b.y, b.y+b.h-a.y, a.h, b.h), 0);
+    var w = Math.max(Math.min(a.x+a.w-b.x, b.x+b.w-a.x, a.w, b.w), 0);
+    var h = Math.max(Math.min(a.y+a.h-b.y, b.y+b.h-a.y, a.h, b.h), 0);
 
-    return {collide:w1*h1>0, area:{w:w1, h:h1}};
+    return collideResult(w*h>0, w, h, rect);
 }
 
 Rect.prototype.hasPoint = function (x, y) {

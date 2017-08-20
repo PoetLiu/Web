@@ -15,3 +15,14 @@ function numInSection(num, min, max) {
 function numIsInSection(num, min, max) {
     return numInSection(num, min, max) === num;
 }
+
+function collideResult(isCollide, areaWidth, areaHeight, target) {
+    return {
+        collide:isCollide,
+        area: {
+            w:areaWidth,
+            h:areaHeight,
+        },
+        target:target,
+    };
+}

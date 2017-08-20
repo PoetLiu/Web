@@ -23,10 +23,11 @@ Ball.prototype.draw = function () {
     }
 }
 
-Ball.prototype.onCollideWithRectArea = function (area) {
-    var a = area;
+Ball.prototype.onCollide = function (collideResult) {
+    var c = collideResult;
+    var a = c.area;
 
-    log(area, this);
+    log(c, this);
     if (a.w > a.h) {
         this.bounceY();
     } else if (a.w < a.h) {
