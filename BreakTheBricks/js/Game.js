@@ -18,7 +18,13 @@ function Game(canvas, fps) {
 }
 
 Game.prototype.getDebugText = function () {
-    return 'FPS:'+this.fps+' Status:'+this.status+' Paused:'+this.paused+' Score:'+this.score+' Level'+this.level;
+    var b = this.images['ball'];
+    var t = '';
+    t += 'FPS:' + this.fps + ' Status:' + this.status + ' Paused:' + this.paused;
+    t += ' Score:' + this.score + ' Level:' + this.level;
+    t += ' Ball:(' + b.x + ', ' + b.y + ')';
+
+    return t;
 }
 
 Game.prototype.init = function () {
