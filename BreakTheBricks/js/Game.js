@@ -15,7 +15,7 @@ function Game(canvas, fps) {
         debugText:null,
     };
     this.dragItems = [];
-};
+}
 
 Game.prototype.getDebugText = function () {
     var b = this.images['ball'];

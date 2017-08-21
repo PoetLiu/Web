@@ -1,5 +1,5 @@
 function Brick(ctx, x, y, width, height, color) {
-    Rect.apply(this, [ctx, x, y, width, height, color]);
+    Rect.call(this, ctx, x, y, width, height, color);
     this.visible = true;
     this.point = 1;
 }
@@ -24,7 +24,7 @@ Brick.prototype.draw = function () {
     }
 };
 
-Brick.prototype.onCollide = function (collideResult) {
+Brick.prototype.onCollide = function () {
     this.hide();
 };
 

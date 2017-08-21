@@ -1,5 +1,5 @@
 function Paddle(ctx, x, y, width, height, color) {
-    Rect.apply(this, [ctx, x, y, width, height, color]);
+    Rect.call(this, ctx, x, y, width, height, color);
     this.speedX = 30;
     var _this = this;
     this.dragble = true;
@@ -24,7 +24,7 @@ function Paddle(ctx, x, y, width, height, color) {
 
 Paddle.prototype = Object.create(Rect.prototype);
 Paddle.prototype.constructor = Paddle;
-Paddle.prototype.onDragTo = function (x, y) {
+Paddle.prototype.onDragTo = function (x) {
    this.moveTo(x-this.w/2, this.y);
    this.draw();
 };
@@ -42,7 +42,7 @@ Paddle.prototype.movedRight = function () {
     this.moveTo(this.x + this.speedX, this.y);
 };
 
-Paddle.prototype.onCollide = function (collideResult) {
+Paddle.prototype.onCollide = function () {
     //log(area);
     this.reDraw = true;
 };

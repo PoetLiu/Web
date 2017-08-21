@@ -1,5 +1,5 @@
 function Ball(ctx, x, y, radius, color) {
-    Rect.apply(this, [ctx, x, y, radius*2, radius*2, color]);
+    Rect.call(this, ctx, x, y, radius * 2, radius * 2, color);
     this.speedX = 8;
     this.speedY = 8;
     this.r = radius;
@@ -28,7 +28,7 @@ Ball.prototype.onCollide = function (collideResult) {
     var c = collideResult;
     var a = c.area;
 
-    log(c, this);
+    // log(c, this);
     if (a.w >= a.h) {
         this.bounceY();
     } else {
