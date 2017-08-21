@@ -26,3 +26,23 @@ function collideResult(isCollide, areaWidth, areaHeight, target) {
         target:target,
     };
 }
+
+function getBrickColorByLife(life) {
+    switch (life) {
+        case 1:
+            return 'gray';
+        case 2:
+            return 'black';
+        default:
+            return 'red';
+    }
+}
+
+function loadLevel(level) {
+    var l = level - 1;
+    return [
+        {bricks: [0, 0, 1]},
+        {bricks: [100, 200, 1, 300, 200, 2]},
+        {bricks: [0, 0, 1, 100, 200, 1, 300, 200, 2]},
+    ][l];
+}

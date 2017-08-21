@@ -1,7 +1,8 @@
-function Brick(ctx, x, y, width, height, color) {
+function Brick(ctx, x, y, width, height, color, lifes) {
     Rect.call(this, ctx, x, y, width, height, color);
     this.visible = true;
     this.point = 1;
+    this.lifes = lifes;
 }
 
 Brick.prototype = Object.create(Rect.prototype);
@@ -24,8 +25,18 @@ Brick.prototype.draw = function () {
     }
 };
 
+Brick.prototype.updateColor = function () {
+    this.color = getBrickColorByLife(this.lifes);
+}
+
 Brick.prototype.onCollide = function () {
-    this.hide();
+    this.lifes -= this.point;
+    if (this.lifes <= 0) {
+        this.lifes = 0;
+        this.hide();
+    }
+    this.updateColor();
+    this.reDraw = true;
 };
 
 Brick.prototype.hide = function () {

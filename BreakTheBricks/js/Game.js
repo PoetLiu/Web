@@ -1,7 +1,7 @@
 function Game(canvas, fps) {
     this.status = "init";
     this.score = 0;
-    this.level = 1;
+    this.level = 3;
     this.canvas = canvas;
     this.fps = fps;
     this.paused = false;

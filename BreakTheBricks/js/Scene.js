@@ -26,7 +26,11 @@ Scene.prototype.init = function () {
         this.debugText = new Text(g.ctx, 0, 630, 20, 'gray', 'serif', this.getDebugText.bind(this));
         images.push(this.debugText);
     }
-    images.push(new Brick(g.ctx, 0, 0, 100, 20, 'gray'));
+
+    var b = loadLevel(g.level).bricks;
+    for (var i = 0; i < b.length; i += 3) {
+        images.push(new Brick(g.ctx, b[i + 0], b[i + 1], 100, 20, getBrickColorByLife(b[i + 2]), b[i + 2]));
+    }
 
     var _this = this;
     window.addEventListener('mousedown', function (event) {
