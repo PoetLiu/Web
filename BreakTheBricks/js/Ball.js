@@ -49,7 +49,7 @@ Ball.prototype.bounceY = function () {
 };
 
 Ball.prototype.onDragTo = function (x, y) {
-    log(this, x, y);
+    // log(this, x, y);
     this.moveTo(x-this.r, y-this.r);
     this.draw();
 };
