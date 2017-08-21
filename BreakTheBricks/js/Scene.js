@@ -10,7 +10,7 @@ function Scene(game) {
 Scene.prototype.getDebugText = function () {
     var t = '';
     var g = this.game;
-    t += 'FPS:' + g.fps + ' Status:' + g.status + ' Paused:' + g.paused;
+    t += 'FPS:' + g.fps + ' State:' + g.state + ' Paused:' + g.paused;
     t += ' Score:' + g.score + ' Level:' + g.level;
     return t;
 };

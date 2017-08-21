@@ -1,5 +1,5 @@
 function Game(canvas, fps) {
-    this.status = "init";
+    this.state = "init";
     this.score = 0;
     this.level = 3;
     this.canvas = canvas;
@@ -33,6 +33,7 @@ Game.prototype.init = function () {
         }
     }, true);
 
+    this.setGameState('init');
     if (!this.debugMode) {
        return;
     }
@@ -61,16 +62,33 @@ Game.prototype.update = function () {
 
     // update
     this.sceneCurrent.update();
+};
 
-    if (this.status === 'init') {
-        this.status = 'running';
-        this.paused = true;
+Game.prototype.setGameState = function (state) {
+    if (this.state === state) {
+        return;
     }
+    switch (state) {
+        case 'init':
+            this.paused = false;
+            break;
+        case 'run':
+            this.paused = true;
+            break;
+        case 'over':
+            this.paused = true;
+            break;
+        default:
+            log('unknown state:' + state);
+            return;
+    }
+    this.state = state;
 };
 
 Game.prototype.run = function() {
     log("Game run.", this);
     this.update();
+    this.setGameState('run');
 };
 
 Game.prototype.start = function () {
