@@ -1,7 +1,7 @@
 function Game(canvas, fps) {
     this.state = "init";
     this.score = 0;
-    this.level = 1;
+    this.level = 3;
     this.canvas = canvas;
     this.ctx = this.canvas.getContext('2d');
     this.fps = fps;
@@ -60,6 +60,9 @@ Game.prototype.update = function () {
         _this.update();
     }, 1000/_this.fps);
 
+    if (this.state === 'win' || this.state === 'over') {
+        return;
+    }
     // update
     this.sceneCurrent.update();
 };
@@ -78,10 +81,14 @@ Game.prototype.setGameState = function (state) {
         case 'over':
             this.paused = true;
             break;
+        case 'win':
+            this.paused = true;
+            break;
         default:
             log('unknown state:' + state);
             return;
     }
+    log('state:' + state);
     this.state = state;
 };
 

@@ -17,7 +17,13 @@ Scene.prototype.getDebugText = function () {
 
 Scene.prototype.loadBricks = function () {
     var g = this.game;
-    var b = loadLevel(g.level).bricks;
+    var l = loadLevel(g.level);
+
+    if (!l) {
+        g.setGameState('win');
+        return;
+    }
+    var b = l.bricks;
     var images = this.images;
     for (var i = 0; i < b.length; i += 3) {
         images.push(new Brick(g.ctx, b[i + 0], b[i + 1], 100, 20, getBrickColorByLife(b[i + 2]), b[i + 2]));
@@ -32,7 +38,7 @@ Scene.prototype.init = function () {
         if (dir === 'bottom') {
             g.setGameState('over');
         }
-        log(dir);
+        // log(dir);
     };
     this.ball = new Ball(g.ctx, 300, 20, 20, 'red', onBallCollideCtxBorder);
     this.paddle = new Paddle(g.ctx, 300, 500, 200, 30, 'black');
@@ -82,6 +88,7 @@ Scene.prototype.update = function () {
     var ball = this.ball;
     var images = this.images;
     var ctx = g.ctx;
+    var aliveBricks = 0;
 
     for (var i = 0; i < images.length; i++) {
         var img = images[i];
@@ -96,6 +103,15 @@ Scene.prototype.update = function () {
                 }
             }
         }
+
+        if (img instanceof Brick && img.visible) {
+            aliveBricks++;
+        }
         img.update(g.paused);
+    }
+
+    if (!aliveBricks) {
+        g.level++;
+        this.loadBricks();
     }
 };
