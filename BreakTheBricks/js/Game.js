@@ -1,8 +1,9 @@
 function Game(canvas, fps) {
     this.state = "init";
     this.score = 0;
-    this.level = 3;
+    this.level = 1;
     this.canvas = canvas;
+    this.ctx = this.canvas.getContext('2d');
     this.fps = fps;
     this.paused = false;
     this.timeoutId = 0;
@@ -13,7 +14,6 @@ function Game(canvas, fps) {
 
 Game.prototype.init = function () {
     log("Game init.");
-    this.ctx = this.canvas.getContext('2d');
     this.sceneCurrent = new Scene(this);
     this.sceneCurrent.init();
 

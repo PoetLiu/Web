@@ -1,9 +1,10 @@
-function Ball(ctx, x, y, radius, color) {
+function Ball(ctx, x, y, radius, color, onCollideWallCB) {
     Rect.call(this, ctx, x, y, radius * 2, radius * 2, color);
     this.speedX = 8;
     this.speedY = 8;
     this.r = radius;
     this.dragble    = true;
+    this.onCollideWallCB = onCollideWallCB;
 }
 
 Ball.prototype = Object.create(Rect.prototype);
@@ -63,12 +64,14 @@ Ball.prototype.moveTo = function (x, y) {
     if (this.x !== x) {
         this.x = x;
         this.bounceX();
+        this.onCollideWallCB(x === 0 ? 'left' : 'right');
     }
 
     y = numInSection(this.y, 0, c.height - this.h);
     if (this.y !== y) {
         this.y = y;
         this.bounceY();
+        this.onCollideWallCB(y === 0 ? 'top' : 'bottom');
     }
     this.reDraw = (this.x !== this.oldX || this.y !== this.oldY);
 };

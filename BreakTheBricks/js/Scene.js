@@ -15,10 +15,26 @@ Scene.prototype.getDebugText = function () {
     return t;
 };
 
+Scene.prototype.loadBricks = function () {
+    var g = this.game;
+    var b = loadLevel(g.level).bricks;
+    var images = this.images;
+    for (var i = 0; i < b.length; i += 3) {
+        images.push(new Brick(g.ctx, b[i + 0], b[i + 1], 100, 20, getBrickColorByLife(b[i + 2]), b[i + 2]));
+    }
+};
+
 Scene.prototype.init = function () {
     var g = this.game;
     var images = this.images;
-    this.ball = new Ball(g.ctx, 300, 20, 20, 'red');
+    var _this = this;
+    var onBallCollideCtxBorder = function (dir) {
+        if (dir === 'bottom') {
+            g.setGameState('over');
+        }
+        log(dir);
+    };
+    this.ball = new Ball(g.ctx, 300, 20, 20, 'red', onBallCollideCtxBorder);
     this.paddle = new Paddle(g.ctx, 300, 500, 200, 30, 'black');
     images.push(this.ball);
     images.push(this.paddle);
@@ -26,13 +42,8 @@ Scene.prototype.init = function () {
         this.debugText = new Text(g.ctx, 0, 630, 20, 'gray', 'serif', this.getDebugText.bind(this));
         images.push(this.debugText);
     }
+    this.loadBricks();
 
-    var b = loadLevel(g.level).bricks;
-    for (var i = 0; i < b.length; i += 3) {
-        images.push(new Brick(g.ctx, b[i + 0], b[i + 1], 100, 20, getBrickColorByLife(b[i + 2]), b[i + 2]));
-    }
-
-    var _this = this;
     window.addEventListener('mousedown', function (event) {
         var x = event.offsetX, y = event.offsetY;
         var items = _this.images;
@@ -70,6 +81,7 @@ Scene.prototype.update = function () {
     var g = this.game;
     var ball = this.ball;
     var images = this.images;
+    var ctx = g.ctx;
 
     for (var i = 0; i < images.length; i++) {
         var img = images[i];
