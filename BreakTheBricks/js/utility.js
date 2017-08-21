@@ -1,5 +1,5 @@
-function log(...args) {
-    console.log(args);
+function log() {
+    console.log.apply(console, arguments);
 }
 
 function numInSection(num, min, max) {

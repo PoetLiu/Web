@@ -22,18 +22,18 @@ Brick.prototype.draw = function () {
         this.oldX = this.x;
         this.oldY = this.y;
     }
-}
+};
 
 Brick.prototype.onCollide = function (collideResult) {
     this.hide();
-}
+};
 
 Brick.prototype.update = function () {
     this.draw();
-}
+};
 
 Brick.prototype.hide = function () {
     this.visible = false;
     this.collideAble = false;
     this.clearSelf();
-}
+};

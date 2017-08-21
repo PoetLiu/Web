@@ -22,7 +22,7 @@ Ball.prototype.draw = function () {
         this.oldX = this.x;
         this.oldY = this.y;
     }
-}
+};
 
 Ball.prototype.onCollide = function (collideResult) {
     var c = collideResult;
@@ -39,20 +39,20 @@ Ball.prototype.onCollide = function (collideResult) {
     do {
         this.update();
     } while (this.checkCollideWith(c.target).collide);
-}
+};
 
 Ball.prototype.bounceX = function () {
     this.speedX *= -1;
-}
+};
 Ball.prototype.bounceY = function () {
     this.speedY *= -1;
-}
+};
 
 Ball.prototype.onDragTo = function (x, y) {
     log(this, x, y);
     this.moveTo(x-this.r, y-this.r);
     this.draw();
-}
+};
 
 Ball.prototype.moveTo = function (x, y) {
     var c = this.ctx.canvas;
@@ -71,13 +71,13 @@ Ball.prototype.moveTo = function (x, y) {
         this.bounceY();
     }
     this.reDraw = (this.x !== this.oldX || this.y !== this.oldY);
-}
+};
 
 Ball.prototype.move = function () {
     this.moveTo(this.x + this.speedX, this.y + this.speedY);
-}
+};
 
 Ball.prototype.update = function () {
     this.move();
     this.draw();
-}
+};

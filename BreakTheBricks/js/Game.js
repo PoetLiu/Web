@@ -15,7 +15,7 @@ function Game(canvas, fps) {
         debugText:null,
     };
     this.dragItems = [];
-}
+};
 
 Game.prototype.getDebugText = function () {
     var b = this.images['ball'];
@@ -25,7 +25,7 @@ Game.prototype.getDebugText = function () {
     t += ' Ball:(' + b.x + ', ' + b.y + ')';
 
     return t;
-}
+};
 
 Game.prototype.init = function () {
     log("Game init.", this);
@@ -60,7 +60,6 @@ Game.prototype.init = function () {
        return;
     }
 
-    var _this = this;
     window.addEventListener('mousedown', function (event) {
         var x = event.offsetX, y = event.offsetY;
         var items = _this.dragItems;
@@ -101,12 +100,12 @@ Game.prototype.init = function () {
             _this.fps   = Number(event.target.value);
         }
     });
-}
+};
 
 Game.prototype.clearCanvas = function () {
     var c = this.ctx;
     c.clearRect(0, 0, this.canvas.width, this.canvas.height);
-}
+};
 
 Game.prototype.update = function () {
     //log('update');
@@ -148,18 +147,18 @@ Game.prototype.update = function () {
         }
         img.update();
     }
-}
+};
 
 Game.prototype.run = function() {
     log("Game run.");
     this.update();
-}
+};
 
 Game.prototype.start = function () {
     this.init();
     this.run();
-}
+};
 
 Game.prototype.stop = function () {
     window.clearTimeout(this.timeoutId);
-}
+};

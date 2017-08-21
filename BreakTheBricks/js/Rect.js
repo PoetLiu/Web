@@ -16,7 +16,7 @@ function Rect(ctx, x, y, width, heigth, color) {
 Rect.prototype.clearSelf = function () {
    var c = this.ctx;
     c.clearRect(this.oldX, this.oldY, this.w, this.h);
-}
+};
 
 Rect.prototype.checkCollideWith = function (rect) {
     if (this === rect || !rect) {
@@ -28,8 +28,8 @@ Rect.prototype.checkCollideWith = function (rect) {
     var h = Math.max(Math.min(a.y+a.h-b.y, b.y+b.h-a.y, a.h, b.h), 0);
 
     return collideResult(w*h>0, w, h, rect);
-}
+};
 
 Rect.prototype.hasPoint = function (x, y) {
     return numIsInSection(x, this.x, this.x+this.w) && numIsInSection(y, this.y, this.y+this.h);
-}
+};

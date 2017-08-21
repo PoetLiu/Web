@@ -27,25 +27,25 @@ Paddle.prototype.constructor = Paddle;
 Paddle.prototype.onDragTo = function (x, y) {
    this.moveTo(x-this.w/2, this.y);
    this.draw();
-}
+};
 Paddle.prototype.moveTo = function (x, y) {
     var c = this.ctx.canvas;
     this.x = numInSection(x, 0, c.width - this.w);
     this.y = y;
     this.reDraw = (this.x !== this.oldX || this.y !== this.oldY);
-}
+};
 
 Paddle.prototype.moveLeft = function () {
     this.moveTo(this.x - this.speedX, this.y);
-}
+};
 Paddle.prototype.movedRight = function () {
     this.moveTo(this.x + this.speedX, this.y);
-}
+};
 
 Paddle.prototype.onCollide = function (collideResult) {
     //log(area);
     this.reDraw = true;
-}
+};
 
 Paddle.prototype.draw = function () {
     if (this.reDraw) {
@@ -58,8 +58,8 @@ Paddle.prototype.draw = function () {
         this.oldX = this.x;
         this.oldY = this.y;
     }
-}
+};
 
 Paddle.prototype.update = function () {
     this.draw();
-}
+};
