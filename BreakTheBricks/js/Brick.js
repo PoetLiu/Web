@@ -28,12 +28,15 @@ Brick.prototype.onCollide = function () {
     this.hide();
 };
 
-Brick.prototype.update = function () {
-    this.draw();
-};
-
 Brick.prototype.hide = function () {
     this.visible = false;
     this.collideAble = false;
     this.clearSelf();
+};
+
+Brick.prototype.update = function (paused) {
+    if (paused) {
+        return;
+    }
+    this.draw();
 };

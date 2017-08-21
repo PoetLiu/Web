@@ -1,14 +1,13 @@
-function Text(ctx, x, y, size, color, font, text) {
-    var w = ctx.measureText(text).width;
+function Text(ctx, x, y, size, color, font, text_cb) {
+    var w = ctx.measureText(text_cb()).width;
     Rect.call(this, ctx, x, y, w, size, color);
-    this.text   = text;
+    this.updateText = text_cb;
     this.size   = size;
     this.font   = font;
     this.collideAble    = false;
 }
 
 Text.prototype  = Object.create(Rect.prototype);
-
 Text.prototype.constructor = Text;
 
 Text.prototype.setText = function (text) {
@@ -18,7 +17,7 @@ Text.prototype.setText = function (text) {
         this.text   = text;
         this.reDraw = true;
     }
-}
+};
 
 Text.prototype.draw = function () {
     if (this.reDraw) {
@@ -28,9 +27,10 @@ Text.prototype.draw = function () {
         c.font = this.size + 'px ' + this.font;
         c.fillText(this.text, this.x, this.y+this.h);
     }
-}
+};
 
 Text.prototype.update = function () {
+    this.setText(this.updateText());
     this.draw();
-}
+};
 

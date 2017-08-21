@@ -60,6 +60,9 @@ Paddle.prototype.draw = function () {
     }
 };
 
-Paddle.prototype.update = function () {
+Paddle.prototype.update = function (paused) {
+    if (paused) {
+        return;
+    }
     this.draw();
 };

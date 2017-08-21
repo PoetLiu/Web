@@ -77,7 +77,10 @@ Ball.prototype.move = function () {
     this.moveTo(this.x + this.speedX, this.y + this.speedY);
 };
 
-Ball.prototype.update = function () {
+Ball.prototype.update = function (paused) {
+    if (paused) {
+        return;
+    }
     this.move();
     this.draw();
 };

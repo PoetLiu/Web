@@ -4,41 +4,18 @@ function Game(canvas, fps) {
     this.level = 1;
     this.canvas = canvas;
     this.fps = fps;
-    this.paused = true;
+    this.paused = false;
     this.timeoutId = 0;
     this.debugMode = true;
     this.input = document.getElementById('game-input');
-    this.images = {
-        bricks: null,
-        ball:null,
-        paddle:null,
-        debugText:null,
-    };
-    this.dragItems = [];
+    this.sceneCurrent = null;
 }
 
-Game.prototype.getDebugText = function () {
-    var b = this.images['ball'];
-    var t = '';
-    t += 'FPS:' + this.fps + ' Status:' + this.status + ' Paused:' + this.paused;
-    t += ' Score:' + this.score + ' Level:' + this.level;
-    t += ' Ball:(' + b.x + ', ' + b.y + ')';
-
-    return t;
-};
-
 Game.prototype.init = function () {
-    log("Game init.", this);
+    log("Game init.");
     this.ctx = this.canvas.getContext('2d');
-    this.images['ball']     = new Ball(this.ctx, 300, 20, 20, 'red');
-    this.images['bricks']   = new Brick(this.ctx, 0, 0, 100, 20, 'gray');
-    this.images['paddle']   = new Paddle(this.ctx, 300, 500, 200, 30, 'black');
-    if (this.debugMode) {
-        var text = this.getDebugText();
-        this.dragItems.push(this.images['ball']);
-        this.dragItems.push(this.images['paddle']);
-        this.images['debugText'] = new Text(this.ctx, 0, 630, 20, 'gray', 'serif', text);
-    }
+    this.sceneCurrent = new Scene(this);
+    this.sceneCurrent.init();
 
     var _this = this;
     window.addEventListener('keydown', function (event) {
@@ -60,38 +37,6 @@ Game.prototype.init = function () {
        return;
     }
 
-    window.addEventListener('mousedown', function (event) {
-        var x = event.offsetX, y = event.offsetY;
-        var items = _this.dragItems;
-        for (var i = 0; i < items.length; i++) {
-            var t = items[i];
-            if (t.dragble && t.hasPoint(x, y)) {
-                t.onDraging = true;
-            }
-        }
-    });
-
-    window.addEventListener('mousemove', function (event) {
-        var x = event.offsetX, y = event.offsetY;
-        var items = _this.dragItems;
-        for (var i = 0; i < items.length; i++) {
-            var t = items[i];
-            if (t.onDraging) {
-                t.onDragTo && t.onDragTo(x, y);
-            }
-        }
-    });
-
-    window.addEventListener('mouseup', function (event) {
-        var items = _this.dragItems;
-        for (var i = 0; i < items.length; i++) {
-            var t = items[i];
-            if (t.onDraging) {
-                t.onDraging = false;
-            }
-        }
-    });
-
     var input = this.input;
     input.value = this.fps.toString();
     input.style.display = 'block';
@@ -102,7 +47,7 @@ Game.prototype.init = function () {
     });
 };
 
-Game.prototype.clearCanvas = function () {
+Game.prototype.clearSelf = function () {
     var c = this.ctx;
     c.clearRect(0, 0, this.canvas.width, this.canvas.height);
 };
@@ -114,48 +59,23 @@ Game.prototype.update = function () {
         _this.update();
     }, 1000/_this.fps);
 
-    if (this.status !== 'init' && this.paused) {
-        return;
-    }
+    // update
+    this.sceneCurrent.update();
 
     if (this.status === 'init') {
         this.status = 'running';
-    }
-
-    if (this.debugMode) {
-       var text = this.getDebugText();
-       this.images['debugText'].setText(text);
-    }
-
-    //log('update');
-    // update
-    var names = Object.getOwnPropertyNames(this.images);
-    var ball = this.images['ball'];
-    for (var i = 0; i < names.length; i++) {
-        var name = names[i];
-        var img = this.images[name];
-        // collide check.
-        if (img && img.collideAble) {
-            var c = ball.checkCollideWith(img);
-            if (c.collide) {
-                ball.onCollide(c);
-                img.onCollide(c);
-                if (name === 'bricks') {
-                    this.score += img.point;
-                }
-            }
-        }
-        img.update();
+        this.paused = true;
     }
 };
 
 Game.prototype.run = function() {
-    log("Game run.");
+    log("Game run.", this);
     this.update();
 };
 
 Game.prototype.start = function () {
     this.init();
+    this.clearSelf();
     this.run();
 };
 
