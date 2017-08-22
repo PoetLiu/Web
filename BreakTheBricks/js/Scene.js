@@ -26,7 +26,7 @@ Scene.prototype.loadBricks = function () {
     var b = l.bricks;
     var images = this.images;
     for (var i = 0; i < b.length; i += 3) {
-        images.push(new Brick(g.ctx, b[i + 0], b[i + 1], 100, 20, getBrickColorByLife(b[i + 2]), b[i + 2]));
+        images.push(new Brick(g.ctx, b[i + 0], b[i + 1], 80, 25, getBrickColorByLife(b[i + 2]), b[i + 2]));
     }
 };
 
@@ -41,7 +41,7 @@ Scene.prototype.init = function () {
         // log(dir);
     };
     this.ball = new Ball(g.ctx, 300, 20, 20, 'red', onBallCollideCtxBorder);
-    this.paddle = new Paddle(g.ctx, 300, 500, 200, 30, 'black');
+    this.paddle = new Paddle(g.ctx, 300, 500, 180, 20, 'black');
     images.push(this.ball);
     images.push(this.paddle);
     if (g.debugMode) {

@@ -1,7 +1,7 @@
 function Game(canvas, fps) {
     this.state = "init";
     this.score = 0;
-    this.level = 3;
+    this.level = 1;
     this.canvas = canvas;
     this.ctx = this.canvas.getContext('2d');
     this.fps = fps;
@@ -79,9 +79,11 @@ Game.prototype.setGameState = function (state) {
             this.paused = true;
             break;
         case 'over':
+            alert('Game Over!\nScore '+this.score);
             this.paused = true;
             break;
         case 'win':
+            alert('Wow! You Win!\nScore '+this.score);
             this.paused = true;
             break;
         default:
