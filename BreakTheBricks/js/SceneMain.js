@@ -88,7 +88,6 @@ SceneMain.prototype.update = function () {
     var g = this.game;
     var ball = this.ball;
     var images = this.images;
-    var ctx = g.ctx;
     var aliveBricks = 0;
 
     // log('SceneMain update.');

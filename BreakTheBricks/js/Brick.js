@@ -6,7 +6,7 @@ function Brick(ctx, x, y, width, height, color, lifes) {
 }
 
 Brick.prototype = Object.create(Rect.prototype);
-Brick.prototype.constructor = Brick;
+Brick.constructor = Brick;
 
 Brick.prototype.draw = function () {
     if (this.visible && this.reDraw) {
@@ -28,7 +28,7 @@ Brick.prototype.draw = function () {
 
 Brick.prototype.updateColor = function () {
     this.color = getBrickColorByLife(this.lifes);
-}
+};
 
 Brick.prototype.onCollide = function () {
     this.lifes -= this.point;

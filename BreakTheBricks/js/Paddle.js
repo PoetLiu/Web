@@ -23,7 +23,7 @@ function Paddle(ctx, x, y, width, height, color) {
 }
 
 Paddle.prototype = Object.create(Rect.prototype);
-Paddle.prototype.constructor = Paddle;
+Paddle.constructor = Paddle;
 Paddle.prototype.onDragTo = function (x) {
    this.moveTo(x-this.w/2, this.y);
    this.draw();
