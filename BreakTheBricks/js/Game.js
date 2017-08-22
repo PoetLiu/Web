@@ -1,7 +1,5 @@
 function Game(canvas, fps) {
-    this.state = "init";
-    this.score = 0;
-    this.level = 1;
+    this.state = '';
     this.canvas = canvas;
     this.ctx = this.canvas.getContext('2d');
     this.fps = fps;
@@ -14,8 +12,7 @@ function Game(canvas, fps) {
 
 Game.prototype.init = function () {
     log("Game init.");
-    this.sceneCurrent = new Scene(this);
-    this.sceneCurrent.init();
+    this.setGameState('init');
 
     var _this = this;
     window.addEventListener('keydown', function (event) {
@@ -28,12 +25,15 @@ Game.prototype.init = function () {
             event.preventDefault();
         }
         if (k === 's' || k === 'S') {
-            _this.paused = false;
+            _this.setGameState('run');
+            event.preventDefault();
+        }
+        if (k === 'r' || k === 'R') {
+            _this.setGameState('init');
             event.preventDefault();
         }
     }, true);
 
-    this.setGameState('init');
     if (!this.debugMode) {
        return;
     }
@@ -48,11 +48,6 @@ Game.prototype.init = function () {
     });
 };
 
-Game.prototype.clearSelf = function () {
-    var c = this.ctx;
-    c.clearRect(0, 0, this.canvas.width, this.canvas.height);
-};
-
 Game.prototype.update = function () {
     //log('update');
     var _this = this;
@@ -60,9 +55,6 @@ Game.prototype.update = function () {
         _this.update();
     }, 1000/_this.fps);
 
-    if (this.state === 'win' || this.state === 'over') {
-        return;
-    }
     // update
     this.sceneCurrent.update();
 };
@@ -73,18 +65,17 @@ Game.prototype.setGameState = function (state) {
     }
     switch (state) {
         case 'init':
+            this.replaceScene(new SceneStart(this));
             this.paused = false;
             break;
         case 'run':
-            this.paused = true;
+            this.replaceScene(new SceneMain(this));
+            this.paused = false;
             break;
         case 'over':
-            alert('Game Over!\nScore '+this.score);
-            this.paused = true;
-            break;
         case 'win':
-            alert('Wow! You Win!\nScore '+this.score);
             this.paused = true;
+            this.replaceScene(new SceneEnd(this));
             break;
         default:
             log('unknown state:' + state);
@@ -94,15 +85,19 @@ Game.prototype.setGameState = function (state) {
     this.state = state;
 };
 
+Game.prototype.replaceScene = function (newScene) {
+    this.sceneCurrent && this.sceneCurrent.fini();
+    this.sceneCurrent = newScene;
+    this.sceneCurrent.init();
+};
+
 Game.prototype.run = function() {
     log("Game run.", this);
     this.update();
-    this.setGameState('run');
 };
 
 Game.prototype.start = function () {
     this.init();
-    this.clearSelf();
     this.run();
 };
 
