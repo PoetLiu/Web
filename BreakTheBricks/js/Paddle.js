@@ -1,29 +1,12 @@
 function Paddle(ctx, x, y, width, height, color) {
     Rect.call(this, ctx, x, y, width, height, color);
     this.speedX = 30;
-    var _this = this;
     this.dragble = true;
-    window.addEventListener('keydown', function (event) {
-        var k = event.key;
-        if (event.defaultPrevented) {
-            return; // Do nothing if the event was already processed
-        }
-        if (_this.paused) {
-            return
-        }
-        if (k === 'j' || k === 'J') {
-            _this.moveLeft();
-            event.preventDefault();
-        }
-        if (k === 'k' || k === 'K') {
-            _this.movedRight();
-            event.preventDefault();
-        }
-    }, true);
 }
 
 Paddle.prototype = Object.create(Rect.prototype);
 Paddle.constructor = Paddle;
+
 Paddle.prototype.onDragTo = function (x) {
    this.moveTo(x-this.w/2, this.y);
    this.draw();

@@ -7,8 +7,7 @@ function Game(canvas, fps) {
     this.timeoutId = 0;
     this.debugMode = true;
     this.input = document.getElementById('game-input');
-    this.score = 0;
-    this.level = 1;
+    this.sceneOld = null;
     this.sceneCurrent = null;
     this.eventManager = null;
 }
@@ -93,6 +92,7 @@ Game.prototype.setGameState = function (state) {
 
 Game.prototype.replaceScene = function (newScene) {
     this.sceneCurrent && this.sceneCurrent.fini();
+    this.sceneOld   = this.sceneCurrent;
     this.sceneCurrent = newScene;
     this.sceneCurrent.init();
 };

@@ -5,6 +5,8 @@ function SceneMain(game) {
     this.bricks = [];
     this.debugText = null;
     this.images = [];
+    this.score = 0;
+    this.level = 1;
 }
 
 SceneMain.prototype = Object.create(Scene.prototype);
@@ -14,13 +16,13 @@ SceneMain.prototype.getDebugText = function () {
     var t = '';
     var g = this.game;
     t += 'FPS:' + g.fps + ' State:' + g.state + ' Paused:' + g.paused;
-    t += ' Score:' + g.score + ' Level:' + g.level;
+    t += ' Score:' + this.score + ' Level:' + this.level;
     return t;
 };
 
 SceneMain.prototype.loadBricks = function () {
     var g = this.game;
-    var l = loadLevel(g.level);
+    var l = loadLevel(this.level);
 
     if (!l) {
         g.setGameState('win');
@@ -80,6 +82,25 @@ SceneMain.prototype.init = function () {
             }
         }
     });
+
+    e.addEventListenerTo(window, 'keydown', function (event) {
+        var k = event.key;
+        var p = _this.paddle;
+        if (event.defaultPrevented) {
+            return; // Do nothing if the event was already processed
+        }
+        if (g.paused) {
+            return;
+        }
+        if (k === 'j' || k === 'J') {
+            p.moveLeft();
+            event.preventDefault();
+        }
+        if (k === 'k' || k === 'K') {
+            p.movedRight();
+            event.preventDefault();
+        }
+    }, true);
 };
 
 SceneMain.prototype.update = function () {
@@ -98,7 +119,7 @@ SceneMain.prototype.update = function () {
                 ball.onCollide(c);
                 img.onCollide(c);
                 if (img instanceof Brick) {
-                    g.score += img.point;
+                    this.score += img.point;
                 }
             }
         }
@@ -111,7 +132,7 @@ SceneMain.prototype.update = function () {
 
     // next level
     if (!aliveBricks) {
-        g.level++;
+        this.level++;
         this.loadBricks();
     }
 

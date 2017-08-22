@@ -8,11 +8,12 @@ SceneEnd.constructor = SceneEnd;
 
 SceneEnd.prototype.init = function () {
     var g = this.game;
+    var score = g.sceneOld.score;
     this.texts.push(new Text(g.ctx, 220, 200, 50, 'black', 'serif', 1.0, function () {
         return g.state === 'win' ? 'Wow, you win!' : 'Oops! You lose.';
     }));
     this.texts.push(new Text(g.ctx, 360, 260, 40, 'red', 'serif', 0.8, function () {
-        return g.score + '';
+        return score + '';
     }));
     this.texts.push(new Text(g.ctx, 220, 300, 30, 'black', 'serif', 0.8, function () {
         return 'Press r to restart the game.';

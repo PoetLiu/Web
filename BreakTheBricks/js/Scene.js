@@ -15,6 +15,6 @@ Scene.prototype.clearSelf = function () {
     var g = this.game;
     var ctx = g.ctx;
     var can = g.canvas;
-    log(this, can.width, can.height);
+    // log(this, can.width, can.height);
     ctx.clearRect(0, 0, can.width, can.height);
 };
