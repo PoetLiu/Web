@@ -16,6 +16,7 @@ Brick.prototype.draw = function () {
         // draw new.
         var c = this.ctx;
         c.fillStyle = this.color;
+        c.globalAlpha = this.alpha;
         c.fillRect(this.x, this.y, this.w, this.h);
 
         // clear state.

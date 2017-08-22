@@ -15,6 +15,7 @@ Ball.prototype.draw = function () {
     if (this.reDraw) {
         var c = this.ctx;
         this.clearSelf();
+        c.globalAlpha = this.alpha;
         c.beginPath();
         c.arc(this.x+this.r, this.y+this.r, this.r, 0, Math.PI * 2, true);
         c.fillStyle = this.color;

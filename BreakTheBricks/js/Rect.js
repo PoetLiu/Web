@@ -11,6 +11,7 @@ function Rect(ctx, x, y, width, heigth, color) {
     this.collideAble = true;
     this.dragble = false;
     this.onDraging = false;
+    this.alpha = 1;
 }
 
 Rect.prototype.clearSelf = function () {
