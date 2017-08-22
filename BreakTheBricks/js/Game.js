@@ -8,6 +8,7 @@ function Game(canvas, fps) {
     this.debugMode = true;
     this.input = document.getElementById('game-input');
     this.sceneCurrent = null;
+    this.eventManager = null;
 }
 
 Game.prototype.init = function () {
@@ -15,7 +16,10 @@ Game.prototype.init = function () {
     this.setGameState('init');
 
     var _this = this;
-    window.addEventListener('keydown', function (event) {
+    var e = new EventListenerManager();
+    this.eventManager = e;
+
+    e.addEventListenerTo(window, 'keydown', function (event) {
         var k = event.key;
         if (event.defaultPrevented) {
             return; // Do nothing if the event was already processed
@@ -41,7 +45,7 @@ Game.prototype.init = function () {
     var input = this.input;
     input.value = this.fps.toString();
     input.style.display = 'block';
-    window.addEventListener('change', function (event) {
+    e.addEventListenerTo(window, 'change', function (event) {
         if (event.target === input) {
             _this.fps   = Number(event.target.value);
         }
@@ -102,5 +106,7 @@ Game.prototype.start = function () {
 };
 
 Game.prototype.stop = function () {
+    var e = this.eventManager;
     window.clearTimeout(this.timeoutId);
+    e.removeAll();
 };

@@ -39,7 +39,6 @@ SceneMain.prototype.loadBricks = function () {
 SceneMain.prototype.init = function () {
     var g = this.game;
     var images = this.images;
-    var _this = this;
 
     this.ball = new Ball(g.ctx, 300, 20, 20, 'red');
     this.paddle = new Paddle(g.ctx, 300, 500, 180, 20, 'black');
@@ -51,7 +50,9 @@ SceneMain.prototype.init = function () {
     }
     this.loadBricks();
 
-    window.addEventListener('mousedown', function (event) {
+    var _this = this;
+    var e = this.eventManager;
+    e.addEventListenerTo(window, 'mousedown', function (event) {
         var x = event.offsetX, y = event.offsetY;
         var items = _this.images;
         for (var i = 0; i < items.length; i++) {
@@ -62,7 +63,7 @@ SceneMain.prototype.init = function () {
         }
     });
 
-    window.addEventListener('mousemove', function (event) {
+    e.addEventListenerTo(window, 'mousemove', function (event) {
         var x = event.offsetX, y = event.offsetY;
         var items = _this.images;
         for (var i = 0; i < items.length; i++) {
@@ -73,7 +74,7 @@ SceneMain.prototype.init = function () {
         }
     });
 
-    window.addEventListener('mouseup', function (event) {
+    e.addEventListenerTo(window, 'mouseup', function (event) {
         var items = _this.images;
         for (var i = 0; i < items.length; i++) {
             var t = items[i];

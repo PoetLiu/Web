@@ -1,11 +1,13 @@
 function Scene(game) {
     this.game = game;
+    this.eventManager = new EventListenerManager();
 }
 
 Scene.prototype.init = function () {
 };
 
 Scene.prototype.fini = function () {
+    this.eventManager.removeAll();
     this.clearSelf();
 };
 
