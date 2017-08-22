@@ -7,6 +7,8 @@ function Game(canvas, fps) {
     this.timeoutId = 0;
     this.debugMode = true;
     this.input = document.getElementById('game-input');
+    this.score = 0;
+    this.level = 1;
     this.sceneCurrent = null;
     this.eventManager = null;
 }

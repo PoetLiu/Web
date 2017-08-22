@@ -15,11 +15,16 @@ SceneStart.prototype.init = function () {
         return 'Press j to move left the paddle.';
     }));
     this.texts.push(new Text(g.ctx, 220, 310, 30, 'black', 'serif', function () {
-        return 'Press k to move right.';
+        return 'Press k to move right the paddle.';
     }));
     this.texts.push(new Text(g.ctx, 220, 340, 30, 'black', 'serif', function () {
         return 'Press s to start game.';
     }));
+    if (g.debugMode) {
+        this.texts.push(new Text(g.ctx, 220, 370, 30, 'black', 'serif', function () {
+            return 'Press space to pause/continue game.';
+        }));
+    }
 };
 
 SceneStart.prototype.update = function () {

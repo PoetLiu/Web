@@ -5,9 +5,6 @@ function SceneMain(game) {
     this.bricks = [];
     this.debugText = null;
     this.images = [];
-    this.score = 0;
-    this.level = 1;
-    this.maxLevel = 0;
 }
 
 SceneMain.prototype = Object.create(Scene.prototype);
@@ -17,13 +14,13 @@ SceneMain.prototype.getDebugText = function () {
     var t = '';
     var g = this.game;
     t += 'FPS:' + g.fps + ' State:' + g.state + ' Paused:' + g.paused;
-    t += ' Score:' + this.score + ' Level:' + this.level;
+    t += ' Score:' + g.score + ' Level:' + g.level;
     return t;
 };
 
 SceneMain.prototype.loadBricks = function () {
     var g = this.game;
-    var l = loadLevel(this.level);
+    var l = loadLevel(g.level);
 
     if (!l) {
         g.setGameState('win');
@@ -101,7 +98,7 @@ SceneMain.prototype.update = function () {
                 ball.onCollide(c);
                 img.onCollide(c);
                 if (img instanceof Brick) {
-                    this.score += img.point;
+                    g.score += img.point;
                 }
             }
         }
@@ -114,7 +111,7 @@ SceneMain.prototype.update = function () {
 
     // next level
     if (!aliveBricks) {
-        this.level++;
+        g.level++;
         this.loadBricks();
     }
 
