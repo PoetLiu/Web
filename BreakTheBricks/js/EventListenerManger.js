@@ -10,14 +10,8 @@ EventListenerManager.prototype.addEventListenerTo = function (target) {
 };
 
 EventListenerManager.prototype.removeAll = function () {
-    var l = this.liseners;
-
-    for (var i = 0; i < l.length; i++) {
-        var o = l[i];
-        var t = o.t;
-        var args = o.args;
-        log(t, args);
-        t.removeEventListener.apply(t, args);
+    for (var i = 0; i < this.liseners.length; i++) {
+        var o = this.liseners[i];
+        o.t.removeEventListener.apply(o.t, o.args);
     }
-    this.liseners   = [];
 };
