@@ -1,11 +1,11 @@
-function Text(ctx, x, y, size, color, font, text_cb) {
+function Text(ctx, x, y, size, color, font, alpa, text_cb) {
     Rect.call(this, ctx, x, y, 0, size, color);
     this.updateText = text_cb;
     this.size   = size;
     this.font   = font;
     this.collideAble    = false;
     this.text = '';
-    this.alpha = 0.5;
+    this.alpha = alpa;
 }
 
 Text.prototype  = Object.create(Rect.prototype);

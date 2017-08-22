@@ -42,7 +42,7 @@ SceneMain.prototype.init = function () {
     images.push(this.ball);
     images.push(this.paddle);
     if (g.debugMode) {
-        this.debugText = new Text(g.ctx, 0, 630, 20, 'gray', 'serif', this.getDebugText.bind(this));
+        this.debugText = new Text(g.ctx, 0, 630, 20, 'gray', 'serif', 0.5, this.getDebugText.bind(this));
         images.push(this.debugText);
     }
     this.loadBricks();

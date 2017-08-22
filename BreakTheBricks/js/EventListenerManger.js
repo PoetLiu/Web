@@ -18,4 +18,5 @@ EventListenerManager.prototype.removeAll = function () {
         var args = o.args;
         t.removeEventListener.apply(t, args);
     }
+    this.liseners   = [];
 };
