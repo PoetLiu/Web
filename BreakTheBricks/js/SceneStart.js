@@ -4,7 +4,7 @@ function SceneStart(game) {
 }
 
 SceneStart.prototype = Object.create(Scene.prototype);
-SceneStart.prototype.constructor = SceneStart;
+SceneStart.constructor = SceneStart;
 
 SceneStart.prototype.init = function () {
     var g = this.game;

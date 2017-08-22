@@ -11,7 +11,7 @@ function SceneMain(game) {
 }
 
 SceneMain.prototype = Object.create(Scene.prototype);
-SceneMain.prototype.constructor = SceneMain;
+SceneMain.constructor = SceneMain;
 
 SceneMain.prototype.getDebugText = function () {
     var t = '';

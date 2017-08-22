@@ -8,7 +8,7 @@ function Ball(ctx, x, y, radius, color) {
 }
 
 Ball.prototype = Object.create(Rect.prototype);
-Ball.prototype.constructor = Ball;
+Ball.constructor = Ball;
 
 Ball.prototype.draw = function () {
     // draw balls
