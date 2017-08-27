@@ -1,5 +1,5 @@
 function Text(ctx, x, y, size, color, font, alpa, text_cb) {
-    Rect.call(this, ctx, x, y, 0, size, color);
+    RectImage.call(this, ctx, x, y, 0, size, color);
     this.updateText = text_cb;
     this.size   = size;
     this.font   = font;
@@ -8,7 +8,7 @@ function Text(ctx, x, y, size, color, font, alpa, text_cb) {
     this.alpha = alpa;
 }
 
-Text.prototype  = Object.create(Rect.prototype);
+Text.prototype  = Object.create(RectImage.prototype);
 Text.constructor = Text;
 
 Text.prototype.setText = function (text) {

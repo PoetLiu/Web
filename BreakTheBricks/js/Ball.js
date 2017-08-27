@@ -1,5 +1,5 @@
 function Ball(ctx, x, y, radius, color) {
-    Rect.call(this, ctx, x, y, radius * 2, radius * 2, color);
+    RectImage.call(this, ctx, x, y, radius * 2, radius * 2, color);
     this.speedX = 8;
     this.speedY = 8;
     this.r = radius;
@@ -7,7 +7,7 @@ function Ball(ctx, x, y, radius, color) {
     this.collideWallDir = 'none';
 }
 
-Ball.prototype = Object.create(Rect.prototype);
+Ball.prototype = Object.create(RectImage.prototype);
 Ball.constructor = Ball;
 
 Ball.prototype.draw = function () {

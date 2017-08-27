@@ -1,11 +1,11 @@
 function Brick(ctx, x, y, width, height, color, lifes) {
-    Rect.call(this, ctx, x, y, width, height, color);
+    RectImage.call(this, ctx, x, y, width, height, color);
     this.visible = true;
     this.point = 1;
     this.lifes = lifes;
 }
 
-Brick.prototype = Object.create(Rect.prototype);
+Brick.prototype = Object.create(RectImage.prototype);
 Brick.constructor = Brick;
 
 Brick.prototype.draw = function (forceReDraw) {

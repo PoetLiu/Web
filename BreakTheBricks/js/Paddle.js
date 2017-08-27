@@ -1,10 +1,10 @@
 function Paddle(ctx, x, y, width, height, color) {
-    Rect.call(this, ctx, x, y, width, height, color);
+    RectImage.call(this, ctx, x, y, width, height, color);
     this.speedX = 30;
     this.dragble = true;
 }
 
-Paddle.prototype = Object.create(Rect.prototype);
+Paddle.prototype = Object.create(RectImage.prototype);
 Paddle.constructor = Paddle;
 
 Paddle.prototype.onDragTo = function (x) {
