@@ -7,6 +7,8 @@ function SceneMain(game) {
     this.images = [];
     this.score = 0;
     this.level = 1;
+    this.bgAudio = null;
+    this.bounceAudio = null;
 }
 
 SceneMain.prototype = Object.create(Scene.prototype);
@@ -36,19 +38,11 @@ SceneMain.prototype.loadBricks = function () {
 };
 
 SceneMain.prototype.playBgMusic = function () {
-    audioPlay(this.game.audio, 'data/background.mp3', true);
+    this.bgAudio.play();
 };
 
 SceneMain.prototype.playBounceMusic = function () {
-    var a = this.game.audio;
-    audioPlay(a, 'data/bounce.mp3', false);
-
-    var _this = this;
-    var handler = function () {
-        a.removeEventListener('ended', handler, false);
-        _this.playBgMusic();
-    };
-    a.addEventListener('ended', handler, false);
+    this.bounceAudio.play();
 };
 
 SceneMain.prototype.init = function () {
@@ -118,11 +112,14 @@ SceneMain.prototype.init = function () {
         }
     }, true);
 
+    this.bounceAudio = new Audio('data/bounce.mp3', false);
+    this.bgAudio = new Audio('data/background.mp3', true);
     this.playBgMusic();
 };
 
 SceneMain.prototype.fini = function () {
     Scene.prototype.fini.call(this);
+    this.bgAudio.pause();
 };
 
 SceneMain.prototype.update = function () {
