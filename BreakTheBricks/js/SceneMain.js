@@ -39,7 +39,7 @@ SceneMain.prototype.init = function () {
     var g = this.game;
     var images = this.images;
 
-    this.ball = new Ball(g.ctx, 300, 20, 20, 'red');
+    this.ball = new Ball(g.ctx, 300, 15, 15, 'red');
     this.paddle = new Paddle(g.ctx, 300, 500, 180, 20, 'black');
     images.push(this.ball);
     images.push(this.paddle);
