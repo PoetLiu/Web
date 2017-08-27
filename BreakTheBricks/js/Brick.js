@@ -8,8 +8,8 @@ function Brick(ctx, x, y, width, height, color, lifes) {
 Brick.prototype = Object.create(Rect.prototype);
 Brick.constructor = Brick;
 
-Brick.prototype.draw = function () {
-    if (this.visible && this.reDraw) {
+Brick.prototype.draw = function (forceReDraw) {
+    if (this.visible && (this.reDraw || forceReDraw)) {
         // clear old.
         this.clearSelf();
 
@@ -46,9 +46,9 @@ Brick.prototype.hide = function () {
     this.clearSelf();
 };
 
-Brick.prototype.update = function (paused) {
+Brick.prototype.update = function (paused, forceReDraw) {
     if (paused) {
         return;
     }
-    this.draw();
+    this.draw(forceReDraw);
 };

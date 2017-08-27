@@ -108,6 +108,7 @@ SceneMain.prototype.update = function () {
     var ball = this.ball;
     var images = this.images;
     var aliveBricks = 0;
+    var hadCollide = false;
 
     // log('SceneMain update.');
     for (var i = 0; i < images.length; i++) {
@@ -116,6 +117,7 @@ SceneMain.prototype.update = function () {
         if (!g.paused && img && img.collideAble) {
             var c = ball.checkCollideWith(img);
             if (c.collide) {
+                hadCollide  = true;
                 ball.onCollide(c);
                 img.onCollide(c);
                 if (img instanceof Brick) {
@@ -127,7 +129,7 @@ SceneMain.prototype.update = function () {
         if (img instanceof Brick && img.visible) {
             aliveBricks++;
         }
-        img.update(g.paused);
+        img.update(g.paused, hadCollide);
     }
 
     // next level
