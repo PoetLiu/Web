@@ -68,6 +68,10 @@ Game.prototype.setGameState = function (state) {
     if (this.state === state) {
         return;
     }
+
+    var oldState = this.state;
+    log('state:' + state);
+    this.state = state;
     switch (state) {
         case 'init':
             this.replaceScene(new SceneStart(this));
@@ -83,11 +87,10 @@ Game.prototype.setGameState = function (state) {
             this.replaceScene(new SceneEnd(this));
             break;
         default:
+            this.state = oldState;
             log('unknown state:' + state);
             return;
     }
-    log('state:' + state);
-    this.state = state;
 };
 
 Game.prototype.replaceScene = function (newScene) {
