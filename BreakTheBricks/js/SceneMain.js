@@ -31,7 +31,7 @@ SceneMain.prototype.loadBricks = function () {
     var b = l.bricks;
     var images = this.images;
     for (var i = 0; i < b.length; i += 3) {
-        images.push(new Brick(g.ctx, b[i + 0], b[i + 1], 80, 25, getBrickColorByLife(b[i + 2]), b[i + 2]));
+        images.push(new Brick(g.ctx, b[i], b[i + 1], 80, 25, getBrickColorByLife(b[i + 2]), b[i + 2]));
     }
 };
 
