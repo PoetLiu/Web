@@ -7,7 +7,6 @@ function SceneMain(game) {
     this.images = [];
     this.score = 0;
     this.level = 1;
-    this.bgMusic = null;
 }
 
 SceneMain.prototype = Object.create(Scene.prototype);
@@ -36,15 +35,25 @@ SceneMain.prototype.loadBricks = function () {
     }
 };
 
+SceneMain.prototype.playBgMusic = function () {
+    audioPlay(this.game.audio, 'data/background.mp3', true);
+};
+
+SceneMain.prototype.playBounceMusic = function () {
+    var a = this.game.audio;
+    audioPlay(a, 'data/bounce.mp3', false);
+
+    var _this = this;
+    var handler = function () {
+        a.removeEventListener('ended', handler, false);
+        _this.playBgMusic();
+    };
+    a.addEventListener('ended', handler, false);
+};
+
 SceneMain.prototype.init = function () {
     var g = this.game;
     var images = this.images;
-
-    var bgMusic = document.createElement('audio');
-    bgMusic.src = 'data/background.mp3';
-    bgMusic.loop    = true;
-    bgMusic.play();
-    this.bgMusic = bgMusic;
 
     this.ball = new Ball(g.ctx, 300, 15, 15, 'red');
     this.paddle = new Paddle(g.ctx, 300, 500, 180, 20, 'black');
@@ -108,11 +117,12 @@ SceneMain.prototype.init = function () {
             event.preventDefault();
         }
     }, true);
+
+    this.playBgMusic();
 };
 
 SceneMain.prototype.fini = function () {
     Scene.prototype.fini.call(this);
-    this.bgMusic.pause();
 };
 
 SceneMain.prototype.update = function () {
@@ -142,6 +152,10 @@ SceneMain.prototype.update = function () {
             aliveBricks++;
         }
         img.update(g.paused, hadCollide);
+    }
+
+    if (hadCollide) {
+        this.playBounceMusic();
     }
 
     // next level

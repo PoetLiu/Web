@@ -10,11 +10,14 @@ function Game(canvas, fps) {
     this.sceneOld = null;
     this.sceneCurrent = null;
     this.eventManager = null;
+    this.audio = null;
 }
 
 Game.prototype.init = function () {
     log("Game init.");
     this.setGameState('init');
+
+    this.audio  = document.createElement('audio');
 
     var _this = this;
     var e = new EventListenerManager();

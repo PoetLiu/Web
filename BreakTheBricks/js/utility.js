@@ -12,6 +12,15 @@ function numInSection(num, min, max) {
     }
 }
 
+function audioPlay(audio, src, loop) {
+    var a   = audio;
+    a.pause();
+    a.src = src;
+    a.loop    = loop;
+    a.load();
+    a.play();
+}
+
 function numIsInSection(num, min, max) {
     return numInSection(num, min, max) === num;
 }
