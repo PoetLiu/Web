@@ -19,7 +19,8 @@ SceneEnd.prototype.init = function () {
     this.texts.push(new Text(g.ctx, 220, 300, 30, 'black', 'serif', 0.8, function () {
         return 'Press r to restart the game.';
     }));
-    this.bgAudio = new Audio('data/gameOver.mp3', false);
+    this.bgAudio = new Audio('data/game'+(g.state === 'win'?'Win':'Over')+'.mp3', false);
+    log(g.state, this.bgAudio.src);
     this.bgAudio.play();
 };
 
