@@ -1,7 +1,7 @@
 function Ball(ctx, x, y, radius, color) {
     RectImage.call(this, ctx, x, y, radius * 2, radius * 2, color);
-    this.speedX = 8;
-    this.speedY = 8;
+    this.speedX = 4;
+    this.speedY = 4;
     this.r = radius;
     this.dragble    = true;
     this.collideWallDir = 'none';
