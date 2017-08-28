@@ -105,10 +105,11 @@ SceneMain.prototype.init = function () {
         if (k === 'j' || k === 'J') {
             p.moveLeft();
             event.preventDefault();
-        }
-        if (k === 'k' || k === 'K') {
+        } else if (k === 'k' || k === 'K') {
             p.movedRight();
             event.preventDefault();
+        } else {
+            return;
         }
     }, true);
 
