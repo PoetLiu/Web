@@ -6,7 +6,7 @@ function Brick(ctx, x, y, width, height, color, lifes) {
 }
 
 Brick.prototype = Object.create(RectImage.prototype);
-Brick.constructor = Brick;
+Brick.prototype.constructor = Brick;
 
 Brick.prototype.draw = function (forceReDraw) {
     if (this.visible && (this.reDraw || forceReDraw)) {

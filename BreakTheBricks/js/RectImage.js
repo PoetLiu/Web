@@ -12,7 +12,7 @@ function RectImage(ctx, x, y, width, height, color) {
 }
 
 RectImage.prototype = Object.create(Rect.prototype);
-RectImage.constructor   = RectImage;
+RectImage.prototype.constructor = RectImage;
 
 RectImage.prototype.clearSelf = function () {
    var c = this.ctx;

@@ -9,7 +9,7 @@ function Text(ctx, x, y, size, color, font, alpa, text_cb) {
 }
 
 Text.prototype  = Object.create(RectImage.prototype);
-Text.constructor = Text;
+Text.prototype.constructor = Text;
 
 Text.prototype.setText = function (text) {
     if (text !== this.text) {

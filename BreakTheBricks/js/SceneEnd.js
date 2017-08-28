@@ -5,7 +5,7 @@ function SceneEnd(game) {
 }
 
 SceneEnd.prototype = Object.create(Scene.prototype);
-SceneEnd.constructor = SceneEnd;
+SceneEnd.prototype.constructor = SceneEnd;
 
 SceneEnd.prototype.init = function () {
     var g = this.game;

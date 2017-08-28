@@ -5,7 +5,7 @@ function Paddle(ctx, x, y, width, height, color) {
 }
 
 Paddle.prototype = Object.create(RectImage.prototype);
-Paddle.constructor = Paddle;
+Paddle.prototype.constructor = Paddle;
 
 Paddle.prototype.onDragTo = function (x) {
    this.moveTo(x-this.w/2, this.y);
