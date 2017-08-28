@@ -1,6 +1,7 @@
 function SceneStart(game) {
     Scene.call(this, game);
     this.texts = [];
+    this.bgAudio = null;
 }
 
 SceneStart.prototype = Object.create(Scene.prototype);
@@ -25,6 +26,17 @@ SceneStart.prototype.init = function () {
             return 'Press space to pause/continue game.';
         }));
     }
+    this.bgAudio = new Audio('data/background.mp3', true);
+    this.playBgMusic();
+};
+
+SceneStart.prototype.fini = function () {
+    Scene.prototype.fini.call(this);
+    this.bgAudio.pause();
+};
+
+SceneStart.prototype.playBgMusic = function () {
+    this.bgAudio.play();
 };
 
 SceneStart.prototype.update = function () {

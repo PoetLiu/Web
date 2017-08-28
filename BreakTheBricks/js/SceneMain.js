@@ -7,7 +7,6 @@ function SceneMain(game) {
     this.images = [];
     this.score = 0;
     this.level = 1;
-    this.bgAudio = null;
     this.bounceAudio = null;
 }
 
@@ -35,10 +34,6 @@ SceneMain.prototype.loadBricks = function () {
     for (var i = 0; i < b.length; i += 3) {
         images.push(new Brick(g.ctx, b[i], b[i + 1], 80, 25, getBrickColorByLife(b[i + 2]), b[i + 2]));
     }
-};
-
-SceneMain.prototype.playBgMusic = function () {
-    this.bgAudio.play();
 };
 
 SceneMain.prototype.playBounceMusic = function () {
@@ -114,13 +109,10 @@ SceneMain.prototype.init = function () {
     }, true);
 
     this.bounceAudio = new Audio('data/bounce.mp3', false);
-    this.bgAudio = new Audio('data/background.mp3', true);
-    this.playBgMusic();
 };
 
 SceneMain.prototype.fini = function () {
     Scene.prototype.fini.call(this);
-    this.bgAudio.pause();
 };
 
 SceneMain.prototype.update = function () {
