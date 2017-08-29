@@ -1,13 +1,41 @@
-* {
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+code,
+form,
+fieldset,
+legend,
+input,
+textarea,
+p,
+blockquote,
+th,
+td {
     margin: 0;
     padding: 0;
 }
 
 body {
     background-color: rgb(245, 246, 248);
+    font-family: "微软雅黑", Helvetica, Tahoma, Arial, SimSun, Heiti, "黑体", sans-serif;
+    font-size:12px;
+    line-height: 18px;
 }
 
 .header {
+    top: 0;
     position: fixed;
     width: 100%;
     min-width: 1004px;
@@ -19,7 +47,7 @@ body {
     padding: 0 10px;
 }
 
-.nav-link a{
+.nav-link a {
     color: #A3A3A3;
 }
 
@@ -31,4 +59,62 @@ body {
 .nav-logo {
     float: left;
     margin-top: 20px;
+}
+
+.login-body {
+    width: 960px;
+    padding-top: 155px;
+    margin: 0 auto;
+}
+
+.slogan {
+    text-align: center;
+    font-size: 40px;
+    line-height: 40px;
+    color: #428BEF;
+    margin: 0 auto 60px;
+}
+
+.login-box {
+    width: 376px;
+    margin: 0 auto 15px;
+}
+
+.input-area {
+    height: 36px;
+    margin-bottom: 30px;
+}
+
+.login-label {
+    float: left;
+    width: 60px;
+    line-height: 36px;
+}
+
+.login-input {
+    width: 238px;
+    height: 16px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #d8d8d8;
+}
+
+input {
+    vertical-align: middle;
+}
+
+.login-btn {
+    width: 260px;
+    height: 36px;
+    font-size:20px;
+    line-height: 36px;
+    margin-left: 60px;
+    background: #428BEF;
+    color: #FFF;
+}
+
+.login-info {
+    color:#428BEF;
+    margin: 0 auto;
+    text-align: center;
 }
