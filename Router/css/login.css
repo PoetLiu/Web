@@ -65,7 +65,7 @@ body {
     text-decoration: none;
 }
 
-.nav-link li .last {
+.nav-link li.last {
     border-right:none;
 }
 
@@ -78,7 +78,6 @@ body {
     font-size: 14px;
     float: right;
     margin-top: 22px;
-    margin-right: -1px;
 }
 
 .nav-logo {
