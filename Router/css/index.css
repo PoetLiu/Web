@@ -2,7 +2,7 @@ body {
     background-color: rgb(245, 246, 248);
     font-family: "微软雅黑", Helvetica, Tahoma, Arial, SimSun, Heiti, "黑体", sans-serif;
     font-size:12px;
-    line-height: 18px;
+    line-height: 1.5;
 }
 
 .nav-bar{
@@ -61,4 +61,74 @@ body {
 .nav-pages li a {
     color: #A3A3A3;
     text-decoration: none;
+}
+
+.content {
+    margin-top: 95px;
+}
+
+.router-info {
+    width:260px;
+    height:495px;
+    background: url("../image/router_info_bg.png") repeat-x scroll #5A9CE6;
+    border-radius: 2px;
+}
+
+.router-info div {
+    text-align: center;
+    width: 100%;
+}
+
+.router-info .run-info {
+    height: 50px;
+    color: #FFFFFF;
+    font-size: 16px;
+    line-height: 50px;
+}
+
+.router-info .run-info .router-run-day {
+    margin: 0 10px;
+    color: #DFB850;
+}
+
+.router-info .speed-info {
+    color:#FFFFFF;
+    height: 100%;
+   padding:55px 0;
+}
+.router-info .speed-info .router-down-speed  {
+    height: 30%;
+    position:relative;
+}
+
+.router-info .speed-info .router-down-speed .router-down-speed-value{
+    font-size: 90px;
+    line-height: 90px;
+    text-shadow: 0px 5px 5px rgba(0, 0, 0, 0.15);
+}
+
+.router-down-speed-unit {
+    font-size: 14px;
+}
+.router-down-speed-title {
+    font-size: 12px;
+    margin:10px 0;
+}
+
+.footer {
+    text-align: center;
+}
+
+.copyright {
+    padding:35px 0 20px;
+    color:#818181;
+}
+
+.os {
+    display: inline-block;
+    margin:0 auto;
+    padding: 0 15px;
+    line-height:30px;
+    border-radius: 45px;
+    border: 1px solid #E3E3E5;
 }
