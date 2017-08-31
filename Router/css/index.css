@@ -64,10 +64,12 @@ body {
 }
 
 .content {
-    margin-top: 95px;
+    margin: 95px auto 0;
+    width: 1004px;
 }
 
 .router-info {
+    float: left;
     width:260px;
     height:495px;
     background: url("../image/router_info_bg.png") repeat-x scroll #5A9CE6;
@@ -115,7 +117,15 @@ body {
     margin:10px 0;
 }
 
+.app-list {
+    float: left;
+   width:744px;
+    height: 495px;
+    overflow: hidden;
+}
+
 .footer {
+    clear: both;
     text-align: center;
 }
 
