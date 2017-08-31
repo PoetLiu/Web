@@ -1,0 +1,64 @@
+body {
+    background-color: rgb(245, 246, 248);
+    font-family: "微软雅黑", Helvetica, Tahoma, Arial, SimSun, Heiti, "黑体", sans-serif;
+    font-size:12px;
+    line-height: 18px;
+}
+
+.top-bar{
+    top: 0;
+    position: fixed;
+    width: 100%;
+    min-width: 1004px;
+    height: 55px;
+    background-color: rgb(38, 38, 38);
+}
+
+.top-bar .container {
+    width: 1004px;
+    margin: 0 auto;
+    padding: 0 10px;
+}
+
+.nav-logo {
+    float: left;
+    height: 20px;
+    margin-top: 20px;
+}
+
+.nav-link li {
+    height: 14px;
+    padding: 0 8px;
+    float: left;
+    border-right: 1px solid #A3A3A3;
+}
+
+.nav-link li a {
+    color: #A3A3A3;
+    text-decoration: none;
+}
+
+.nav-link {
+    line-height: 14px;
+    font-size: 14px;
+    float: right;
+    margin-top: 22px;
+}
+
+.nav-pages {
+    float:left;
+    font-size: 14px;
+    margin-top: 19px;
+    margin-left: 55px;
+}
+
+.nav-pages li {
+    height: 14px;
+    padding: 0 20px;
+    float: left;
+}
+
+.nav-pages li a {
+    color: #A3A3A3;
+    text-decoration: none;
+}
