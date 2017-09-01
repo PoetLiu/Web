@@ -54,20 +54,31 @@ body {
 }
 
 .nav-pages {
+    margin-top:6px;
     margin-left: 55px;
     float: left;
 }
 
 .nav-pages li {
     font-size: 14px;
-    line-height: 50px;
-    padding: 3px 20px;
+    line-height: 44px;
+    padding: 0 18px 5px;
+    margin: 0 2px;
     float: left;
 }
 
 .nav-pages li a {
     color: #A3A3A3;
     text-decoration: none;
+}
+
+.current {
+    background-color: rgb(245, 246, 248);
+    border-radius: 6px 6px 0px 0px;
+}
+
+.current a {
+    color: black !important;
 }
 
 .article {
