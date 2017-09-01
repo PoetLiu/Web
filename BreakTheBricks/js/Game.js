@@ -57,9 +57,13 @@ class Game {
     update() {
         //log('update');
         let _this = this;
-        this.timeoutId = setTimeout(function () {
-            _this.update();
-        }, 1000 / _this.fps);
+        if (_this.debugMode) {
+            _this.timeoutId = setTimeout(function () {
+                _this.update();
+            }, 1000 / _this.fps);
+        } else {
+            window.requestAnimationFrame(_this.update.bind(_this));
+        }
 
         // update
         this.sceneCurrent.update();
