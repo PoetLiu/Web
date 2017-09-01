@@ -1,54 +1,53 @@
-function Brick(ctx, x, y, width, height, color, lifes) {
-    RectImage.call(this, ctx, x, y, width, height, color);
-    this.visible = true;
-    this.point = 1;
-    this.lifes = lifes;
-}
+class Brick extends RectImage {
+    constructor(ctx, x, y, width, height, color, life) {
+        super(ctx, x, y, width, height, color);
+        this.visible = true;
+        this.point = 1;
+        this.lifes = life;
+    };
 
-Brick.prototype = Object.create(RectImage.prototype);
-Brick.prototype.constructor = Brick;
+    draw(forceReDraw) {
+        if (this.visible && (this.reDraw || forceReDraw)) {
+            // clear old.
+            this.clearSelf();
 
-Brick.prototype.draw = function (forceReDraw) {
-    if (this.visible && (this.reDraw || forceReDraw)) {
-        // clear old.
+            // draw new.
+            let c = this.ctx;
+            c.fillStyle = this.color;
+            c.globalAlpha = this.alpha;
+            c.fillRect(this.x, this.y, this.w, this.h);
+
+            // clear state.
+            this.reDraw = false;
+            this.oldX = this.x;
+            this.oldY = this.y;
+        }
+    };
+
+    updateColor() {
+        this.color = getBrickColorByLife(this.lifes);
+    };
+
+    onCollide() {
+        this.lifes -= this.point;
+        if (this.lifes <= 0) {
+            this.lifes = 0;
+            this.hide();
+        }
+        this.updateColor();
+        this.reDraw = true;
+    };
+
+    hide() {
+        this.visible = false;
+        this.collideAble = false;
         this.clearSelf();
+    };
 
-        // draw new.
-        let c = this.ctx;
-        c.fillStyle = this.color;
-        c.globalAlpha = this.alpha;
-        c.fillRect(this.x, this.y, this.w, this.h);
-
-        // clear state.
-        this.reDraw = false;
-        this.oldX = this.x;
-        this.oldY = this.y;
-    }
-};
-
-Brick.prototype.updateColor = function () {
-    this.color = getBrickColorByLife(this.lifes);
-};
-
-Brick.prototype.onCollide = function () {
-    this.lifes -= this.point;
-    if (this.lifes <= 0) {
-        this.lifes = 0;
-        this.hide();
-    }
-    this.updateColor();
-    this.reDraw = true;
-};
-
-Brick.prototype.hide = function () {
-    this.visible = false;
-    this.collideAble = false;
-    this.clearSelf();
-};
-
-Brick.prototype.update = function (paused, forceReDraw) {
-    if (paused) {
-        return;
-    }
-    this.draw(forceReDraw);
-};
+    update(paused, forceReDraw) {
+        if (paused) {
+            return;
+        }
+        this.draw(forceReDraw);
+    };
+}
