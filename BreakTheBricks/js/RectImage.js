@@ -15,7 +15,7 @@ RectImage.prototype = Object.create(Rect.prototype);
 RectImage.prototype.constructor = RectImage;
 
 RectImage.prototype.clearSelf = function () {
-   var c = this.ctx;
+    let c = this.ctx;
     c.clearRect(this.oldX, this.oldY, this.w, this.h);
 };
 

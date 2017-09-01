@@ -14,24 +14,24 @@ SceneMain.prototype = Object.create(Scene.prototype);
 SceneMain.prototype.constructor = SceneMain;
 
 SceneMain.prototype.getDebugText = function () {
-    var t = '';
-    var g = this.game;
+    let t = '';
+    let g = this.game;
     t += 'FPS:' + g.fps + ' State:' + g.state + ' Paused:' + g.paused;
     t += ' Score:' + this.score + ' Level:' + this.level;
     return t;
 };
 
 SceneMain.prototype.loadBricks = function () {
-    var g = this.game;
-    var l = loadLevel(this.level);
+    let g = this.game;
+    let l = loadLevel(this.level);
 
     if (!l) {
         g.setGameState('win');
         return;
     }
-    var b = l.bricks;
-    var images = this.images;
-    for (var i = 0; i < b.length; i += 3) {
+    let b = l.bricks;
+    let images = this.images;
+    for (let i = 0; i < b.length; i += 3) {
         images.push(new Brick(g.ctx, b[i], b[i + 1], 80, 25, getBrickColorByLife(b[i + 2]), b[i + 2]));
     }
 };
@@ -41,8 +41,8 @@ SceneMain.prototype.playBounceMusic = function () {
 };
 
 SceneMain.prototype.init = function () {
-    var g = this.game;
-    var images = this.images;
+    let g = this.game;
+    let images = this.images;
 
     this.ball = new Ball(g.ctx, 300, 15, 15, 'red');
     this.paddle = new Paddle(g.ctx, 300, 500, 180, 20, 'black');
@@ -54,13 +54,13 @@ SceneMain.prototype.init = function () {
     }
     this.loadBricks();
 
-    var _this = this;
-    var e = this.eventManager;
+    let _this = this;
+    let e = this.eventManager;
     e.addEventListenerTo(window, 'mousedown', function (event) {
-        var x = event.offsetX, y = event.offsetY;
-        var items = _this.images;
-        for (var i = 0; i < items.length; i++) {
-            var t = items[i];
+        let x = event.offsetX, y = event.offsetY;
+        let items = _this.images;
+        for (let i = 0; i < items.length; i++) {
+            let t = items[i];
             if (t.dragble && t.hasPoint(x, y)) {
                 t.onDraging = true;
             }
@@ -68,20 +68,20 @@ SceneMain.prototype.init = function () {
     });
 
     e.addEventListenerTo(window, 'mousemove', function (event) {
-        var x = event.offsetX, y = event.offsetY;
-        var items = _this.images;
-        for (var i = 0; i < items.length; i++) {
-            var t = items[i];
+        let x = event.offsetX, y = event.offsetY;
+        let items = _this.images;
+        for (let i = 0; i < items.length; i++) {
+            let t = items[i];
             if (t.onDraging) {
                 t.onDragTo && t.onDragTo(x, y);
             }
         }
     });
 
-    e.addEventListenerTo(window, 'mouseup', function (event) {
-        var items = _this.images;
-        for (var i = 0; i < items.length; i++) {
-            var t = items[i];
+    e.addEventListenerTo(window, 'mouseup', function () {
+        let items = _this.images;
+        for (let i = 0; i < items.length; i++) {
+            let t = items[i];
             if (t.onDraging) {
                 t.onDraging = false;
             }
@@ -89,8 +89,8 @@ SceneMain.prototype.init = function () {
     });
 
     e.addEventListenerTo(window, 'keydown', function (event) {
-        var k = event.key;
-        var p = _this.paddle;
+        let k = event.key;
+        let p = _this.paddle;
         if (event.defaultPrevented) {
             return; // Do nothing if the event was already processed
         }
@@ -104,7 +104,6 @@ SceneMain.prototype.init = function () {
             p.movedRight();
             event.preventDefault();
         } else {
-            return;
         }
     }, true);
 
@@ -116,18 +115,18 @@ SceneMain.prototype.fini = function () {
 };
 
 SceneMain.prototype.update = function () {
-    var g = this.game;
-    var ball = this.ball;
-    var images = this.images;
-    var aliveBricks = 0;
-    var hadCollide = false;
+    let g = this.game;
+    let ball = this.ball;
+    let images = this.images;
+    let aliveBricks = 0;
+    let hadCollide = false;
 
     // log('SceneMain update.');
-    for (var i = 0; i < images.length; i++) {
-        var img = images[i];
+    for (let i = 0; i < images.length; i++) {
+        let img = images[i];
         // collide check.
         if (!g.paused && img && img.collideAble) {
-            var c = ball.checkCollideWith(img);
+            let c = ball.checkCollideWith(img);
             if (c.collide) {
                 hadCollide  = true;
                 ball.onCollide(c);

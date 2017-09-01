@@ -8,8 +8,8 @@ SceneEnd.prototype = Object.create(Scene.prototype);
 SceneEnd.prototype.constructor = SceneEnd;
 
 SceneEnd.prototype.init = function () {
-    var g = this.game;
-    var score = g.sceneOld.score;
+    let g = this.game;
+    let score = g.sceneOld.score;
     this.texts.push(new Text(g.ctx, 220, 200, 50, 'black', 'serif', 1.0, function () {
         return g.state === 'win' ? 'Wow, you win!' : 'Oops! You lose.';
     }));
@@ -26,8 +26,8 @@ SceneEnd.prototype.init = function () {
 
 SceneEnd.prototype.update = function () {
     // log('SceneEnd update.');
-    for (var i = 0; i < this.texts.length; i++) {
-        var t = this.texts[i];
+    for (let i = 0; i < this.texts.length; i++) {
+        let t = this.texts[i];
         t.update();
     }
 };

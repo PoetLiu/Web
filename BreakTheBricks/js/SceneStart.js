@@ -8,7 +8,7 @@ SceneStart.prototype = Object.create(Scene.prototype);
 SceneStart.prototype.constructor = SceneStart;
 
 SceneStart.prototype.init = function () {
-    var g = this.game;
+    let g = this.game;
     this.texts.push(new Text(g.ctx, 220, 200, 50, 'black', 'serif', 1.0, function () {
         return 'Break The Bricks';
     }));
@@ -41,8 +41,8 @@ SceneStart.prototype.playBgMusic = function () {
 
 SceneStart.prototype.update = function () {
     // log('SceneStart update.');
-    for (var i = 0; i < this.texts.length; i++) {
-        var t = this.texts[i];
+    for (let i = 0; i < this.texts.length; i++) {
+        let t = this.texts[i];
         t.update();
     }
 };

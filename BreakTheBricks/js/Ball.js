@@ -13,7 +13,7 @@ Ball.prototype.constructor = Ball;
 Ball.prototype.draw = function () {
     // draw balls
     if (this.reDraw) {
-        var c = this.ctx;
+        let c = this.ctx;
         this.clearSelf();
         c.globalAlpha = this.alpha;
         c.beginPath();
@@ -27,8 +27,8 @@ Ball.prototype.draw = function () {
 };
 
 Ball.prototype.onCollide = function (collideResult) {
-    var c = collideResult;
-    var a = c.area;
+    let c = collideResult;
+    let a = c.area;
 
     // log(c, this);
     if (a.w >= a.h) {
@@ -57,7 +57,7 @@ Ball.prototype.onDragTo = function (x, y) {
 };
 
 Ball.prototype.moveTo = function (x, y) {
-    var c = this.ctx.canvas;
+    let c = this.ctx.canvas;
     this.x = x;
     this.y = y;
 

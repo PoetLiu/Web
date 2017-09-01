@@ -12,9 +12,9 @@ Scene.prototype.fini = function () {
 };
 
 Scene.prototype.clearSelf = function () {
-    var g = this.game;
-    var ctx = g.ctx;
-    var can = g.canvas;
+    let g = this.game;
+    let ctx = g.ctx;
+    let can = g.canvas;
     // log(this, can.width, can.height);
     ctx.clearRect(0, 0, can.width, can.height);
 };

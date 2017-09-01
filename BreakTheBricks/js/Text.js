@@ -21,7 +21,7 @@ Text.prototype.setText = function (text) {
 Text.prototype.draw = function () {
     if (this.reDraw) {
         this.reDraw = false;
-        var c = this.ctx;
+        let c = this.ctx;
         this.clearSelf();
         c.fillStyle = this.color;
         c.globalAlpha = this.alpha;

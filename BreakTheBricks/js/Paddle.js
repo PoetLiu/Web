@@ -12,7 +12,7 @@ Paddle.prototype.onDragTo = function (x) {
    this.draw();
 };
 Paddle.prototype.moveTo = function (x, y) {
-    var c = this.ctx.canvas;
+    let c = this.ctx.canvas;
     this.x = numInSection(x, 0, c.width - this.w);
     this.y = y;
     this.reDraw = (this.x !== this.oldX || this.y !== this.oldY);
@@ -34,7 +34,7 @@ Paddle.prototype.draw = function () {
     if (this.reDraw) {
         // log('paddle:redraw.');
         this.clearSelf();
-        var c = this.ctx;
+        let c = this.ctx;
         c.fillStyle = this.color;
         c.fillRect(this.x, this.y, this.w, this.h);
         this.reDraw = false;

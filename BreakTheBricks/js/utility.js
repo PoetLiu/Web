@@ -41,7 +41,7 @@ function getBrickColorByLife(life) {
 }
 
 function loadLevel(level) {
-    var l = level - 1;
+    let l = level - 1;
     return [
         {bricks: [0, 0, 1]},
         {bricks: [100, 200, 1, 300, 200, 2]},

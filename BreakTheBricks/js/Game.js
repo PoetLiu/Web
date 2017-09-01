@@ -16,12 +16,12 @@ Game.prototype.init = function () {
     log("Game init.");
     this.setGameState('init');
 
-    var _this = this;
-    var e = new EventListenerManager();
+    let _this = this;
+    let e = new EventListenerManager();
     this.eventManager = e;
 
     e.addEventListenerTo(window, 'keydown', function (event) {
-        var k = event.key;
+        let k = event.key;
         if (event.defaultPrevented) {
             return; // Do nothing if the event was already processed
         }
@@ -43,7 +43,7 @@ Game.prototype.init = function () {
        return;
     }
 
-    var input = this.input;
+    let input = this.input;
     input.value = this.fps.toString();
     input.style.display = 'block';
     e.addEventListenerTo(window, 'change', function (event) {
@@ -55,7 +55,7 @@ Game.prototype.init = function () {
 
 Game.prototype.update = function () {
     //log('update');
-    var _this = this;
+    let _this = this;
     this.timeoutId  = setTimeout(function () {
         _this.update();
     }, 1000/_this.fps);
@@ -69,7 +69,7 @@ Game.prototype.setGameState = function (state) {
         return;
     }
 
-    var oldState = this.state;
+    let oldState = this.state;
     log('state:' + state);
     this.state = state;
     switch (state) {
@@ -111,7 +111,7 @@ Game.prototype.start = function () {
 };
 
 Game.prototype.stop = function () {
-    var e = this.eventManager;
+    let e = this.eventManager;
     window.clearTimeout(this.timeoutId);
     e.removeAll();
 };

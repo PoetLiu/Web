@@ -14,7 +14,7 @@ Brick.prototype.draw = function (forceReDraw) {
         this.clearSelf();
 
         // draw new.
-        var c = this.ctx;
+        let c = this.ctx;
         c.fillStyle = this.color;
         c.globalAlpha = this.alpha;
         c.fillRect(this.x, this.y, this.w, this.h);

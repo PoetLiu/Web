@@ -1,5 +1,5 @@
 function Audio(src, loop) {
-    var a   = document.createElement('audio');
+    let a = document.createElement('audio');
     a.src   = src;
     a.loop  = loop;
     a.load();
