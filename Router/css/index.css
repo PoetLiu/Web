@@ -37,6 +37,10 @@ body {
     border-right: 1px solid #A3A3A3;
 }
 
+.nav-link li:last-child {
+    border-right: none;
+}
+
 .nav-link li a {
     color: #A3A3A3;
     text-decoration: none;
@@ -50,15 +54,14 @@ body {
 }
 
 .nav-pages {
-    float: left;
-    font-size: 14px;
-    margin-top: 19px;
     margin-left: 55px;
+    float: left;
 }
 
 .nav-pages li {
-    height: 14px;
-    padding: 0 20px;
+    font-size: 14px;
+    line-height: 50px;
+    padding: 3px 20px;
     float: left;
 }
 
@@ -69,7 +72,7 @@ body {
 
 .article {
     width: 100%;
-    padding-top:95px;
+    padding-top:75px;
 }
 
 .clear-fix:before,
@@ -80,6 +83,9 @@ body {
 .clear-fix:after {
     clear:both;
 }
+.clear-fix {
+    *zoom:1;
+}
 
 .content {
     margin: 0 auto;
@@ -87,6 +93,7 @@ body {
 }
 
 .left-container {
+    margin-top: 20px;
     float: left;
     width: 260px;
     height: 495px;
@@ -138,6 +145,7 @@ body {
 }
 
 .right-container {
+    margin-top: 20px;
     float: left;
     width: 744px;
     height: 495px;
