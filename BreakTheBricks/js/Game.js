@@ -59,7 +59,7 @@ class Game {
         let _this = this;
         if (_this.debugMode) {
             _this.timeoutId = setTimeout(function () {
-                _this.update();
+                window.requestAnimationFrame(_this.update.bind(_this));
             }, 1000 / _this.fps);
         } else {
             window.requestAnimationFrame(_this.update.bind(_this));
