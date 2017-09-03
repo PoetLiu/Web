@@ -2,6 +2,7 @@ class Scene {
     constructor(game) {
         this.game = game;
         this.eventManager = new EventListenerManager();
+        this.textures = [];
     };
 
     init() {
@@ -10,6 +11,17 @@ class Scene {
     fini() {
         this.eventManager.removeAll();
         this.clearSelf();
+    };
+
+    addTexture (t) {
+       this.textures.push(t);
+    }
+
+    update () {
+        for (let i = 0; i < this.textures.length; i++) {
+            let t = this.textures[i];
+            t.update();
+        }
     };
 
     clearSelf() {
