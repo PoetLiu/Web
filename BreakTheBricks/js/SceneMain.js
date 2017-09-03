@@ -109,7 +109,7 @@ class SceneMain extends Scene {
     };
 
     fini() {
-        Scene.prototype.fini.call(this);
+        super.fini();
     };
 
     update() {

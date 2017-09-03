@@ -28,7 +28,7 @@ class SceneStart extends Scene {
     };
 
     fini() {
-        Scene.prototype.fini.call(this);
+        super.fini();
         this.bgAudio.pause();
     };
 
