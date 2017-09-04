@@ -106,10 +106,12 @@ class SceneMain extends Scene {
         }, true);
 
         let ballSpeedInput = document.getElementById('ball-speed-input');
-        ballSpeedInput.value = this.ball.speedX.toString();
+        ballSpeedInput.value = this.ball.getSpeed().x.toString();
         e.addEventListenerTo(window, 'change', function (event) {
             if (event.target === ballSpeedInput) {
-                _this.ball.speedX = Number(event.target.value);
+                let speed = {x: Number(event.target.value)};
+                speed.y = speed.x;
+                _this.ball.setSpeed(speed);
             }
         });
         this.bounceAudio = new Audio('data/bounce.mp3', false);

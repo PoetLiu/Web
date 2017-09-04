@@ -24,6 +24,19 @@ class Ball extends RectImage {
         }
     };
 
+    getSpeed() {
+        return {x: this.speedX, y: this.speedY};
+    };
+
+    setSpeed(speed) {
+        if (speed.x) {
+            this.speedX = speed.x;
+        }
+        if (speed.y) {
+            this.speedY = speed.y;
+        }
+    };
+
     onCollide(collideResult) {
         let c = collideResult;
         let a = c.area;
