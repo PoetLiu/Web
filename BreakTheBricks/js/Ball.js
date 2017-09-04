@@ -1,6 +1,8 @@
 class Ball extends RectImage {
     constructor(ctx, x, y, radius, color) {
         super(ctx, x, y, radius * 2, radius * 2, color);
+        this.dirX = 1;
+        this.dirY = 1;
         this.speedX = 4;
         this.speedY = 4;
         this.r = radius;
@@ -55,11 +57,11 @@ class Ball extends RectImage {
     };
 
     bounceX() {
-        this.speedX *= -1;
+        this.dirX *= -1;
     };
 
     bounceY() {
-        this.speedY *= -1;
+        this.dirY *= -1;
     };
 
     onDragTo(x, y) {
@@ -90,7 +92,8 @@ class Ball extends RectImage {
     };
 
     move() {
-        this.moveTo(this.x + this.speedX, this.y + this.speedY);
+        this.moveTo(this.x + this.dirX * this.speedX,
+            this.y + this.dirY * this.speedY);
     };
 
     update(paused) {
