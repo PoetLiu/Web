@@ -16,7 +16,11 @@
 
 .game-input {
     display: none;
-    margin: 0 auto;
-    width: 40%;
+    margin: 10px auto;
+    width: 50%;
     height: 10%;
+}
+
+#fps-input {
+    width: 80%;
 }
