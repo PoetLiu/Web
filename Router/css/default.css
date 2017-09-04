@@ -1,0 +1,13 @@
+.btn, button {
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    line-height:34px;
+    color: #FFF;
+    background:#428BEF;
+    cursor: pointer;
+    border:none;
+    outline:none;
+    vertical-align: baseline;
+    font-family: '微软雅黑';
+}
