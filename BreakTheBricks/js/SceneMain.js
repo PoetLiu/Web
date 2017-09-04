@@ -105,6 +105,8 @@ class SceneMain extends Scene {
             }
         }, true);
 
+        this.bounceAudio = new Audio('data/bounce.mp3', false);
+
         if (!g.debugMode) {
             return;
         }
@@ -138,7 +140,6 @@ class SceneMain extends Scene {
                 _this.paddle.setSpeed(speed);
             }
         });
-        this.bounceAudio = new Audio('data/bounce.mp3', false);
     };
 
     fini() {
