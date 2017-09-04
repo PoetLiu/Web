@@ -10,6 +10,16 @@ class Paddle extends RectImage {
         this.draw();
     };
 
+    getSpeed() {
+        return this.speedX;
+    };
+
+    setSpeed(speed) {
+        if (speed.x) {
+            this.speedX = speed.x;
+        }
+    };
+
     moveTo(x, y) {
         let c = this.ctx.canvas;
         this.x = numInSection(x, 0, c.width - this.w);
