@@ -95,13 +95,6 @@ input {
     vertical-align: middle;
 }
 
-.btn, button {
-    background: #428BEF;
-    color: #FFF;
-    cursor: pointer;
-    border:none;
-}
-
 .login-btn {
     width: 260px;
     height: 36px;

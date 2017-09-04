@@ -163,13 +163,44 @@ body {
     overflow: hidden;
 }
 
-.right-container div {
+.right-container >div {
     margin-left: 20px;
 }
 
-.network_info {
+.right-top-container {
     height: 130px;
     border-bottom: 1px solid #DCDCDC;
+}
+
+.network-info {
+    height: 130px;
+    font-size: 18px;
+    height: 60px;
+    background: url("../image/router_status_ok.png") no-repeat left center;
+    position: relative;
+    padding: 35px 0 35px 60px;
+    margin-right: 7px;
+    border-bottom: 1px solid #DCDCDC;
+}
+
+.network-info .button-index-check {
+    position: absolute;
+    display: block;
+    background: #48CFAD;
+    top: 45px;
+    right: 1px;
+    height: 40px;
+    width: 140px;
+}
+
+.network-info p {
+    line-height: 55px;
+    padding-left: 10px;
+    font-size: 28px;
+}
+
+.network-info p .info {
+    font-size: 24px;
 }
 
 .app-list {
