@@ -105,6 +105,20 @@ class SceneMain extends Scene {
             }
         }, true);
 
+        if (!g.debugMode) {
+            return;
+        }
+
+        g.inputShowToggle(true);
+
+        let fps_input = document.getElementById('fps-input');
+        fps_input.value = g.fps.toString();
+        e.addEventListenerTo(window, 'change', function (event) {
+            if (event.target === fps_input) {
+                g.fps = Number(event.target.value);
+            }
+        });
+
         let ballSpeedInput = document.getElementById('ball-speed-input');
         ballSpeedInput.value = this.ball.getSpeed().x.toString();
         e.addEventListenerTo(window, 'change', function (event) {
@@ -129,6 +143,7 @@ class SceneMain extends Scene {
 
     fini() {
         super.fini();
+        this.game.inputShowToggle(false);
     };
 
     update() {

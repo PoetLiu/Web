@@ -43,18 +43,12 @@ class Game {
         if (!this.debugMode) {
             return;
         }
-
-        let input = this.input;
-        input.style.display = 'block';
-
-        let fps_input = document.getElementById('fps-input');
-        fps_input.value = this.fps.toString();
-        e.addEventListenerTo(window, 'change', function (event) {
-            if (event.target === fps_input) {
-                _this.fps = Number(event.target.value);
-            }
-        });
     };
+
+    inputShowToggle(show) {
+        let input = this.input;
+        input.style.display = show ? 'block' : 'none';
+    }
 
     update() {
         //log('update');
