@@ -105,6 +105,13 @@ class SceneMain extends Scene {
             }
         }, true);
 
+        let ballSpeedInput = document.getElementById('ball-speed-input');
+        ballSpeedInput.value = this.ball.speedX.toString();
+        e.addEventListenerTo(window, 'change', function (event) {
+            if (event.target === ballSpeedInput) {
+                _this.ball.speedX = Number(event.target.value);
+            }
+        });
         this.bounceAudio = new Audio('data/bounce.mp3', false);
     };
 

@@ -21,6 +21,11 @@
     height: 10%;
 }
 
-#fps-input {
-    width: 80%;
+.game-input label {
+    float: left;
+}
+
+#fps-input, #ball-speed-input {
+    float: right;
+    width: 75%;
 }
