@@ -22,6 +22,7 @@
 }
 
 .game-input label {
+    clear: left;
     float: left;
 }
 
