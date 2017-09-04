@@ -11,7 +11,7 @@ class Paddle extends RectImage {
     };
 
     getSpeed() {
-        return this.speedX;
+        return {x: this.speedX};
     };
 
     setSpeed(speed) {
