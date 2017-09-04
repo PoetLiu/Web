@@ -7,6 +7,7 @@ body {
     font-family: "微软雅黑", Helvetica, Tahoma, Arial, SimSun, Heiti, "黑体", sans-serif;
     font-size: 12px;
     line-height: 1.5;
+    color: #2B3238;
 }
 
 .nav-bar {
@@ -216,7 +217,8 @@ body {
     margin: 0 5px 20px 0;
 }
 
-.app-list ul li div {
+.app-list ul li .menu-item{
+    position: relative;
     width: 205px;
     height: 140px;
     border-radius: 1px;
@@ -225,8 +227,38 @@ body {
     overflow: hidden;
 }
 
+.app-list ul li .menu-item .title {
+   position: absolute;
+    top: 26px;
+    left:20px;
+    font-size: 22px;
+    line-height: 22px;
+    color:#FFF;
+    text-shadow: 0px 1px 0px rgba(0,0,0,0.2);
+}
+
 .dev_list_app {
     background: url("../image/icon_dev_list.png") right bottom no-repeat #FFB71B;
+}
+
+.dev_list_app .dev_list_online_num {
+    color: #FFF;
+    position: absolute;
+    right: 17px;
+    bottom: 10px;
+    text-align: center;
+}
+
+.dev_list_app .dev_list_online_num .dev_list_online_num_value {
+    font-size:55px;
+    line-height:55px;
+    text-shadow: 0px 1px 0px rgba(0,0,0,0.2);
+}
+
+.dev_list_app .dev_list_online_num .dev_list_online_des{
+    margin-top: 2px;
+    font-size:14px;
+    line-height:14px;
 }
 
 .wifi_protect_app {
@@ -257,6 +289,7 @@ body {
 .copyright {
     padding: 35px 0 20px;
     color: #818181;
+    font-family: Arial;
 }
 
 .os {
@@ -265,5 +298,6 @@ body {
     padding: 0 15px;
     line-height: 30px;
     border-radius: 45px;
+    color: #999999;
     border: 1px solid #E3E3E5;
 }
