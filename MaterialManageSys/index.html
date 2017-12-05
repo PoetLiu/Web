@@ -19,9 +19,9 @@
             <th>Quantity</th>
         </tr>
     </table>
-    <form action="php/api.php/upload" method="post" enctype="multipart/form-data" target="iframe_hidden">
-        <input type="file" name="uploadFile" id="bom">
-        <input type="submit" value="上传BOM表" name="submit">
+    <form id='upload_form' action="php/api.php/upload" method="post" enctype="multipart/form-data" target="iframe_hidden">
+        <input type="file" name="uploadFile" id="uploadFile">
+        <input type="submit" value="上传BOM表" name="submit" onclick="upload();">
     </form>
     <iframe name="iframe_hidden" id="iframe_hiden"></iframe>
 </div>

@@ -1,3 +1,17 @@
+function upload() {
+    var form = $('#upload_form');
+  form.submit( function (e) {
+     e.preventDefault();
+  });
+  var str = $('#uploadFile').val();
+  if (str.length === 0) {
+     console.log("empty file name.") ;
+     return;
+  }
+  form.unbind('submit').bind('submit');
+  form.submit();
+}
+
 $(document).ready(function () {
 	var tb = new Table('stock-tb');
 	function Table(id) {
