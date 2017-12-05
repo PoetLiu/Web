@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1eb3401f-4bcf-41cf-87a6-09e6017e9ab8" name="Default" comment="">
+    <list default="true" id="1eb3401f-4bcf-41cf-87a6-09e6017e9ab8" name="Default" comment="New: Add PHPExcel lib.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/php/api.php" afterPath="$PROJECT_DIR$/php/api.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -13,11 +14,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+            <state relative-caret-position="187">
+              <caret line="11" column="6" lean-forward="true" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="reset.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/style/reset.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="459">
+              <caret line="27" column="23" lean-forward="false" selection-start-line="27" selection-start-column="23" selection-end-line="27" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -43,13 +54,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="api.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="api.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/php/api.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+            <state relative-caret-position="504">
+              <caret line="31" column="26" lean-forward="false" selection-start-line="31" selection-start-column="26" selection-end-line="31" selection-end-column="26" />
               <folding>
-                <marker date="1512468625565" expanded="true" signature="382:400" ph="SELECT * FRO... test" />
+                <marker date="1512474303333" expanded="true" signature="466:484" ph="SELECT * FRO... test" />
               </folding>
             </state>
           </provider>
@@ -58,8 +69,8 @@
       <file leaf-file-name="mysqli.php" pinned="false" current-in-tab="false">
         <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/mysqli/mysqli.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="11628">
-              <caret line="687" column="11" lean-forward="false" selection-start-line="687" selection-start-column="11" selection-end-line="687" selection-end-column="11" />
+            <state relative-caret-position="714">
+              <caret line="588" column="37" lean-forward="true" selection-start-line="588" selection-start-column="37" selection-end-line="588" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -74,8 +85,9 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/js/index.js" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/style/index.css" />
+        <option value="$PROJECT_DIR$/style/reset.css" />
+        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/php/api.php" />
       </list>
     </option>
@@ -88,9 +100,9 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds" extendedState="4">
-    <option name="x" value="1033" />
+    <option name="x" value="1107" />
     <option name="y" value="24" />
-    <option name="width" value="882" />
+    <option name="width" value="808" />
     <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -117,11 +129,6 @@
             <path>
               <item name="MaterialManageSys" type="b2602c69:ProjectViewProjectNode" />
               <item name="MaterialManageSys" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="MaterialManageSys" type="b2602c69:ProjectViewProjectNode" />
-              <item name="MaterialManageSys" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="php" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="MaterialManageSys" type="b2602c69:ProjectViewProjectNode" />
@@ -166,7 +173,7 @@
       <updated>1512464990277</updated>
       <workItem from="1512464995569" duration="977000" />
       <workItem from="1512466226394" duration="3516000" />
-      <workItem from="1512470868801" duration="688000" />
+      <workItem from="1512470868801" duration="2862000" />
     </task>
     <task id="LOCAL-00001" summary="New: add project files.">
       <created>1512465925135</created>
@@ -182,17 +189,31 @@
       <option name="project" value="LOCAL" />
       <updated>1512468699449</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="New: Add PHPExcel lib.">
+      <created>1512472186643</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1512472186643</updated>
+    </task>
+    <task id="LOCAL-00004" summary="New: Add file upload input.">
+      <created>1512472842206</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1512472842206</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5181000" />
+    <option name="totallyTimeSpent" value="7355000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1033" y="24" width="882" height="1056" extended-state="4" />
+    <frame x="1107" y="24" width="808" height="1056" extended-state="4" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20294784" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22153465" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32947367" sideWeight="0.5039106" order="7" side_tool="true" content_ui="tabs" />
@@ -224,7 +245,9 @@
     </ignored-roots>
     <MESSAGE value="New: add project files." />
     <MESSAGE value="Mod: Finish basic layout." />
-    <option name="LAST_COMMIT_MESSAGE" value="Mod: Finish basic layout." />
+    <MESSAGE value="New: Add PHPExcel lib." />
+    <MESSAGE value="New: Add file upload input." />
+    <option name="LAST_COMMIT_MESSAGE" value="New: Add file upload input." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -260,7 +283,7 @@
         <state relative-caret-position="408">
           <caret line="24" column="4" lean-forward="false" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="4" />
           <folding>
-            <marker date="1512468625565" expanded="true" signature="382:400" ph="SELECT * FRO... test" />
+            <marker date="1512474303333" expanded="true" signature="466:484" ph="SELECT * FRO... test" />
           </folding>
         </state>
       </provider>
@@ -289,29 +312,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/style/reset.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="27" column="23" lean-forward="false" selection-start-line="27" selection-start-column="23" selection-end-line="27" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/mysqli/mysqli.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="11628">
-          <caret line="687" column="11" lean-forward="false" selection-start-line="687" selection-start-column="11" selection-end-line="687" selection-end-column="11" />
+        <state relative-caret-position="714">
+          <caret line="588" column="37" lean-forward="true" selection-start-line="588" selection-start-column="37" selection-end-line="588" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="6" lean-forward="true" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/php/api.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+        <state relative-caret-position="504">
+          <caret line="31" column="26" lean-forward="false" selection-start-line="31" selection-start-column="26" selection-end-line="31" selection-end-column="26" />
           <folding>
-            <marker date="1512468625565" expanded="true" signature="382:400" ph="SELECT * FRO... test" />
+            <marker date="1512474303333" expanded="true" signature="466:484" ph="SELECT * FRO... test" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
