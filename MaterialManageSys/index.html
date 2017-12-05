@@ -8,12 +8,21 @@
 </head>
 <body>
 <div class="container header">
-   <h1>MaterialManageSystem</h1>
+    <h1>MaterialManageSystem</h1>
 </div>
 <div class="container main">
-<table id="stock-tb">
-		<tr><th>ID</th><th>Name</th><th>Describe</th><th>Quantity</th></tr>
-</table>
+    <table id="stock-tb">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Describe</th>
+            <th>Quantity</th>
+        </tr>
+    </table>
+    <form action="php/api.php/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="bom" id="bom">
+        <input type="submit" value="上传BOM表" name="submit">
+    </form>
 </div>
 
 <script type="text/javascript" src="js/jquery-3.2.1.js"></script>

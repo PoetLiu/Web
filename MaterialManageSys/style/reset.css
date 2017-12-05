@@ -33,7 +33,8 @@ button, .btn {
 
 input,
 textarea {
-    border: none;
+    border: 1px solid blue;
     background-color: inherit;
+    border-radius: 3px;
 }
 
