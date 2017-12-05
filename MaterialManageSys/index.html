@@ -19,10 +19,11 @@
             <th>Quantity</th>
         </tr>
     </table>
-    <form action="php/api.php/upload" method="post" enctype="multipart/form-data">
+    <form action="php/api.php/upload" method="post" enctype="multipart/form-data" target="iframe_hidden">
         <input type="file" name="uploadFile" id="bom">
         <input type="submit" value="上传BOM表" name="submit">
     </form>
+    <iframe name="iframe_hidden" id="iframe_hiden"></iframe>
 </div>
 
 <script type="text/javascript" src="js/jquery-3.2.1.js"></script>
