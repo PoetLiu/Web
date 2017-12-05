@@ -2,13 +2,13 @@
 	ini_set('display_errors', 'On');
 	error_reporting(E_ALL);
 
-	$servername = 'localhost';
+	$serverName = 'localhost';
 	$username	= 'root';
 	$password	= 'liupeng123';
-	$dbname		= 'material';
+	$dbName		= 'material';
 
 	// create connection.
-	$conn	= new mysqli($servername, $username, $password, $dbname);
+	$conn	= new mysqli($serverName, $username, $password, $dbName);
 	if ($conn->connect_error) {
 		die('Connection failed: ' . $conn->connect_error);
 	}
@@ -25,4 +25,3 @@
 	}
 	//echo "Hello, world!";
 	print json_encode($rows);
-?>

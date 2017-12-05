@@ -15,3 +15,20 @@ body {
     width: 1000px;
     margin: 0 auto;
 }
+
+.container table {
+    margin: 10px auto;
+    width: 90%;
+    border-collapse: collapse;
+}
+
+.container table th {
+    background: lightgray;
+}
+
+.container table,
+.container th,
+.container td,
+.container tr {
+    border: solid 1px #DDD;
+}
