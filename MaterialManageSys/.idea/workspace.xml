@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1eb3401f-4bcf-41cf-87a6-09e6017e9ab8" name="Default" comment="New: Add PHPExcel lib.">
+    <list default="true" id="1eb3401f-4bcf-41cf-87a6-09e6017e9ab8" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/php/api.php" afterPath="$PROJECT_DIR$/php/api.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -57,8 +56,8 @@
       <file leaf-file-name="api.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/php/api.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="504">
-              <caret line="31" column="26" lean-forward="false" selection-start-line="31" selection-start-column="26" selection-end-line="31" selection-end-column="26" />
+            <state relative-caret-position="11">
+              <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
               <folding>
                 <marker date="1512474303333" expanded="true" signature="466:484" ph="SELECT * FRO... test" />
               </folding>
@@ -173,7 +172,7 @@
       <updated>1512464990277</updated>
       <workItem from="1512464995569" duration="977000" />
       <workItem from="1512466226394" duration="3516000" />
-      <workItem from="1512470868801" duration="2862000" />
+      <workItem from="1512470868801" duration="4197000" />
     </task>
     <task id="LOCAL-00001" summary="New: add project files.">
       <created>1512465925135</created>
@@ -203,11 +202,18 @@
       <option name="project" value="LOCAL" />
       <updated>1512472842206</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Mod: Finish file upload function.">
+      <created>1512474353188</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1512474353188</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7355000" />
+    <option name="totallyTimeSpent" value="8690000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1107" y="24" width="808" height="1056" extended-state="4" />
@@ -247,7 +253,8 @@
     <MESSAGE value="Mod: Finish basic layout." />
     <MESSAGE value="New: Add PHPExcel lib." />
     <MESSAGE value="New: Add file upload input." />
-    <option name="LAST_COMMIT_MESSAGE" value="New: Add file upload input." />
+    <MESSAGE value="Mod: Finish file upload function." />
+    <option name="LAST_COMMIT_MESSAGE" value="Mod: Finish file upload function." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -338,8 +345,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/php/api.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="31" column="26" lean-forward="false" selection-start-line="31" selection-start-column="26" selection-end-line="31" selection-end-column="26" />
+        <state relative-caret-position="11">
+          <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
           <folding>
             <marker date="1512474303333" expanded="true" signature="466:484" ph="SELECT * FRO... test" />
           </folding>
