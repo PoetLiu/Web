@@ -37,14 +37,18 @@ function getStock()
 function upload()
 {
     $uploadDir = '/tmp/';
-    $file   = $uploadDir . $_FILES['bom']['name'];
-    echo "Upload!". $file;
-    if (move_uploaded_file($_FILES['bom']['tmp_name'], $file)) {
-        echo "File is valid, and was successfully uploaded.\n";
+    $file   = $uploadDir . $_FILES['uploadFile']['name'];
+    $res = new stdClass();
+
+    if (move_uploaded_file($_FILES['uploadFile']['tmp_name'], $file)) {
+        $res->errCode   = 0;
+        $res->msg   = "File is valid, and was successfully uploaded.";
     } else {
-        echo 'Possible file upload attack!\n';
+        $res->errCode   = 1;
+        $res->msg   = 'Possible file upload attack!';
     }
-    print_r($_FILES);
+//    print_r($_FILES);
+    print json_encode($res);
 }
 
 init();

@@ -32,3 +32,9 @@ body {
 .container tr {
     border: solid 1px #DDD;
 }
+
+#iframe_hiden {
+    height: 0;
+    width: 0;
+    display: none;
+}
