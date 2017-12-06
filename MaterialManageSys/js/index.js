@@ -26,10 +26,10 @@ $(document).ready(function () {
 	        // console.log(value);
             var tr = document.createElement('tr');
             var o = value, html = '';
-            html    += '<td>'+o.id+'</td>';
-            html    += '<td>'+o.name+'</td>';
-            html    += '<td>'+o.description+'</td>';
-            html    += '<td>'+o.quantity+'</td>';
+            html    += '<td>'+o['id']+'</td>';
+            html    += '<td>'+o['name']+'</td>';
+            html    += '<td>'+o['description']+'</td>';
+            html    += '<td>'+o['quantity']+'</td>';
             tr.innerHTML    = html;
             t.appendChild(tr);
         });
