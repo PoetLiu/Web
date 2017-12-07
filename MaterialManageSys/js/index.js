@@ -12,34 +12,60 @@ function upload() {
     form.submit();
 }
 
+var searchKeyList = document.getElementById("search-fields");
+
+function searchKeyListUpdate(keys) {
+    var html = '';
+    keys.forEach(function (key) {
+        var op = document.createElement('option');
+        op.innerHTML = key;
+        searchKeyList.appendChild(op);
+    });
+}
+
+function Table(id) {
+    this.id = id;
+    this.dom = document.getElementById(id);
+}
+
+Table.prototype.update = function (data, keys) {
+    var t = this.dom;
+
+    // update head
+    var tr = document.createElement('tr');
+    var html = '';
+    keys.forEach(function (key) {
+        html += '<th>' + key + '</th>';
+    });
+    tr.innerHTML = html;
+    t.appendChild(tr);
+
+    // update content
+    data.forEach(function (value) {
+        // console.log(value);
+        tr = document.createElement('tr');
+        var o = value, html = '';
+        keys.forEach(function (key) {
+            html += '<td>' + o[key] + '</td>';
+        });
+        tr.innerHTML = html;
+        t.appendChild(tr);
+    });
+};
+
 $(document).ready(function () {
     var tb = new Table('stock-tb');
 
-    function Table(id) {
-        this.id = id;
-        this.dom = document.getElementById(id);
+    function update(data) {
+        data = JSON.parse(data);
+        var keys = Object.keys(data[0]);
+        searchKeyListUpdate(keys);
+        tb.update(data, keys);
     }
-
-    Table.prototype.update = function (content) {
-        var t = this.dom;
-        var data = JSON.parse(content);
-        console.log(content, t);
-        data.forEach(function (value) {
-            // console.log(value);
-            var tr = document.createElement('tr');
-            var o = value, html = '';
-            html += '<td>' + o['id'] + '</td>';
-            html += '<td>' + o['name'] + '</td>';
-            html += '<td>' + o['description'] + '</td>';
-            html += '<td>' + o['quantity'] + '</td>';
-            tr.innerHTML = html;
-            t.appendChild(tr);
-        });
-    };
 
     (function init() {
         $.post('php/api.php/getStock', function (data) {
-            tb.update(data);
+            update(data);
         });
     })();
 });

@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="style/index.css">
 </head>
 <body>
-<div class="container header">
+<div class="header">
     <h1>MaterialManageSystem</h1>
 </div>
 <div class="container main">
@@ -15,24 +15,16 @@
         <div class="search-box">
             <input class="search" type="search" placeholder="Please Input key word">
             <select id="search-fields">
-                <option disabled selected>field</option>
+                <option selected>All</option>
             </select>
             <button id="search-btn">查询</button>
         </div>
     </div>
     <div class="section">
         <div class="section-header">库存表</div>
-        <div class="section-content">
-
+        <div class="section-content stock-table-box">
             <table id="stock-tb">
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Describe</th>
-                    <th>Quantity</th>
-                </tr>
             </table>
-
         </div>
     </div>
     <div class="article">

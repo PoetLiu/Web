@@ -10,7 +10,6 @@ body {
 
 .header {
     text-align: center;
-    border-radius: 3px;
     background-color: #0089BA;
     padding: 10px;
     color: #FFF;
@@ -56,6 +55,10 @@ body {
 
 .section .section-content {
     padding: 5px;
+}
+
+.stock-table-box {
+    height: 400px;
 }
 
 .article {
