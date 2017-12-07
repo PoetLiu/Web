@@ -13,7 +13,6 @@ function upload() {
 }
 
 var searchKeyList = document.getElementById("search-fields");
-
 function searchKeyListUpdate(keys) {
     var html = '';
     keys.forEach(function (key) {

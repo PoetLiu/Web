@@ -57,8 +57,11 @@ body {
     padding: 5px;
 }
 
-.stock-table-box {
-    height: 400px;
+.stock-table-box .tb-page-item-num {
+    float: left;
+}
+.stock-table-box .tb-page-nav {
+   float: right;
 }
 
 .article {
