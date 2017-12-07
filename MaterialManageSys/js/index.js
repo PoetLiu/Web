@@ -24,12 +24,14 @@ function searchKeyListUpdate(keys) {
 function Table(id, pageSize) {
     this.id = id;
     this.dom = document.getElementById(id);
+    this.pageId = 0;
     this.pageSize = pageSize;
 }
 
 Table.prototype.setPageSize = function (size, autoUpdate) {
     autoUpdate  = autoUpdate || true;
     this.pageSize   = size;
+    console.log('Set page size:'+size);
     if (autoUpdate) {
         this.update();
     }
@@ -43,6 +45,8 @@ Table.prototype.update = function (data, keys) {
     this.keys   = keys;
     this.data   = data;
 
+    t.innerHTML = '';
+
     // update head
     var tr = document.createElement('tr');
     var html = '';
@@ -53,13 +57,20 @@ Table.prototype.update = function (data, keys) {
     t.appendChild(tr);
 
     // update content
-    var itemCnt = 0, self = this;
+    var itemCnt = 0, pageCnt = 0, self = this;
     data.forEach(function (value) {
         // console.log(value);
         if (itemCnt === self.pageSize) {
-            return;
+            pageCnt++;
+            itemCnt = 0;
         }
         itemCnt++;
+
+        // only display current page's item.
+        if (pageCnt !== self.pageId) {
+            return;
+        }
+
         tr = document.createElement('tr');
         var o = value, html = '';
         keys.forEach(function (key) {
@@ -70,9 +81,24 @@ Table.prototype.update = function (data, keys) {
     });
 };
 
+Table.prototype.nextPage    = function () {
+    var maxId   = Math.floor((this.data.length-1)/this.pageSize);
+    console.log(maxId);
+    if (this.pageId < maxId) {
+        this.pageId++;
+        this.update();
+    }
+};
+
+Table.prototype.prevPage   = function () {
+    if (this.pageId > 0) {
+        this.pageId--;
+        this.update();
+    }
+};
+
 $(document).ready(function () {
     var tb = new Table('stock-tb', 10);
-
     function update(data) {
         data = JSON.parse(data);
         var keys = Object.keys(data[0]);
@@ -80,7 +106,29 @@ $(document).ready(function () {
         tb.update(data, keys);
     }
 
+    var pageItemNumSelect = document.getElementById('item-num-select');
+    function onPageItemNumSelected(e) {
+        var t   = pageItemNumSelect;
+        var page    = t.options[t.selectedIndex].value;
+        console.log(page);
+        tb.setPageSize(Number(page));
+        e.preventDefault();
+    }
+
+    var prevBtn = document.getElementById('prev-btn');
+    function onPrevBtnClick() {
+       tb.prevPage();
+    }
+
+    var nextBtn = document.getElementById('next-btn');
+    function onNextBtnClick() {
+        tb.nextPage();
+    }
+
     (function init() {
+        pageItemNumSelect.addEventListener('click', onPageItemNumSelected);
+        prevBtn.addEventListener('click', onPrevBtnClick);
+        nextBtn.addEventListener('click', onNextBtnClick);
         $.post('php/api.php/getStock', function (data) {
             update(data);
         });
