@@ -21,13 +21,27 @@ function searchKeyListUpdate(keys) {
     });
 }
 
-function Table(id) {
+function Table(id, pageSize) {
     this.id = id;
     this.dom = document.getElementById(id);
+    this.pageSize = pageSize;
 }
+
+Table.prototype.setPageSize = function (size, autoUpdate) {
+    autoUpdate  = autoUpdate || true;
+    this.pageSize   = size;
+    if (autoUpdate) {
+        this.update();
+    }
+};
 
 Table.prototype.update = function (data, keys) {
     var t = this.dom;
+    data    = data || this.data;
+    keys    = keys || this.keys;
+
+    this.keys   = keys;
+    this.data   = data;
 
     // update head
     var tr = document.createElement('tr');
@@ -39,8 +53,13 @@ Table.prototype.update = function (data, keys) {
     t.appendChild(tr);
 
     // update content
+    var itemCnt = 0, self = this;
     data.forEach(function (value) {
         // console.log(value);
+        if (itemCnt === self.pageSize) {
+            return;
+        }
+        itemCnt++;
         tr = document.createElement('tr');
         var o = value, html = '';
         keys.forEach(function (key) {
@@ -52,7 +71,7 @@ Table.prototype.update = function (data, keys) {
 };
 
 $(document).ready(function () {
-    var tb = new Table('stock-tb');
+    var tb = new Table('stock-tb', 10);
 
     function update(data) {
         data = JSON.parse(data);
