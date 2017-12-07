@@ -1,5 +1,5 @@
+var form = $('#upload_form');
 function upload() {
-    var form = $('#upload_form');
     form.submit(function (e) {
         e.preventDefault();
     });
@@ -14,7 +14,6 @@ function upload() {
 
 var searchKeyList = document.getElementById("search-fields");
 function searchKeyListUpdate(keys) {
-    var html = '';
     keys.forEach(function (key) {
         var op = document.createElement('option');
         op.innerHTML = key;
