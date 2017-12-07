@@ -33,7 +33,7 @@ body {
     border: solid 1px #DDD;
 }
 
-#iframe_hiden {
+#iframe_hidden {
     height: 0;
     width: 0;
     display: none;
