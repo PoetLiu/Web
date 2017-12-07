@@ -99,11 +99,13 @@ Table.prototype.prevPage   = function () {
 
 $(document).ready(function () {
     var tb = new Table('stock-tb', 10);
+    var totalNum    = document.getElementById('total-num');
     function update(data) {
         data = JSON.parse(data);
         var keys = Object.keys(data[0]);
         searchKeyListUpdate(keys);
         tb.update(data, keys);
+        totalNum.innerHTML  = data.length;
     }
 
     var pageItemNumSelect = document.getElementById('item-num-select');
