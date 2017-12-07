@@ -58,3 +58,32 @@ body {
     padding: 5px;
 }
 
+.article {
+    margin-top: 10px;
+    background-color: #FFFFFF;
+    padding: 10px 5px;
+}
+
+.search-box {
+    text-align: right;
+}
+
+.search-box .search {
+    height: 30px;
+    width: 300px;
+}
+
+.search-box button {
+    width: 50px;
+    border-radius: 5px;
+}
+
+.search-box select {
+    height: 30px;
+    width: 80px;
+}
+
+.upload-box {
+    text-align: right;
+}
+

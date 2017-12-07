@@ -11,9 +11,19 @@
     <h1>MaterialManageSystem</h1>
 </div>
 <div class="container main">
+    <div class="article">
+        <div class="search-box">
+            <input class="search" type="search" placeholder="Please Input key word">
+            <select id="search-fields">
+                <option disabled selected>field</option>
+            </select>
+            <button id="search-btn">查询</button>
+        </div>
+    </div>
     <div class="section">
         <div class="section-header">库存表</div>
         <div class="section-content">
+
             <table id="stock-tb">
                 <tr>
                     <th>ID</th>
@@ -22,6 +32,11 @@
                     <th>Quantity</th>
                 </tr>
             </table>
+
+        </div>
+    </div>
+    <div class="article">
+        <div class="upload-box">
             <form id='upload_form' action="php/api.php/upload" method="post" enctype="multipart/form-data"
                   target="iframe_hidden">
                 <input type="file" name="uploadFile" id="uploadFile">
