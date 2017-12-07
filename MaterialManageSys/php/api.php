@@ -37,7 +37,7 @@ function getStock()
 
 function upload()
 {
-    $file   = $GLOBALS('uploadDir') . $_FILES['uploadFile']['name'];
+    $file   = $GLOBALS['uploadDir'] . $_FILES['uploadFile']['name'];
     $res = new stdClass();
 
     if (move_uploaded_file($_FILES['uploadFile']['tmp_name'], $file)) {
@@ -53,7 +53,7 @@ function upload()
 
 function upload_check()
 {
-    $file = $_POST['name'];
+    $file = $GLOBALS['uploadDir'] . $_POST['name'];
     $res = new stdClass();
     if (file_exists($file)) {
         $res->errCode   = 0;
@@ -62,7 +62,7 @@ function upload_check()
         $res->errCode   = 1;
         $res->msg   = "File upload failed!.";
     }
-    print_r($_POST);
+//    print_r($_POST);
     print json_encode($res);
 }
 
