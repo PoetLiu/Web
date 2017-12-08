@@ -45,12 +45,12 @@ Table.prototype.setPageSize = function (size, autoUpdate) {
     }
 };
 
-Table.prototype.update = function (data, keys) {
+Table.prototype.update = function (data, head) {
     var t = this.dom;
     data    = data || this.data;
-    keys    = keys || this.keys;
+    head    = head || this.head;
 
-    this.keys   = keys;
+    this.head   = head;
     this.data   = data;
 
     t.innerHTML = '';
@@ -58,7 +58,7 @@ Table.prototype.update = function (data, keys) {
     // update head
     var tr = document.createElement('tr');
     var html = '';
-    keys.forEach(function (key) {
+    head.forEach(function (key) {
         html += '<th>' + key + '</th>';
     });
     tr.innerHTML = html;
@@ -80,7 +80,7 @@ Table.prototype.update = function (data, keys) {
         }
 
         tr = document.createElement('tr');
-        var o = value, html = '';
+        var o = value, html = '', keys = Object.keys(value);
         keys.forEach(function (key) {
             html += '<td>' + o[key] + '</td>';
         });
