@@ -1,9 +1,40 @@
-function Table(id, pageSize) {
+function Table(id, selectId, nextId, prevId, totalNumId, pageSize) {
     this.id = id;
-    this.dom = document.getElementById(id);
     this.pageId = 0;
-    this.pageSize = pageSize;
+    this.dom    = document.getElementById(id);
+    this.select = document.getElementById(selectId);
+    this.nextPageBtn = document.getElementById(nextId);
+    this.prevPageBtn = document.getElementById(prevId);
+    this.totalNum   = document.getElementById(totalNumId);
+    this.pageSize   = pageSize;
+
+    this.setup();
 }
+Table.prototype.updateTotalNum  = function(total) {
+    this.totalNum.innerHTML  = total;
+};
+
+Table.prototype.setup   = function () {
+    this.select.addEventListener('click', onPageItemNumSelected.bind(this));
+    this.prevPageBtn.addEventListener('click', onPrevBtnClick.bind(this));
+    this.nextPageBtn.addEventListener('click', onNextBtnClick.bind(this));
+
+    function onPageItemNumSelected(e) {
+        var t   = this.select;
+        var page    = t.options[t.selectedIndex].value;
+        console.log(page);
+        this.setPageSize(Number(page));
+        e.preventDefault();
+    }
+
+    function onPrevBtnClick() {
+       this.prevPage();
+    }
+
+    function onNextBtnClick() {
+        this.nextPage();
+    }
+};
 
 Table.prototype.setPageSize = function (size, autoUpdate) {
     autoUpdate  = autoUpdate || true;
@@ -56,6 +87,8 @@ Table.prototype.update = function (data, keys) {
         tr.innerHTML = html;
         t.appendChild(tr);
     });
+
+    this.updateTotalNum(data.length);
 };
 
 Table.prototype.nextPage    = function () {
