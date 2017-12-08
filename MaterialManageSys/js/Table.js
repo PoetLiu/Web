@@ -157,6 +157,7 @@ Table.prototype.showSearchResult    = function (result) {
     this.update(data);
 };
 
+// TODO: highlight matched keyword.
 Table.prototype.search  = function (keyword, field) {
     var re  = new RegExp(keyword, 'i');
     var result  = [];
