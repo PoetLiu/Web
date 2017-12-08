@@ -1,4 +1,4 @@
-function Table(id, selectId, nextId, prevId, totalNumId, pageSize) {
+function Table(pageSize, id, selectId, nextId, prevId, totalNumId, totalPageId) {
     this.id = id;
     this.pageId = 0;
     this.dom    = document.getElementById(id);
@@ -6,12 +6,18 @@ function Table(id, selectId, nextId, prevId, totalNumId, pageSize) {
     this.nextPageBtn = document.getElementById(nextId);
     this.prevPageBtn = document.getElementById(prevId);
     this.totalNum   = document.getElementById(totalNumId);
+    this.totalPage  = document.getElementById(totalPageId);
     this.pageSize   = pageSize;
 
     this.setup();
 }
+
 Table.prototype.updateTotalNum  = function(total) {
     this.totalNum.innerHTML  = total;
+};
+
+Table.prototype.updateTotalPage= function(total) {
+    this.totalPage.innerHTML  = total;
 };
 
 Table.prototype.setup   = function () {
@@ -89,6 +95,7 @@ Table.prototype.update = function (data, head) {
     });
 
     this.updateTotalNum(data.length);
+    this.updateTotalPage(Math.ceil(data.length/this.pageSize));
 };
 
 Table.prototype.nextPage    = function () {

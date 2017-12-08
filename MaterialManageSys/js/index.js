@@ -11,16 +11,22 @@ function upload() {
     }
     form.unbind('submit').bind('submit');
     form.submit();
+
+    // get file name from path.
     uploadFile = str.replace(/^.*[\\\/]/, '');
     window.setTimeout(function () {
-        $.post('php/api.php/getBomData',
-            {
-                name: uploadFile
-            },
-            function (data) {
-                updateBom(JSON.parse(data)['msg']);
-            });
+        fetchAndUpdateBomTable(uploadFile);
     }, 1000);
+}
+
+function fetchAndUpdateBomTable(uploadFile) {
+    $.post('php/api.php/getBomData',
+        {
+            name: uploadFile
+        },
+        function (data) {
+            updateBom(JSON.parse(data)['msg']);
+        });
 }
 
 function searchKeyListUpdate(keys) {
@@ -33,20 +39,24 @@ function searchKeyListUpdate(keys) {
 }
 
 var stockTB = new Table(
+    10,
     'stock-tb',
     'item-num-select',
     'next-btn',
     'prev-btn',
     'total-num',
-    10);
+    'total-page'
+    );
 
 var bomTB = new Table(
+    10,
     'bom-tb',
     'bom-item-num-select',
     'bom-next-btn',
     'bom-prev-btn',
     'bom-total-num',
-    10);
+    'bom-total-page'
+    );
 
 function updateStock(data) {
     data = JSON.parse(data);
