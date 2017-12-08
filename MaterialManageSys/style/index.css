@@ -57,11 +57,15 @@ body {
     padding: 5px;
 }
 
-.stock-table-box .tb-page-item-num {
+.table-box .tb-page-item-num {
     float: left;
 }
-.stock-table-box .tb-page-nav {
+.table-box .tb-page-nav {
    float: right;
+}
+
+.table-box .tb-page-nav .jump-input {
+   width: 40px;
 }
 
 .article {

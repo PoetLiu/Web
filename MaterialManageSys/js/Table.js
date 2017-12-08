@@ -1,4 +1,7 @@
-function Table(pageSize, id, selectId, nextId, prevId, totalNumId, totalPageId, curPageId) {
+function Table(pageSize, id, selectId, nextId, prevId,
+               totalNumId, totalPageId, curPageId,
+               jumpInputId, jumpBtnId)
+{
     this.id = id;
     this.pageId = 0;
     this.dom    = document.getElementById(id);
@@ -8,6 +11,8 @@ function Table(pageSize, id, selectId, nextId, prevId, totalNumId, totalPageId, 
     this.totalNum   = document.getElementById(totalNumId);
     this.totalPage  = document.getElementById(totalPageId);
     this.curPage    = document.getElementById(curPageId);
+    this.jumpInput  = document.getElementById(jumpInputId);
+    this.jumpBtn    = document.getElementById(jumpBtnId);
     this.pageSize   = pageSize;
 
     this.setup();
@@ -29,6 +34,17 @@ Table.prototype.setup   = function () {
     this.select.addEventListener('click', onPageItemNumSelected.bind(this));
     this.prevPageBtn.addEventListener('click', onPrevBtnClick.bind(this));
     this.nextPageBtn.addEventListener('click', onNextBtnClick.bind(this));
+    this.jumpBtn.addEventListener('click', onJumpBtnClick.bind(this));
+
+    function onJumpBtnClick() {
+        var page    = Number(this.jumpInput.value);
+
+        if (isNaN(page)) {
+            console.log('Please input valid page number.');
+            return;
+        }
+        this.jumpToPage(page-1);
+    }
 
     function onPageItemNumSelected(e) {
         var t   = this.select;
@@ -104,9 +120,19 @@ Table.prototype.update = function (data, head) {
     this.updateCurPageId();
 };
 
+Table.prototype.jumpToPage  = function (page) {
+    var maxId   = Math.ceil((this.data.length)/this.pageSize);
+    // console.log(page, maxId);
+
+    if (page >= 0 && page < maxId) {
+        this.pageId = page;
+        this.update();
+    }
+};
+
 Table.prototype.nextPage    = function () {
-    var maxId   = Math.floor((this.data.length-1)/this.pageSize);
-    console.log(maxId);
+    var maxId   = Math.ceil((this.data.length)/this.pageSize) - 1;
+    console.log(this.pageId, maxId);
     if (this.pageId < maxId) {
         this.pageId++;
         this.update();
