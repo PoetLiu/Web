@@ -45,7 +45,8 @@ var stockTB = new Table(
     'next-btn',
     'prev-btn',
     'total-num',
-    'total-page'
+    'total-page',
+    'cur-page'
     );
 
 var bomTB = new Table(
@@ -55,7 +56,8 @@ var bomTB = new Table(
     'bom-next-btn',
     'bom-prev-btn',
     'bom-total-num',
-    'bom-total-page'
+    'bom-total-page',
+    'bom-cur-page'
     );
 
 function updateStock(data) {
