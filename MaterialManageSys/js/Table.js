@@ -145,3 +145,34 @@ Table.prototype.prevPage   = function () {
         this.update();
     }
 };
+
+Table.prototype.showSearchResult    = function (result) {
+    var data    = result;
+    if (!result.length) {
+        data    = this.oldData;
+        this.oldData    = null;
+    } else if (!this.oldData) {    // backup data.
+        this.oldData    = this.data;
+    }
+    this.update(data);
+};
+
+Table.prototype.search  = function (keyword, field) {
+    var re  = new RegExp(keyword, 'i');
+    var result  = [];
+    var data    = this.oldData || this.data;
+
+    data.forEach(function (value) {
+        var str = JSON.stringify(value);
+        if (field && field !== 'ALL') {
+           str  = value[field];
+        }
+
+        // console.log(keyword, field, value, str, re.toString());
+        if (str.search(re) !== -1) {
+            // console.log(str);
+            result.push(value);
+        }
+    });
+    this.showSearchResult(result);
+};

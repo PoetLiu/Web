@@ -91,6 +91,16 @@ function updateBom(data) {
 
 $(document).ready(function () {
     (function init() {
+        var searchBtn   = document.getElementById('search-btn');
+        searchBtn.addEventListener('click', search.bind(this));
+
+        function search() {
+            var field   = document.getElementById('search-fields').value;
+            var keyword = document.getElementById('search-input').value;
+            // console.log(field, keyword);
+            stockTB.search(keyword, field);
+        }
+
         $.post('php/api.php/getStock', function (data) {
             updateStock(data);
         });
