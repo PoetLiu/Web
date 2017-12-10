@@ -1,5 +1,8 @@
 <?php
 
+include 'PHPExcel/Classes/PHPExcel.php';
+
+$uploadDir = '/tmp/';
 function init()
 {
     ini_set('display_errors', 'On');
@@ -36,18 +39,60 @@ function getStock()
 
 function upload()
 {
-    $uploadDir = '/tmp/';
-    $file   = $uploadDir . $_FILES['uploadFile']['name'];
+    $file = $GLOBALS['uploadDir'] . $_FILES['uploadFile']['name'];
     $res = new stdClass();
 
     if (move_uploaded_file($_FILES['uploadFile']['tmp_name'], $file)) {
-        $res->errCode   = 0;
-        $res->msg   = "File is valid, and was successfully uploaded.";
+        $res->errCode = 0;
+        $res->msg = "File is valid, and was successfully uploaded.";
     } else {
-        $res->errCode   = 1;
-        $res->msg   = 'Possible file upload attack!';
+        $res->errCode = 1;
+        $res->msg = 'Possible file upload attack!';
     }
-//    print_r($_FILES);
+    print_r($_FILES);
+    print json_encode($res);
+}
+
+function upload_check()
+{
+    $file = $GLOBALS['uploadDir'] . $_POST['name'];
+    $res = new stdClass();
+    if (file_exists($file)) {
+        $res->errCode = 0;
+        $res->msg = "File is valid, and was successfully uploaded.";
+    } else {
+        $res->errCode = 1;
+        $res->msg = "File upload failed!.";
+    }
+//    print_r($_POST);
+    print json_encode($res);
+}
+
+
+function getBomData()
+{
+    $file = $GLOBALS['uploadDir'] . $_POST['name'];
+    $res = new stdClass();
+
+    if (!file_exists($file)) {
+        $res->errCode = 1;
+        $res->msg = "File doesn't exist!.";
+        goto ret;
+    }
+
+    try {
+        $inputFileType = PHPExcel_IOFactory::identify($file);
+        $objReader = PHPExcel_IOFactory::createReader($inputFileType);
+        $objPHPExcel = $objReader->load($file);
+        $sheetData = $objPHPExcel->getActiveSheet()->toArray(null,
+            true, true, true);
+    } catch (Exception $e) {
+        die('Error loading file"' . pathinfo($file, PATHINFO_BASENAME) . '": ' . $e->getMessage());
+    }
+
+    $res->errCode   = 0;
+    $res->msg       = json_encode($sheetData);
+    ret:
     print json_encode($res);
 }
 
@@ -58,6 +103,10 @@ if ($api == 'getStock') {
     getStock();
 } else if ($api == 'upload') {
     upload();
+} else if ($api == 'upload_check') {
+    upload_check();
+} else if ($api == 'getBomData') {
+    getBomData();
 }
 
 ?>
