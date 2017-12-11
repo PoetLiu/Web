@@ -69,6 +69,8 @@ function updateStock(data) {
     var head = Object.keys(data[0]);
     searchKeyListUpdate(head);
     stockTB.update(data, head);
+    $('#stock-table-box').show();
+    $('#stock-loader').hide();
 }
 
 function updateBom(data) {
@@ -97,6 +99,7 @@ $(document).ready(function () {
         searchBtn.addEventListener('click', search.bind(this));
 
         $('#bom-table-box').hide();
+        $('#stock-table-box').hide();
 
         function search() {
             var field   = document.getElementById('search-fields').value;
