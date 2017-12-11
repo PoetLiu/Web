@@ -88,6 +88,7 @@ function updateBom(data) {
 
     bomTB.update(newData, head);
     $('#bom-table-box').show();
+    $('#upload-bom-notice').hide();
 }
 
 $(document).ready(function () {

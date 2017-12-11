@@ -47,6 +47,11 @@ body {
     background-color: #FFFFFF;
 }
 
+.section .notice {
+    color: red;
+    text-align: center;
+}
+
 .section .section-header {
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
