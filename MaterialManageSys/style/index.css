@@ -47,8 +47,11 @@ body {
     background-color: #FFFFFF;
 }
 
-.section .notice {
+.notice {
     color: red;
+}
+
+.section .notice {
     text-align: center;
 }
 

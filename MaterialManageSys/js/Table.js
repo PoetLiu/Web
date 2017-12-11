@@ -159,19 +159,25 @@ Table.prototype.showSearchResult    = function (result) {
 
 // TODO: highlight matched keyword.
 Table.prototype.search  = function (keyword, field) {
-    var re  = new RegExp(keyword, 'i');
+    var re  = new RegExp(keyword, 'ig');
     var result  = [];
     var data    = this.oldData || this.data;
 
     data.forEach(function (value) {
-        var str = JSON.stringify(value);
+        var str = JSON.stringify(value), matched = false;
         if (field && field !== 'ALL') {
            str  = value[field];
         }
 
         // console.log(keyword, field, value, str, re.toString());
-        if (str.search(re) !== -1) {
+        str = str.replace(re, function (match, offset, string) {
+            matched = true;
+            return '<span class=\\"notice\\">'+match+'</span>';
+        });
+
+        if (matched) {
             // console.log(str);
+            value   = JSON.parse(str);
             result.push(value);
         }
     });
