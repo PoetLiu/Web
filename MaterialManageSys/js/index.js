@@ -29,7 +29,6 @@ function fetchAndUpdateBomTable(uploadFile) {
         },
         function (data) {
             updateBom(JSON.parse(data)['msg']);
-            $('#bom-loader').hide();
         });
 }
 
@@ -96,6 +95,7 @@ function updateBom(data) {
     bomTB.update(newData, head);
     $('#bom-table-box').show();
     $('#upload-bom-notice').hide();
+    $('#bom-loader').hide();
 }
 
 $(document).ready(function () {
