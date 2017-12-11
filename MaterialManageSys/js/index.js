@@ -12,6 +12,9 @@ function upload() {
     form.unbind('submit').bind('submit');
     form.submit();
 
+    $('#bom-loader').show();
+    $('#upload-bom-notice').hide();
+
     // get file name from path.
     uploadFile = str.replace(/^.*[\\\/]/, '');
     window.setTimeout(function () {
@@ -26,6 +29,7 @@ function fetchAndUpdateBomTable(uploadFile) {
         },
         function (data) {
             updateBom(JSON.parse(data)['msg']);
+            $('#bom-loader').hide();
         });
 }
 
@@ -69,6 +73,7 @@ function updateStock(data) {
     var head = Object.keys(data[0]);
     searchKeyListUpdate(head);
     stockTB.update(data, head);
+
     $('#stock-table-box').show();
     $('#stock-loader').hide();
 }
@@ -100,6 +105,7 @@ $(document).ready(function () {
 
         $('#bom-table-box').hide();
         $('#stock-table-box').hide();
+        $('#bom-loader').hide();
 
         function search() {
             var field   = document.getElementById('search-fields').value;
