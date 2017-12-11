@@ -87,12 +87,15 @@ function updateBom(data) {
     });
 
     bomTB.update(newData, head);
+    $('#bom-table-box').show();
 }
 
 $(document).ready(function () {
     (function init() {
         var searchBtn   = document.getElementById('search-btn');
         searchBtn.addEventListener('click', search.bind(this));
+
+        $('#bom-table-box').hide();
 
         function search() {
             var field   = document.getElementById('search-fields').value;
