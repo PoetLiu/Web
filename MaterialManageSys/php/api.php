@@ -1,12 +1,13 @@
 <?php
 
 include 'PHPExcel/Classes/PHPExcel.php';
+include 'upload.php';
 
 $uploadDir = '/tmp/';
 function init()
 {
     ini_set('display_errors', 'On');
-    error_reporting(E_ALL);
+    error_reporting(E_ALL ^ (E_NOTICE | E_WARNING));
 }
 
 function getStock()
@@ -37,21 +38,6 @@ function getStock()
     $conn->close();
 }
 
-function upload()
-{
-    $file = $GLOBALS['uploadDir'] . $_FILES['uploadFile']['name'];
-    $res = new stdClass();
-
-    if (move_uploaded_file($_FILES['uploadFile']['tmp_name'], $file)) {
-        $res->errCode = 0;
-        $res->msg = "File is valid, and was successfully uploaded.";
-    } else {
-        $res->errCode = 1;
-        $res->msg = 'Possible file upload attack!';
-    }
-    print_r($_FILES);
-    print json_encode($res);
-}
 
 function upload_check()
 {
