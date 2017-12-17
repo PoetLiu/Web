@@ -7,7 +7,7 @@ app.controller('MainCtrl', function($scope, $interval, $element, $animate) {
     $scope.secDegrees = 0;
     $scope.minDegrees = 0;
     $scope.hourDegrees = 0;
-    var runTimmer = false;
+    var runTimer = false;
 
     function updateTime() {
         var d = new Date();
