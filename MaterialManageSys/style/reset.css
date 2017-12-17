@@ -23,12 +23,15 @@ ul {
     list-style: none;
 }
 
-button, .btn {
+input[type=submit],
+button,
+.btn {
     color: #FFFFFF;
     background: #388ac1;
     border: none;
     outline: none;
     vertical-align: middle;
+    padding: 5px;
 }
 
 input,

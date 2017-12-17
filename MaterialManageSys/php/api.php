@@ -1,54 +1,16 @@
 <?php
 
+include 'PHPExcel/Classes/PHPExcel.php';
+include 'upload.php';
+include 'getBomData.php';
+include 'getStock.php';
+include 'uploadCheck.php';
+
+$uploadDir = '/tmp/';
 function init()
 {
     ini_set('display_errors', 'On');
-    error_reporting(E_ALL);
-}
-
-function getStock()
-{
-    $serverName = 'localhost';
-    $username = 'root';
-    $password = 'liupeng123';
-    $dbName = 'material';
-
-    // create connection.
-    $conn = new mysqli($serverName, $username, $password, $dbName);
-    if ($conn->connect_error) {
-        die('Connection failed: ' . $conn->connect_error);
-    }
-    $conn->set_charset('utf8mb4');
-
-    $sql = "SELECT * FROM test";
-    $result = $conn->query($sql);
-    $rows = array();
-    if ($result->num_rows > 0) {
-        // output data of each row.
-        while ($row = $result->fetch_assoc()) {
-            $rows[] = $row;
-        }
-    }
-//    echo "Hello, world!";
-    print json_encode($rows);
-    $conn->close();
-}
-
-function upload()
-{
-    $uploadDir = '/tmp/';
-    $file   = $uploadDir . $_FILES['uploadFile']['name'];
-    $res = new stdClass();
-
-    if (move_uploaded_file($_FILES['uploadFile']['tmp_name'], $file)) {
-        $res->errCode   = 0;
-        $res->msg   = "File is valid, and was successfully uploaded.";
-    } else {
-        $res->errCode   = 1;
-        $res->msg   = 'Possible file upload attack!';
-    }
-//    print_r($_FILES);
-    print json_encode($res);
+    error_reporting(E_ALL ^ (E_NOTICE | E_WARNING));
 }
 
 init();
@@ -58,6 +20,10 @@ if ($api == 'getStock') {
     getStock();
 } else if ($api == 'upload') {
     upload();
+} else if ($api == 'uploadCheck') {
+    uploadCheck();
+} else if ($api == 'getBomData') {
+    getBomData();
 }
 
 ?>

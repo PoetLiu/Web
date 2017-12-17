@@ -7,26 +7,110 @@
     <link rel="stylesheet" type="text/css" href="style/index.css">
 </head>
 <body>
-<div class="container header">
+<div class="header">
     <h1>MaterialManageSystem</h1>
 </div>
 <div class="container main">
-    <table id="stock-tb">
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Describe</th>
-            <th>Quantity</th>
-        </tr>
-    </table>
-    <form id='upload_form' action="php/api.php/upload" method="post" enctype="multipart/form-data" target="iframe_hidden">
-        <input type="file" name="uploadFile" id="uploadFile">
-        <input type="submit" value="上传BOM表" name="submit" onclick="upload();">
-    </form>
-    <iframe name="iframe_hidden" id="iframe_hiden"></iframe>
+    <div class="article">
+        <div class="search-box">
+            <input id="search-input" class="search" type="search" placeholder="Please Input key word">
+            <select id="search-fields">
+                <option selected>ALL</option>
+            </select>
+            <button id="search-btn">查询</button>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-header">库存表</div>
+        <div id="stock-loader" class="loader-container">
+           <div class="loader"></div>
+            <p>Loading...</p>
+        </div>
+        <div class="section-content table-box clear-fix" id="stock-table-box">
+            <table id="stock-tb">
+            </table>
+            <div class="tb-page-item-num">
+                <label>共 </label>
+                <label id="total-num">0</label>
+                <label> 条记录</label>
+                <label for="item-num-select">每页显示</label>
+                <select id="item-num-select">
+                    <option selected>10</option>
+                    <option>20</option>
+                    <option>50</option>
+                </select>
+                <span>条记录</span>
+            </div>
+            <div class="tb-page-nav">
+                <span>共 </span>
+                <span id="total-page">0</span>
+                <span> 页 </span>
+                <span>当前第 </span>
+                <span id="cur-page">0</span>
+                <span> 页</span>
+                <span>跳转到第</span>
+                <input class="jump-input" id="jump-input">
+                <span>页</span>
+                <button id="jump-btn">Go</button>
+                <button id="prev-btn">Prev</button>
+                <button id="next-btn">Next</button>
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-header">BOM表</div>
+        <div class="article">
+            <div class="upload-box">
+                <form id='upload_form' action="php/api.php/upload" method="post" enctype="multipart/form-data"
+                      target="iframe_hidden">
+                    <input type="file" name="uploadFile" id="uploadFile">
+                    <input type="submit" value="上传BOM表" name="submit" onclick="upload();">
+                </form>
+                <iframe name="iframe_hidden" id="iframe_hidden"></iframe>
+            </div>
+        </div>
+        <p class="notice" id="upload-bom-notice">
+           请上传BOM表, 您可以在线预览它!
+        </p>
+        <div id="bom-loader" class="loader-container">
+           <div class="loader"></div>
+            <p>Loading...</p>
+        </div>
+        <div class="section-content table-box clear-fix" id="bom-table-box">
+            <table id="bom-tb">
+            </table>
+            <div class="tb-page-item-num">
+                <label>共 </label>
+                <label id="bom-total-num">0</label>
+                <label> 条记录</label>
+                <label for="bom-item-num-select">每页显示</label>
+                <select id="bom-item-num-select">
+                    <option selected>10</option>
+                    <option>20</option>
+                    <option>50</option>
+                </select>
+                <span>条记录</span>
+            </div>
+            <div class="tb-page-nav">
+                <span>共 </span>
+                <span id="bom-total-page">0</span>
+                <span> 页</span>
+                <span>当前第 </span>
+                <span id="bom-cur-page">0</span>
+                <span> 页</span>
+                <span>跳转到第</span>
+                <input class="jump-input" id="bom-jump-input">
+                <span>页</span>
+                <button id="bom-jump-btn">Go</button>
+                <button id="bom-prev-btn">Prev</button>
+                <button id="bom-next-btn">Next</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script type="text/javascript" src="js/jquery-3.2.1.js"></script>
+<script type="text/javascript" src="js/Table.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
 </body>
 </html>
