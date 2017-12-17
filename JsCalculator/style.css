@@ -39,17 +39,18 @@ body {
   color: #fff;
   position: absolute;
   display: inline-block;
-  width: 280px;
+  width: 264px;
   height: auto;
   margin-top: 15px;
   margin-left: 15px;
 }
 
 button {
+    float: left;
   border-radius: 8px;
   border: none;
   background-color: #3a3a3a;
-  margin: 0 4px 10px 8px;
+  margin: 0 8px 10px 8px;
   height: 40px;
   width: 50px;
   box-shadow: 0px 3px 0px 0px #222121, inset -1px -3px 10px 1px #515151;
@@ -62,7 +63,8 @@ button:active {
 
 #equalButton {
   position:absolute;
-  margin-left:12px;
+  right: 0;
+    bottom: 0;
   height: 90px;
 }
 
