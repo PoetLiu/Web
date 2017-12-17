@@ -2,7 +2,7 @@
  * Created by LP on 2017/8/16.
  */
 var app = angular.module('ClockApp', []);
-app.controller('MainCtrl', function($scope, $interval, $element, $animate) {
+app.controller('MainCtrl', function($scope, $interval) {
     $scope.time = "Loading";
     $scope.secDegrees = 0;
     $scope.minDegrees = 0;
@@ -19,19 +19,14 @@ app.controller('MainCtrl', function($scope, $interval, $element, $animate) {
     }
     runTimer  = $interval(updateTime, 1000);
 
-    $scope.Rotate = function() {
-        $scope.secDegrees += 6;
-        $scope.minDegrees += 0.1;
-        $scope.hourDegrees += 0.00167;
-    };
 });
 
 app.directive('rotate', function () {
     return {
         restrict: 'A',
         link: function (scope, element, attrs) {
-            scope.$watch(attrs.degrees, function (rotateDegrees) {
-                var r = 'rotate(' + rotateDegrees + 'deg)';
+            scope.$watch(attrs.degrees, function (deg) {
+                var r = 'rotate(' + deg + 'deg)';
                 element.css({
                     'transform':r,
                     '-moz-transform': r,
