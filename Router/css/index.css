@@ -77,7 +77,7 @@ body {
 
 .current {
     background-color: rgb(245, 246, 248);
-    border-radius: 6px 6px 0px 0px;
+    border-radius: 6px 6px 0 0;
 }
 
 .current a {
@@ -176,7 +176,6 @@ body {
 }
 
 .network-info {
-    height: 130px;
     font-size: 18px;
     height: 60px;
     background: url("../image/router_status_ok.png") no-repeat left center;
@@ -236,7 +235,7 @@ body {
     font-size: 22px;
     line-height: 22px;
     color:#FFF;
-    text-shadow: 0px 1px 0px rgba(0,0,0,0.2);
+    text-shadow: 0 1px 0 rgba(0,0,0,0.2);
 }
 
 .dev_list_app {
@@ -254,7 +253,7 @@ body {
 .dev_list_app .dev_list_online_num .dev_list_online_num_value {
     font-size:55px;
     line-height:55px;
-    text-shadow: 0px 1px 0px rgba(0,0,0,0.2);
+    text-shadow: 0 1px 0 rgba(0,0,0,0.2);
 }
 
 .dev_list_app .dev_list_online_num .dev_list_online_des{
@@ -291,7 +290,7 @@ body {
 .copyright {
     padding: 35px 0 20px;
     color: #818181;
-    font-family: Arial;
+    font-family: Arial, "微软雅黑", Helvetica, Tahoma, SimSun, Heiti, "黑体", sans-serif;
 }
 
 .os {
