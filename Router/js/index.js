@@ -1,9 +1,16 @@
+function onWinHashChange() {
+    console.log("Window loc hash changed, now:" + window.location.hash);
+}
+
 function init_menu() {
     function navToPage() {
         var self    = $(this), id = self.attr("id");
 
         self.addClass("current");
         self.siblings().removeClass("current");
+
+        window.location.hash    = id;
+        $(window).on("hashchange", onWinHashChange);
     }
 
     $("#nav-pages li").unbind("click").bind("click", navToPage);
