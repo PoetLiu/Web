@@ -101,7 +101,7 @@ body {
     *zoom:1;
 }
 
-.content {
+.app_container {
     margin: 0 auto;
     width: 1004px;
 }
