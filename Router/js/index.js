@@ -53,9 +53,9 @@ function init_menu() {
         self.siblings().removeClass("current");
 
         window.location.hash    = id;
-        $(window).on("hashchange", onWinHashChange);
     }
 
+    $(window).on("hashchange", onWinHashChange);
     $("#nav-pages li").unbind("click").bind("click", navToPage);
     $("#index_page").click();
 }
