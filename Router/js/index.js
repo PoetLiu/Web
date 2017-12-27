@@ -45,19 +45,25 @@ function onWinHashChange() {
     loadHtml(id, pages[id]);
 }
 
-function init_menu() {
-    function navToPage() {
-        var self    = $(this), id = self.attr("id");
+function navToPage(id) {
+    var self    = $(this);
 
-        self.addClass("current");
-        self.siblings().removeClass("current");
-
-        window.location.hash    = id;
+    if (typeof(id) === "string") {
+       self = $(id);
+    } else {
+        id  = self.attr("id");
     }
 
+    self.addClass("current");
+    self.siblings().removeClass("current");
+
+    window.location.hash    = id;
+}
+
+function init_menu() {
     $(window).on("hashchange", onWinHashChange);
     $("#nav-pages li").unbind("click").bind("click", navToPage);
-    $("#index_page").click();
+    navToPage("#index_page");
 }
 
 $(document).ready(function () {
