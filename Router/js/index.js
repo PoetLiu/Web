@@ -22,12 +22,8 @@ function navSetCurrent(id) {
 }
 
 function navToPage(id) {
-    var self    = $(this);
-
-    if (typeof(id) === "string") {
-       self = $(id);
-    } else {
-        id  = self.attr("id");
+    if (typeof(id) !== "string") {
+        id  = $(this).attr("id");
     }
 
     window.location.hash    = id;
