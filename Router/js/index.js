@@ -7,9 +7,18 @@ const pages = {
 };
 
 function onWinHashChange() {
-    // console.log("Window loc hash changed, now:" + window.location.hash);
-    var id  = window.location.hash.substring(1);
-    loadHtml(id, pages[id]);
+    var id = window.location.hash || "#index_page";
+    var idName  = id.substring(1);
+
+    console.log("Window loc hash changed, now:" + window.location.hash);
+    navSetCurrent(id);
+    loadHtml(idName, pages[idName]);
+}
+
+function navSetCurrent(id) {
+    var nav = $(id);
+    nav.addClass("current");
+    nav.siblings().removeClass("current");
 }
 
 function navToPage(id) {
@@ -21,16 +30,13 @@ function navToPage(id) {
         id  = self.attr("id");
     }
 
-    self.addClass("current");
-    self.siblings().removeClass("current");
-
     window.location.hash    = id;
 }
 
 function init_menu() {
     $(window).on("hashchange", onWinHashChange);
     $("#nav-pages li").unbind("click").bind("click", navToPage);
-    navToPage("#index_page");
+    onWinHashChange();
 }
 
 $(document).ready(function () {
