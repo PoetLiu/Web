@@ -1,6 +1,6 @@
 var currentHtml = '';
 const pages = {
-   'index_page': initIndexPage,
+    'index_page': initIndexPage,
     'functions': initFuncPage,
     'settings': initSetPage,
     'management': initManagePage
@@ -8,7 +8,7 @@ const pages = {
 
 function onWinHashChange() {
     var id = window.location.hash || "#index_page";
-    var idName  = id.substring(1);
+    var idName = id.substring(1);
 
     console.log("Window loc hash changed, now:" + window.location.hash);
     navSetCurrent(id);
@@ -23,10 +23,10 @@ function navSetCurrent(id) {
 
 function navToPage(id) {
     if (typeof(id) !== "string") {
-        id  = $(this).attr("id");
+        id = $(this).attr("id");
     }
 
-    window.location.hash    = id;
+    window.location.hash = id;
 }
 
 function init_menu() {
@@ -36,5 +36,5 @@ function init_menu() {
 }
 
 $(document).ready(function () {
-     init_menu();
+    init_menu();
 });
