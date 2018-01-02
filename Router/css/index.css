@@ -293,6 +293,10 @@ body {
     font-family: Arial, "微软雅黑", Helvetica, Tahoma, SimSun, Heiti, "黑体", sans-serif;
 }
 
+.center {
+    text-align: center;
+}
+
 .os {
     display: inline-block;
     margin: 0 auto;
