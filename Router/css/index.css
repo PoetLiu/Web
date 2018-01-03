@@ -335,12 +335,38 @@ body {
     border: 1px solid #e4e9ec;
     position:relative;
     background: url("../image/expand_bg.png");
+    margin: 0 26px 10px 0;
+}
+
+.tool-box.line-end {
+    margin-right: 0;
+}
+
+.tool-box .inner-box {
+    width: 250px;
+    height: 138px;
 }
 
 .tool-box .radio-power {
-    width: 250px;
-    height: 138px;
     background: url("../image/radio_power.png") no-repeat center 20px;
+}
+.tool-box .touch-link {
+    background: url("../image/touch_link.png") no-repeat center 20px;
+}
+.tool-box .baby-mode {
+    background: url("../image/baby_mode.png") no-repeat center 20px;
+}
+.tool-box .igd_ap {
+    background: url("../image/igd_ap.png") no-repeat center 20px;
+}
+.tool-box .safety-wireless {
+    background: url("../image/safety_wireless.png") no-repeat center 20px;
+}
+.tool-box .led-timer {
+    background: url("../image/led_ctrl.png") no-repeat center 20px;
+}
+.tool-box .wifi-timer{
+    background: url("../image/new_ap_timer.png") no-repeat center 20px;
 }
 
 .tool-box .describe {
