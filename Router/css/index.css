@@ -323,9 +323,41 @@ body {
     font-size: 20px;
 }
 
+.fast-tool {
+    margin-top: 38px;
+}
+
+.tool-box {
+    float: left;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border: 1px solid #e4e9ec;
+    position:relative;
+    background: url("../image/expand_bg.png");
+}
+
+.tool-box .radio-power {
+    width: 250px;
+    height: 138px;
+    background: url("../image/radio_power.png") no-repeat center 20px;
+}
+
+.tool-box .describe {
+    border-top: 1px solid #e6e6e6;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 38px;
+    line-height: 38px;
+    background: #FFF url("../image/shadow.png") repeat-x 50% 36px;
+}
+
 .footer {
     clear: both;
 }
+
 
 .copyright {
     padding: 35px 0 20px;
