@@ -407,6 +407,9 @@ body {
 .custom-host {
     background: url("../image/hosts.png") no-repeat center 20px;
 }
+.add-app {
+    background: url("../image/add_app.png") no-repeat center 20px;
+}
 
 .tool-box .describe {
     border-top: 1px solid #e6e6e6;
