@@ -313,6 +313,7 @@ body {
     color: #999;
 }
 
+
 .inner-nav ul li.current,
 .inner-nav ul li:hover {
     border-bottom: solid 2px #428BEF;
@@ -323,8 +324,13 @@ body {
     font-size: 20px;
 }
 
-.fast-tool {
+.tools {
     margin-top: 38px;
+    display: none;
+}
+
+.tools.current {
+    display: block;
 }
 
 .tool-box {
@@ -347,26 +353,59 @@ body {
     height: 138px;
 }
 
-.tool-box .radio-power {
+/* fast tools.*/
+.radio-power {
     background: url("../image/radio_power.png") no-repeat center 20px;
 }
-.tool-box .touch-link {
+.touch-link {
     background: url("../image/touch_link.png") no-repeat center 20px;
 }
-.tool-box .baby-mode {
+.baby-mode {
     background: url("../image/baby_mode.png") no-repeat center 20px;
 }
-.tool-box .igd_ap {
+.igd_ap {
     background: url("../image/igd_ap.png") no-repeat center 20px;
 }
-.tool-box .safety-wireless {
+.safety-wireless {
     background: url("../image/safety_wireless.png") no-repeat center 20px;
 }
-.tool-box .led-timer {
+.led-timer {
     background: url("../image/led_ctrl.png") no-repeat center 20px;
 }
-.tool-box .wifi-timer{
+.wifi-timer{
     background: url("../image/new_ap_timer.png") no-repeat center 20px;
+}
+
+/* adv tools.*/
+.home-defender {
+    background: url("../image/arp_oversee.png") no-repeat center 20px;
+}
+.smart-qos {
+    background: url("../image/smartqos.png") no-repeat center 20px;
+}
+.wisp {
+    background: url("../image/igd_wisp.png") no-repeat center 20px;
+}
+.dev-monitor {
+    background: url("../image/host_monitor.png") no-repeat center 20px;
+}
+.port-map {
+    background: url("../image/portmap.png") no-repeat center 20px;
+}
+.vpn-client {
+    background: url("../image/vpn_client.png") no-repeat center 20px;
+}
+.oray-ddns {
+    background: url("../image/oray_ddns.png") no-repeat center 20px;
+}
+.anti-ddos {
+    background: url("../image/anti_ddos.png") no-repeat center 20px;
+}
+.onekey-switch {
+    background: url("../image/igd_sw.png") no-repeat center 20px;
+}
+.custom-host {
+    background: url("../image/hosts.png") no-repeat center 20px;
 }
 
 .tool-box .describe {
@@ -383,7 +422,6 @@ body {
 .footer {
     clear: both;
 }
-
 
 .copyright {
     padding: 35px 0 20px;
