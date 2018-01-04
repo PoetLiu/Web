@@ -27,9 +27,6 @@ function loadHtml(html, init) {
         type: "get",
         url:    "./"+html+".html",
         dataType: "html",
-        error: function (XMLHttpRequest, testStatus) {
-            return;
-        },
         success: function (ret) {
             var container    = $("#container");
             container.html(ret);
