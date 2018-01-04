@@ -1,4 +1,12 @@
+function initFuncPage(curPage) {
+    console.log("Init Functions page."+curPage);
+    $("#function-nav li").unbind("click").bind("click", function() {
+        var id = $(this).attr("id");
+        window.location.hash = "functions/"+id.substring(0, id.length-4);
+    });
 
-function initFuncPage() {
-    console.log("Init Functions page.");
+    curPage  = curPage || "fast-tool";
+    curPage = "#" + curPage;
+    setCurClass(curPage+'-nav');
+    setCurClass(curPage);
 }

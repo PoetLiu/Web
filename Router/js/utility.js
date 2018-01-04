@@ -1,16 +1,23 @@
 function funCall(f, param) {
+    console.log(param);
     if (f != null && f !== "")  {
         try {
             if (typeof(window[f]) === "function") {
-                window[f].apply(null, param);
+                window[f].apply(this, param);
             } else if (typeof(f) === "function") {
-                f.call(this);
+                f.apply(this, param);
             }
         }
         catch (e) {
             console.log(e);
         }
     }
+}
+
+function setCurClass(id, curName) {
+    curName = curName || 'current';
+    $(id).addClass(curName);
+    $(id).siblings().removeClass(curName);
 }
 
 function loadHtml(html, init) {

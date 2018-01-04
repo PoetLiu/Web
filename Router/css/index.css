@@ -324,8 +324,11 @@ body {
     font-size: 20px;
 }
 
-.tools {
+.inner-content {
     margin-top: 38px;
+}
+
+.tools {
     display: none;
 }
 

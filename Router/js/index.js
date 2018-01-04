@@ -7,31 +7,20 @@ const pages = {
 };
 
 function onWinHashChange() {
-    var id = window.location.hash || "#index_page";
-    var idName = id.substring(1);
+    var hash = window.location.hash || "#index_page";
+    var p = hash.substring(1).split('/');
+    var pageName    = p[0], subPage = p[1] || null;
 
     console.log("Window loc hash changed, now:" + window.location.hash);
-    navSetCurrent(id);
-    loadHtml(idName, pages[idName]);
-}
-
-function navSetCurrent(id) {
-    var nav = $(id);
-    nav.addClass("current");
-    nav.siblings().removeClass("current");
-}
-
-function navToPage(id) {
-    if (typeof(id) !== "string") {
-        id = $(this).attr("id");
-    }
-
-    window.location.hash = id;
+    setCurClass("#"+pageName);
+    loadHtml(pageName, pages[pageName], subPage);
 }
 
 function init_menu() {
     $(window).on("hashchange", onWinHashChange);
-    $("#nav-pages li").unbind("click").bind("click", navToPage);
+    $("#nav-pages li").unbind("click").bind("click", function () {
+        window.location.hash = $(this).attr("id");
+    });
     onWinHashChange();
 }
 
