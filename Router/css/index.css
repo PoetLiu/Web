@@ -57,7 +57,7 @@ body {
 }
 
 .nav-pages {
-    margin-top:6px;
+    margin-top: 6px;
     margin-left: 55px;
     float: left;
 }
@@ -86,7 +86,7 @@ body {
 
 .article {
     width: 100%;
-    padding-top:75px;
+    padding-top: 75px;
 }
 
 .article #container {
@@ -99,11 +99,13 @@ body {
     content: " ";
     display: table;
 }
+
 .clear-fix:after {
-    clear:both;
+    clear: both;
 }
+
 .clear-fix {
-    *zoom:1;
+    *zoom: 1;
 }
 
 .app_container {
@@ -171,7 +173,7 @@ body {
     overflow: hidden;
 }
 
-.right-container >div {
+.right-container > div {
     margin-left: 20px;
 }
 
@@ -223,7 +225,7 @@ body {
     margin: 0 5px 20px 0;
 }
 
-.app-list ul li .menu-item{
+.app-list ul li .menu-item {
     position: relative;
     width: 205px;
     height: 140px;
@@ -234,13 +236,13 @@ body {
 }
 
 .app-list ul li .menu-item .title {
-   position: absolute;
+    position: absolute;
     top: 26px;
-    left:20px;
+    left: 20px;
     font-size: 22px;
     line-height: 22px;
-    color:#FFF;
-    text-shadow: 0 1px 0 rgba(0,0,0,0.2);
+    color: #FFF;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
 }
 
 .dev_list_app {
@@ -256,15 +258,15 @@ body {
 }
 
 .dev_list_app .dev_list_online_num .dev_list_online_num_value {
-    font-size:55px;
-    line-height:55px;
-    text-shadow: 0 1px 0 rgba(0,0,0,0.2);
+    font-size: 55px;
+    line-height: 55px;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
 }
 
-.dev_list_app .dev_list_online_num .dev_list_online_des{
+.dev_list_app .dev_list_online_num .dev_list_online_des {
     margin-top: 2px;
-    font-size:14px;
-    line-height:14px;
+    font-size: 14px;
+    line-height: 14px;
 }
 
 .wifi_protect_app {
@@ -313,11 +315,11 @@ body {
 }
 
 #functions-nav li {
-    width: calc(815px/3);
+    width: calc(815px / 3);
 }
 
 #settings-nav li {
-    width: calc(815px/2);
+    width: calc(815px / 2);
 }
 
 .inner-nav ul li.current,
@@ -348,7 +350,7 @@ body {
     -moz-border-radius: 5px;
     border-radius: 5px;
     border: 1px solid #e4e9ec;
-    position:relative;
+    position: relative;
     background: url("../image/expand_bg.png");
     margin: 0 26px 10px 0;
 }
@@ -366,22 +368,28 @@ body {
 .radio-power {
     background: url("../image/radio_power.png") no-repeat center 20px;
 }
+
 .touch-link {
     background: url("../image/touch_link.png") no-repeat center 20px;
 }
+
 .baby-mode {
     background: url("../image/baby_mode.png") no-repeat center 20px;
 }
+
 .igd_ap {
     background: url("../image/igd_ap.png") no-repeat center 20px;
 }
+
 .safety-wireless {
     background: url("../image/safety_wireless.png") no-repeat center 20px;
 }
+
 .led-timer {
     background: url("../image/led_ctrl.png") no-repeat center 20px;
 }
-.wifi-timer{
+
+.wifi-timer {
     background: url("../image/new_ap_timer.png") no-repeat center 20px;
 }
 
@@ -389,33 +397,43 @@ body {
 .home-defender {
     background: url("../image/arp_oversee.png") no-repeat center 20px;
 }
+
 .smart-qos {
     background: url("../image/smartqos.png") no-repeat center 20px;
 }
+
 .wisp {
     background: url("../image/igd_wisp.png") no-repeat center 20px;
 }
+
 .dev-monitor {
     background: url("../image/host_monitor.png") no-repeat center 20px;
 }
+
 .port-map {
     background: url("../image/portmap.png") no-repeat center 20px;
 }
+
 .vpn-client {
     background: url("../image/vpn_client.png") no-repeat center 20px;
 }
+
 .oray-ddns {
     background: url("../image/oray_ddns.png") no-repeat center 20px;
 }
+
 .anti-ddos {
     background: url("../image/anti_ddos.png") no-repeat center 20px;
 }
+
 .onekey-switch {
     background: url("../image/igd_sw.png") no-repeat center 20px;
 }
+
 .custom-host {
     background: url("../image/hosts.png") no-repeat center 20px;
 }
+
 .add-app {
     background: url("../image/add_app.png") no-repeat center 20px;
 }
@@ -424,9 +442,11 @@ body {
 .wifi-set {
     background: url("../image/wireless_base_2_4.png") no-repeat center 20px;
 }
+
 .wan-set {
     background: url("../image/wan_setup_tab.png") no-repeat center 20px;
 }
+
 .reboot {
     background: url("../image/misc_reboot_tab.png") no-repeat center 20px;
 }
@@ -435,28 +455,129 @@ body {
 .change-pwd {
     background: url("../image/password_tab.png") no-repeat center 20px;
 }
+
 .lan-set {
     background: url("../image/lan_setup_tab.png") no-repeat center 20px;
 }
+
 .update {
     background: url("../image/update_tab.png") no-repeat center 20px;
 }
+
 .time-set {
     background: url("../image/system_time_tab.png") no-repeat center 20px;
 }
+
 .restore-cfg {
     background: url("../image/rally_default_tab.png") no-repeat center 20px;
 }
+
 .developer-mode {
     background: url("../image/developer_tab.png") no-repeat center 20px;
 }
+
 .dial-log {
     background: url("../image/log_tab.png") no-repeat center 20px;
 }
+
 .router-log {
     background: url("../image/router_info_tab.png") no-repeat center 20px;
 }
 
+.management {
+    margin: 17px auto 0;
+    width: 1000px;
+    height: 600px;
+    background: #FFF;
+}
+
+.management .app-intro {
+    height: 370px;
+    color: #FFF;
+    background: #29B0FB url("../image/app.png") no-repeat 501px 51px;
+}
+
+.management .app-intro h2 {
+    font-weight: normal;
+    font-size: 30px;
+    padding: 48px 0 0 63px;
+}
+
+.management .app-intro ul {
+    padding-top: 60px;
+}
+
+.management .app-intro ul li {
+    font-size: 17px;
+    list-style-type: disc;
+    margin: 0 0 16px 90px;
+}
+
+.management .download {
+    padding-top: 43px;
+}
+
+.management .download h3 {
+    font-weight: normal;
+    font-size: 16px;
+    color: #666;
+    padding-bottom: 42px;
+}
+
+.management .download .click {
+    float: left;
+    padding: 0 100px;
+    border-right: 1px solid #ccc;
+}
+
+.management .download .scan {
+    float: left;
+    padding-top: 8px;
+    margin-left: 89px;
+    text-align: center;
+    color: #999;
+}
+
+.management .download .scan h4 {
+    font-weight: normal;
+}
+
+a.android {
+    background: #66C520;
+}
+
+a.iphone {
+    background: #29B0FB;
+    margin-left: 36px;
+}
+
+a.down-btn span.icon {
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+a.android span.icon {
+    background: url("../image/icon.png") no-repeat 0 0;
+}
+
+a.iphone span.icon {
+    background: url("../image/icon.png") no-repeat 0 -30px;
+}
+
+a.down-btn {
+    border-radius: 40px;
+    font-size: 16px;
+    width: 180px;
+    height: 60px;
+    text-align: center;
+    color: #FFF;
+    display: inline-block;
+    line-height: 60px;
+    font-weight: bold;
+    text-decoration: none;
+}
 
 .tool-box .describe {
     border-top: 1px solid #e6e6e6;
