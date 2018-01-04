@@ -440,45 +440,78 @@ body {
 .home-defender {
     background: url("../image/arp_oversee.png") no-repeat center 20px;
 }
+.home-defender .float-info {
+    background: url("../image/arp_oversee_w.png") no-repeat center 20px;
+}
 
 .smart-qos {
     background: url("../image/smartqos.png") no-repeat center 20px;
+}
+.smart-qos .float-info {
+    background: url("../image/smartqos_w.png") no-repeat center 20px;
 }
 
 .wisp {
     background: url("../image/igd_wisp.png") no-repeat center 20px;
 }
+.wisp .float-info {
+    background: url("../image/igd_wisp_w.png") no-repeat center 20px;
+}
 
 .dev-monitor {
     background: url("../image/host_monitor.png") no-repeat center 20px;
+}
+.dev-monitor .float-info {
+    background: url("../image/host_monitor_w.png") no-repeat center 20px;
 }
 
 .port-map {
     background: url("../image/portmap.png") no-repeat center 20px;
 }
+.port-map .float-info {
+    background: url("../image/portmap_w.png") no-repeat center 20px;
+}
 
 .vpn-client {
     background: url("../image/vpn_client.png") no-repeat center 20px;
+}
+.vpn-client .float-info {
+    background: url("../image/vpn_client_w.png") no-repeat center 20px;
 }
 
 .oray-ddns {
     background: url("../image/oray_ddns.png") no-repeat center 20px;
 }
+.oray-ddns .float-info {
+    background: url("../image/oray_ddns_w.png") no-repeat center 20px;
+}
 
 .anti-ddos {
     background: url("../image/anti_ddos.png") no-repeat center 20px;
+}
+.anti-ddos .float-info {
+    background: url("../image/anti_ddos_w.png") no-repeat center 20px;
 }
 
 .onekey-switch {
     background: url("../image/igd_sw.png") no-repeat center 20px;
 }
+.onekey-switch .float-info {
+    background: url("../image/igd_sw_w.png") no-repeat center 20px;
+}
 
 .custom-host {
     background: url("../image/hosts.png") no-repeat center 20px;
 }
+.custom-host .float-info {
+    background: url("../image/hosts_w.png") no-repeat center 20px;
+}
 
 .add-app {
     background: url("../image/add_app.png") no-repeat center 20px;
+}
+.add-app .float-info {
+    background: url("../image/add_app_w.png") no-repeat center 20px;
 }
 
 /*fast-set.*/
