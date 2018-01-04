@@ -350,7 +350,6 @@ body {
     -moz-border-radius: 5px;
     border-radius: 5px;
     border: 1px solid #e4e9ec;
-    position: relative;
     background: url("../image/expand_bg.png");
     margin: 0 26px 10px 0;
 }
@@ -362,35 +361,79 @@ body {
 .tool-box .inner-box {
     width: 250px;
     height: 138px;
+    position: relative;
+    overflow: hidden;
+}
+
+.tool-box .inner-box:hover .float-info {
+    top: 0;
+}
+
+.tool-box .inner-box .float-info {
+    position: absolute;
+    left: 0;
+    top: 142px;
+    width: 252px;
+    height: 102px;
+    -webkit-border-radius: 5px 5px 0 0;
+    -moz-border-radius: 5px 5px 0 0;
+    border-radius: 5px 5px 0 0;
+    -webkit-transition: all .2s linear;
+    -moz-transition: all .2s linear;
+    -ms-transition: all .2s linear;
+    -o-transition: all .2s linear;
+    transition: all .2s linear;
+    background-color: #428BEF;
 }
 
 /* fast tools.*/
 .radio-power {
     background: url("../image/radio_power.png") no-repeat center 20px;
 }
+.radio-power .float-info{
+    background: url("../image/radio_power_w.png") no-repeat center 20px;
+}
 
 .touch-link {
     background: url("../image/touch_link.png") no-repeat center 20px;
+}
+.touch-link .float-info {
+    background: url("../image/touch_link_w.png") no-repeat center 20px;
 }
 
 .baby-mode {
     background: url("../image/baby_mode.png") no-repeat center 20px;
 }
+.baby-mode .float-info {
+    background: url("../image/baby_mode_w.png") no-repeat center 20px;
+}
 
 .igd_ap {
     background: url("../image/igd_ap.png") no-repeat center 20px;
+}
+.igd_ap .float-info {
+    background: url("../image/igd_ap_w.png") no-repeat center 20px;
 }
 
 .safety-wireless {
     background: url("../image/safety_wireless.png") no-repeat center 20px;
 }
+.safety-wireless .float-info {
+    background: url("../image/safety_wireless_w.png") no-repeat center 20px;
+}
 
 .led-timer {
     background: url("../image/led_ctrl.png") no-repeat center 20px;
 }
+.led-timer .float-info {
+    background: url("../image/led_ctrl_w.png") no-repeat center 20px;
+}
 
 .wifi-timer {
     background: url("../image/new_ap_timer.png") no-repeat center 20px;
+}
+.wifi-timer .float-info {
+    background: url("../image/new_ap_timer_w.png") no-repeat center 20px;
 }
 
 /* adv tools.*/
