@@ -518,46 +518,79 @@ body {
 .wifi-set {
     background: url("../image/wireless_base_2_4.png") no-repeat center 20px;
 }
+.wifi-set .float-info {
+    background: url("../image/wireless_base_2_4_w.png") no-repeat center 20px;
+}
 
 .wan-set {
     background: url("../image/wan_setup_tab.png") no-repeat center 20px;
 }
+.wan-set .float-info {
+    background: url("../image/wan_setup_tab_w.png") no-repeat center 20px;
+}
 
 .reboot {
     background: url("../image/misc_reboot_tab.png") no-repeat center 20px;
+}
+.reboot .float-info {
+    background: url("../image/misc_reboot_tab_w.png") no-repeat center 20px;
 }
 
 /*adv-set.*/
 .change-pwd {
     background: url("../image/password_tab.png") no-repeat center 20px;
 }
+.change-pwd .float-info {
+    background: url("../image/password_tab_w.png") no-repeat center 20px;
+}
 
 .lan-set {
     background: url("../image/lan_setup_tab.png") no-repeat center 20px;
+}
+.lan-set .float-info {
+    background: url("../image/lan_setup_tab_w.png") no-repeat center 20px;
 }
 
 .update {
     background: url("../image/update_tab.png") no-repeat center 20px;
 }
+.update .float-info {
+    background: url("../image/update_tab_w.png") no-repeat center 20px;
+}
 
 .time-set {
     background: url("../image/system_time_tab.png") no-repeat center 20px;
+}
+.time-set .float-info {
+    background: url("../image/system_time_tab_w.png") no-repeat center 20px;
 }
 
 .restore-cfg {
     background: url("../image/rally_default_tab.png") no-repeat center 20px;
 }
+.restore-cfg .float-info {
+    background: url("../image/rally_default_tab_w.png") no-repeat center 20px;
+}
 
 .developer-mode {
     background: url("../image/developer_tab.png") no-repeat center 20px;
+}
+.developer-mode .float-info {
+    background: url("../image/developer_tab_w.png") no-repeat center 20px;
 }
 
 .dial-log {
     background: url("../image/log_tab.png") no-repeat center 20px;
 }
+.dial-log .float-info {
+    background: url("../image/log_tab_w.png") no-repeat center 20px;
+}
 
 .router-log {
     background: url("../image/router_info_tab.png") no-repeat center 20px;
+}
+.router-log .float-info {
+    background: url("../image/router_info_tab_w.png") no-repeat center 20px;
 }
 
 .management {
