@@ -545,10 +545,16 @@ body {
 a.android {
     background: #66C520;
 }
+a.android:hover {
+    background: #53A304;
+}
 
 a.iphone {
     background: #29B0FB;
     margin-left: 36px;
+}
+a.iphone:hover {
+    background: #1E71D8;
 }
 
 a.down-btn span.icon {
@@ -577,6 +583,11 @@ a.down-btn {
     line-height: 60px;
     font-weight: bold;
     text-decoration: none;
+    -webkit-transition: all 0.35s ease 0s;
+    -moz-transition: all 0.35s ease 0s;
+    -ms-transition: all 0.35s ease 0s;
+    -o-transition: all 0.35s ease 0s;
+    transition: all 0.35s ease 0s;
 }
 
 .tool-box .describe {
