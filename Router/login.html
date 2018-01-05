@@ -7,6 +7,10 @@
     <link type="text/css" href="css/default.css" rel="stylesheet"/>
     <link type="text/css" href="css/login.css" rel="stylesheet"/>
     <script type="text/javascript" src="js/jquery-3.2.1.js"></script>
+    <script type="text/javascript" src="js/jq.plugin.js"></script>
+    <script type="text/javascript" src="js/aes.js"></script>
+    <script type="text/javascript" src="js/cookie.js"></script>
+    <script type="text/javascript" src="js/utility.js"></script>
     <script type="text/javascript" src="js/login.js"></script>
 </head>
 <body>
@@ -28,13 +32,13 @@
         欢迎使用360安全路由
     </div>
     <div class="login-box">
-        <form id="login-form">
+        <form id="login-form" action="javascript:void(0)">
             <div class="input-area">
                 <label for="login-input" class="login-label">管理密码</label>
                 <input id="login-input" class="login-input" type="password" maxlength="64"><br>
             </div>
             <div class="btn-area">
-                <button class="login-btn">登录</button>
+                <button type="submit" class="login-btn" onclick="login();">登录</button>
             </div>
         </form>
 
@@ -44,5 +48,6 @@
         <p>忘记密码请按一下RESET键复位，重新配置路由器</p>
     </div>
 </div>
+
 </body>
 </html>
