@@ -363,6 +363,7 @@ body {
     height: 138px;
     position: relative;
     overflow: hidden;
+    cursor: pointer;
 }
 
 .tool-box .inner-box:hover .float-info {
