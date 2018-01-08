@@ -68,12 +68,13 @@ function get_rand_key() {
 function aesEncrypt(data, key) {
     key = key || get_rand_key();
     var keyHex  = CryptoJS.enc.Hex.parse(key.rand_key);
-    var iv  = CryptoJS.enc.Latin1.parse("360luyou#install");
+    var iv  = CryptoJS.enc.Latin1.parse("360luyou@install");
     var cipher  = CryptoJS.AES.encrypt(data, keyHex, {
         iv: iv,
         mode: CryptoJS.mode.CBC,
         padding: CryptoJS.pad.Pkcs7
     });
+    console.log(data, key, cipher.ciphertext.toString());
     return key.key_index + cipher.ciphertext.toString();
 }
 

@@ -1,4 +1,5 @@
 $(document).ready(function () {
+   current_html = 'login';
     $("#login-input").focus();
     $("#login-btn").on("click", login);
 });
@@ -19,7 +20,7 @@ function login() {
     }
 
     var login = {};
-    login.name = 'admin';
+    login.user = 'admin';
     login.pass = aesEncrypt($("#login-input").val());
     login.from = 1;
 
