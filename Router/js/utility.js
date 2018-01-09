@@ -20,7 +20,7 @@ function setCurClass(id, curName) {
     $(id).siblings().removeClass(curName);
 }
 
-function loadHtml(html, init) {
+function loadHtml(html, onSuccess) {
     currentHtml = html;
     var params = Array.prototype.slice.apply(arguments, [2, arguments.length]);
     $.ajax({
@@ -30,7 +30,7 @@ function loadHtml(html, init) {
         success: function (ret) {
             var container = $("#container");
             container.html(ret);
-            funCall(init, params);
+            funCall(onSuccess, params);
         }
     });
 }
