@@ -7,7 +7,7 @@ const pages = {
 };
 
 function loadApp(name) {
-   var src = "/app/" + name +"/webs/index.html";
+   var src = "app/" + name +"/webs/index.html";
     $(".functions .app-list").hide();
     $("#app_iframe").attr("src", src);
 }
