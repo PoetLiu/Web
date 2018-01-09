@@ -213,19 +213,19 @@ body {
     font-size: 24px;
 }
 
-.app-list {
+.index_page .app-list {
     min-width: 365px;
     width: 100%;
     margin-top: 24px;
 }
 
-.app-list ul li {
+.index_page .app-list ul li {
     float: left;
     width: 32%;
     margin: 0 5px 20px 0;
 }
 
-.app-list ul li .menu-item {
+.index_page .app-list ul li .menu-item {
     position: relative;
     width: 205px;
     height: 140px;
@@ -235,7 +235,7 @@ body {
     overflow: hidden;
 }
 
-.app-list ul li .menu-item .title {
+.index_page .app-list ul li .menu-item .title {
     position: absolute;
     top: 26px;
     left: 20px;
