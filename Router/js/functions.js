@@ -14,8 +14,9 @@ function initFuncPage(path) {
     var sub = path[1] || "fast-tool",
         app = path[2];
 
-    setCurClass("#"+sub);
-    setCurClass("#"+sub+"-nav");
+    sub = "#"+sub;
+    setCurClass(sub);
+    setCurClass(sub+"-nav");
 
     if (app) {
         $(".functions .app-list").hide();

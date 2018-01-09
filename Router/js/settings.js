@@ -6,7 +6,7 @@ function initSetPage(p) {
     });
 
     var sub = p[1] || "fast-set";
-
-    setCurClass("#"+sub);
-    setCurClass("#"+sub+"-nav");
+    sub = "#"+sub;
+    setCurClass(sub);
+    setCurClass(sub+"-nav");
 }
