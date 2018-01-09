@@ -1,17 +1,37 @@
-function initFuncPage(curPage) {
-    console.log("Init Functions page."+curPage);
+function initFuncPage(path) {
+    console.log("Init Functions page.", path);
     $("#functions-nav li").unbind("click").bind("click", function() {
         var id = $(this).attr("id");
-        window.location.hash = "functions/"+id.substring(0, id.length-4);
+        window.location.hash = "functions/"+navIdToPageId(id);
     });
 
     $(".tool-box .inner-box").unbind("click").bind("click", function () {
         var id = $(this).attr("id");
-        window.location.hash = "app/"+id;
+        var nav = $("#functions-nav li.current").attr("id");
+        window.location.hash = "functions/"+navIdToPageId(nav)+"/"+id;
     });
 
-    curPage  = curPage || "fast-tool";
-    curPage = "#" + curPage;
-    setCurClass(curPage+'-nav');
-    setCurClass(curPage);
+    var subNav = path[1] || "fast-tool",
+        app = path[2];
+
+    setCurClass("#"+subNav);
+    setCurClass("#"+subNav+"-nav");
+
+    if (app) {
+        $(".functions .app-list").hide();
+        $(".functions .nav").show();
+        loadApp(app);
+    } else {
+        $(".functions .nav").hide();
+    }
+
+    // fast-tool-nav to fast-tool
+    function navIdToPageId(nav) {
+        return nav.substring(0, nav.length-4);
+    }
+
+    function loadApp(name) {
+        var src = "app/" + name + "/webs/index.html";
+        $("#app_iframe").attr("src", src);
+    }
 }
