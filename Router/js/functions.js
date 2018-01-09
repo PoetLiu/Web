@@ -11,11 +11,11 @@ function initFuncPage(path) {
         window.location.hash = "functions/"+navIdToPageId(nav)+"/"+id;
     });
 
-    var subNav = path[1] || "fast-tool",
+    var sub = path[1] || "fast-tool",
         app = path[2];
 
-    setCurClass("#"+subNav);
-    setCurClass("#"+subNav+"-nav");
+    setCurClass("#"+sub);
+    setCurClass("#"+sub+"-nav");
 
     if (app) {
         $(".functions .app-list").hide();
