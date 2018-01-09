@@ -6,6 +6,12 @@ const pages = {
     'management': initManagePage
 };
 
+function loadApp(name) {
+   var src = "/app/" + name +"/webs/index.html";
+    $(".functions .app-list").hide();
+    $("#app_iframe").attr("src", src);
+}
+
 function onWinHashChange() {
     var hash = window.location.hash || "#index_page";
     var p = hash.substring(1).split('/');
@@ -22,8 +28,7 @@ function onWinHashChange() {
             loadHtml(pageName, pages[pageName], subPage);
             break;
         case "app":
-            pageName    += "/webs/index";
-            loadHtml(pageName);
+            loadApp(subPage);
             break;
         default:
             console.log("Unknown page:"+pageName);
