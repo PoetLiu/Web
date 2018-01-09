@@ -8,7 +8,6 @@ const pages = {
 
 function loadApp(name) {
    var src = "app/" + name +"/webs/index.html";
-    $(".functions .app-list").hide();
     $("#app_iframe").attr("src", src);
 }
 
@@ -28,6 +27,7 @@ function onWinHashChange() {
             loadHtml(pageName, pages[pageName], subPage);
             break;
         case "app":
+            $(".functions .app-list").hide();
             loadApp(subPage);
             break;
         default:
