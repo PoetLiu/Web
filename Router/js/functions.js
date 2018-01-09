@@ -5,6 +5,11 @@ function initFuncPage(curPage) {
         window.location.hash = "functions/"+id.substring(0, id.length-4);
     });
 
+    $(".tool-box .inner-box").unbind("click").bind("click", function () {
+        var id = $(this).attr("id");
+        window.location.hash = "app/"+id;
+    });
+
     curPage  = curPage || "fast-tool";
     curPage = "#" + curPage;
     setCurClass(curPage+'-nav');

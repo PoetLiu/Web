@@ -13,7 +13,22 @@ function onWinHashChange() {
 
     console.log("Window loc hash changed, now:" + window.location.hash);
     setCurClass("#"+pageName);
-    loadHtml(pageName, pages[pageName], subPage);
+
+    switch (pageName) {
+        case "index_page":
+        case "functions":
+        case "settings":
+        case "management":
+            loadHtml(pageName, pages[pageName], subPage);
+            break;
+        case "app":
+            pageName    += "/webs/index";
+            loadHtml(pageName);
+            break;
+        default:
+            console.log("Unknown page:"+pageName);
+            break;
+    }
 }
 
 function init_menu() {
