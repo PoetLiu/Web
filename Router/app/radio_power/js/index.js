@@ -21,5 +21,7 @@ function powerBarUpdate(mode) {
     if (m) {
         $("#pw-select").animate({width: m.width+"px"}, 500);
         $("#pw-intro").html(m.intro);
+        $("#pwa-"+mode).addClass("selected").siblings().removeClass("selected");
+
     }
 }

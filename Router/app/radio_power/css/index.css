@@ -10,10 +10,36 @@
 }
 
 .container .power .select-bar {
+    position: relative;
     width: 630px;
     height: 38px;
     font-size: 14px;
     background: url("../images/power_btn_bg.png") repeat-x;
+    text-align: center;
+}
+
+.container .power .select-bar a,
+.container .power .select-bar i {
+    float: left;
+}
+
+.container .power .select-bar i {
+    width: 170px;
+    border-top: 1px solid #9e9e95;
+    position: relative;
+    top: 18px;
+    margin: 0 calc(65px/4);
+}
+
+.container .power .select-bar a {
+   width: 75px;
+    height: 38px;
+    line-height: 38px;
+    font-size: 15px;
+}
+
+.container .power .select-bar a.selected {
+    background: url("../images/power_selected.png") no-repeat;
 }
 
 #pw-bg,
