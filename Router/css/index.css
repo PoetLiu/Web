@@ -645,6 +645,14 @@ body {
     line-height: 2;
 }
 
+.functions .app .content {
+    border: 1px solid #e8e8e8;
+    background: #FFF;
+    -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 0 8px  rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 8px  rgba(0, 0, 0, 0.3);
+}
+
 .management {
     margin: 17px auto 0;
     width: 1000px;
