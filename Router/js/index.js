@@ -1,5 +1,5 @@
 var currentHtml = '';
-const pages = {
+var pages = {
     'index_page': initIndexPage,
     'functions': initFuncPage,
     'settings': initSetPage,
