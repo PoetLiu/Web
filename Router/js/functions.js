@@ -33,7 +33,7 @@ function initFuncPage(path) {
     }
 
     function loadApp(name) {
-        var src = "app/" + name + "/webs/index.html";
+        var src = "app/" + name + "/index.html";
         $("#app_iframe").attr("src", src);
     }
 }
