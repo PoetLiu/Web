@@ -24,6 +24,7 @@ function initFuncPage(path) {
         loadApp(app);
     } else {
         $(".functions .nav").hide();
+        $(".functions .app").hide();
     }
 
     // fast-tool-nav to fast-tool
