@@ -599,6 +599,52 @@ body {
     background: url("../image/router_info_tab_w.png") no-repeat center 20px;
 }
 
+.functions .nav {
+    font-size: 14px;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 20px;
+}
+
+.functions .app .title,
+.functions .app .content {
+    width: 95%;
+    margin: 0 auto;
+}
+
+.functions .app .title {
+   border-bottom: 1px solid #c1c1c1;
+    padding-bottom: 24px;
+    margin-bottom: 37px;
+}
+
+.functions .app .title .icon,
+.functions .app .title .info {
+    float: left;
+}
+
+.functions .app .title .info {
+    padding: 8px 0 0 24px;
+    max-width: 850px;
+    width: 100%;
+}
+
+.functions .app .title .name {
+    font-size: 20px;
+    padding-right: 9px;
+}
+
+.functions .app .title .author,
+.functions .app .title .version {
+    padding-left: 14px;
+    color: #303031;
+}
+
+.functions .app .title .intro {
+    padding-top: 7px;
+    line-height: 2;
+}
+
 .management {
     margin: 17px auto 0;
     width: 1000px;
