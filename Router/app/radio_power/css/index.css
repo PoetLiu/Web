@@ -9,19 +9,33 @@
     margin: 75px auto 0;
 }
 
+.container .power .select-bar {
+    width: 630px;
+    height: 38px;
+    font-size: 14px;
+    background: url("../images/power_btn_bg.png") repeat-x;
+}
+
 #pw-bg,
 #pw-select {
-    position: absolute;
-    top: 0;
+    position: relative;
     height: 26px;
     width: 100%;
 }
 
 #pw-bg {
     background: url("../images/power_plus.png") no-repeat;
+    margin-bottom: 30px;
 }
 
 #pw-select {
     width: 0;
     background: url("../images/power_add.png") no-repeat;
+    top: -56px;
+}
+
+.intro-text {
+    margin: 20px 0 30px;
+    font-size: 14px;
+    text-align: center;
 }
