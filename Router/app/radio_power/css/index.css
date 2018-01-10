@@ -1,0 +1,27 @@
+.container {
+    pading: 0 34px;
+}
+
+.container .power {
+    position:relative;
+    width: 630px;
+    height: 200px;
+    margin: 75px auto 0;
+}
+
+#pw-bg,
+#pw-select {
+    position: absolute;
+    top: 0;
+    height: 26px;
+    width: 100%;
+}
+
+#pw-bg {
+    background: url("../images/power_plus.png") no-repeat;
+}
+
+#pw-select {
+    width: 0;
+    background: url("../images/power_add.png") no-repeat;
+}
