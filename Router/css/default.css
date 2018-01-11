@@ -11,3 +11,8 @@
     vertical-align: baseline;
     font-family: '微软雅黑';
 }
+
+body {
+    font-size: 12px;
+    line-height: 1.5;
+}

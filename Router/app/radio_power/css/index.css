@@ -18,6 +18,13 @@
     text-align: center;
 }
 
+.container .power .select-bar #pwa-low {
+    margin-left: 2px;
+}
+.container .power .select-bar #pwa-high {
+    margin-right: 2px;
+}
+
 .container .power .select-bar a,
 .container .power .select-bar i {
     float: left;
@@ -28,7 +35,7 @@
     border-top: 1px solid #9e9e95;
     position: relative;
     top: 18px;
-    margin: 0 calc(65px/4);
+    margin: 0 calc(61px/4);
 }
 
 .container .power .select-bar a {
@@ -36,10 +43,12 @@
     height: 38px;
     line-height: 38px;
     font-size: 15px;
+    cursor: pointer;
 }
 
 .container .power .select-bar a.selected {
-    background: url("../images/power_selected.png") no-repeat;
+    background: url("../images/power_selected.png") no-repeat center;
+    color: #FFF;
 }
 
 #pw-bg,
@@ -64,4 +73,5 @@
     margin: 20px 0 30px;
     font-size: 14px;
     text-align: center;
+    padding-left: 10px;
 }
