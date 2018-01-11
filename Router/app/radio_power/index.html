@@ -15,7 +15,7 @@
         <div id="pw-bg"></div>
         <div id="pw-select"></div>
         <div class="select-bar">
-           <a mode="low" id="pwa-low">孕妇模式</a>
+            <a mode="low" id="pwa-low">孕妇模式</a>
             <i></i>
             <a mode="middle" id="pwa-middle">均衡模式</a>
             <i></i>
@@ -23,7 +23,24 @@
         </div>
         <p class="intro-text" id="pw-intro"></p>
     </div>
-    <div class="rules"></div>
+    <div class="rules">
+        <p>调节时间段列表<span class="red">&nbsp;(不在规则内，将默认为穿墙模式)</span></p>
+        <table>
+           <thead>
+           <tr>
+               <th>序列号</th>
+               <th>调节时间段</th>
+               <th>调节日期</th>
+               <th>模式</th>
+               <th>操作</th>
+           </tr>
+           </thead>
+            <tbody></tbody>
+        </table>
+        <div class="btn-wrapper">
+           <button id="new-rule-btn">新增</button>
+        </div>
+    </div>
 </div>
 </body>
 </html>
