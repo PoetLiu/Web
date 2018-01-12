@@ -2,7 +2,9 @@ $(document).ready(function () {
     powerBarUpdate("high");
     $(".power .select-bar a").click(function (e) {
         powerBarUpdate($(this).attr('mode'));
+        resizePage();
     });
+    resizePage();
 });
 
 function powerBarUpdate(mode) {
@@ -28,5 +30,29 @@ function powerBarUpdate(mode) {
         $("#pw-select").animate({width: m.width + "px"}, 500);
         $("#pw-intro").html(m.intro);
         $("#pwa-" + mode).addClass("selected").siblings().removeClass("selected");
+    }
+}
+
+function resizePage() {
+    if (window.top != window.self && parent.document.getElementById("app_iframe") != null) {
+        var yScroll;
+        parent.document.getElementById("app_iframe").height = 450;
+        if (window.innerHeight && window.scrollMaxY) {
+            yScroll = window.innerHeight + window.scrollMaxY;
+        } else {
+            yScroll = Math.max(document.body.scrollHeight, document.body.offsetHeight);
+        }
+
+        var windowHeight;
+        if (self.innerHeight) {
+            windowHeight = self.innerHeight;
+        } else if (document.documentElement && document.documentElement.clientHeight) {
+            windowHeight = document.documentElement.clientHeight;
+        } else if (document.body) {
+            windowHeight = document.body.clientHeight;
+        }
+
+        var pageHeight = Math.max(yScroll, windowHeight);
+        parent.document.getElementById("app_iframe").height = pageHeight;
     }
 }

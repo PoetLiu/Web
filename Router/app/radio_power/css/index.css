@@ -1,9 +1,11 @@
 body {
     overflow: hidden;
+    font-family: "微软雅黑", Helvetica, Tahoma, Arial, SimSun, Heiti, "黑体", sans-serif;
 }
 
 .container {
     padding: 0 34px;
+    overflow: hidden;
 }
 
 .container .power {
