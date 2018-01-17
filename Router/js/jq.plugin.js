@@ -93,6 +93,12 @@ $(document).ajaxError(function(event, jqxhr, settings, thrownError) {
                 return data;
             }
         };
+
+        console.log(obj[0]);
+        if (window.top.debug) {
+            obj[0]["url"] = "//cgi.router.com" + obj[0]["url"];
+            obj[0]["xhrFields"] = {withCredentials: true};
+        }
         return _ajax(obj[0]);
 
     }

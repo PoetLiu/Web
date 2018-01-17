@@ -1,3 +1,5 @@
+window.debug    = true;
+
 function funCall(f, param) {
     console.log(param);
     if (f != null && f !== "") {
