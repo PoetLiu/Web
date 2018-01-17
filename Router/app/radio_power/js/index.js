@@ -2,10 +2,29 @@ $(document).ready(function () {
     powerBarUpdate("high");
     $(".power .select-bar a").click(function (e) {
         powerBarUpdate($(this).attr('mode'));
+        getPower();
         resizePage();
     });
+    getPower();
     resizePage();
 });
+
+function getPower(onSuccess) {
+    var postData = {action: "get"};
+    $.post("/app/radio_power/radio_power.cgi",
+        postData,
+        function (data) {
+            try {
+                console.log(data);
+            } catch (e) {
+                showMessage("get power failed.");
+            }
+        });
+}
+
+function setPower() {
+
+}
 
 function powerBarUpdate(mode) {
     var modes = {
