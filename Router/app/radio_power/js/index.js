@@ -24,6 +24,9 @@
         $("#new-rule-btn").click(function (e) {
             showNewRulePage(true);
         });
+        $("#cancel-edit-btn").click(function (e) {
+            showNewRulePage(false);
+        });
         init();
     });
 
