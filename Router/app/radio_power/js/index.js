@@ -19,7 +19,7 @@
 
     $(document).ready(function () {
         $(".power .select-bar a").click(function (e) {
-            powerModeSet($(this).attr('mode'));
+            powerModeSet($(this).attr('mode'), true);
         });
         init();
     });
@@ -37,7 +37,7 @@
                 try {
                     var j = JSON.parse(data);
                     var m = powerToMode(j.now_power);
-                    powerModeSet(m, true);
+                    powerModeSet(m);
                 } catch (e) {
                     showMessage("get power failed.");
                 }
@@ -68,11 +68,11 @@
         );
     }
 
-    function powerModeSet(mode, init) {
+    function powerModeSet(mode, cgi) {
         var m = modes[mode];
         if (m) {
             console.log("Set to mode:" + mode);
-            init || setPower(m.power);
+            cgi && setPower(m.power);
             $("#pw-select").animate({width: m.width + "px"}, 500);
             $("#pw-intro").html(m.intro);
             $("#pwa-" + mode).addClass("selected").siblings().removeClass("selected");
