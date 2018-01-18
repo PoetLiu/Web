@@ -21,10 +21,24 @@
         $(".power .select-bar a").click(function (e) {
             powerModeSet($(this).attr('mode'), true);
         });
+        $("#new-rule-btn").click(function (e) {
+            showNewRulePage(true);
+        });
         init();
     });
 
+    function showNewRulePage(en) {
+        if (en) {
+            $("#pw-index-page").hide();
+            $("#pw-new-rule-page").show();
+        } else {
+            $("#pw-index-page").show();
+            $("#pw-new-rule-page").hide();
+        }
+    }
+
     function init() {
+        showNewRulePage(false);
         getPower();
         resizeAppPage();
     }

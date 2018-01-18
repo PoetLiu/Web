@@ -10,9 +10,32 @@
     outline:none;
     vertical-align: baseline;
     font-family: '微软雅黑';
+    height: 34px;
+    width: 115px;
 }
 
 body {
     font-size: 12px;
     line-height: 1.5;
+}
+
+.box-hd {
+    height: 50px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #e4e7eb;
+    line-height: 50px;
+}
+
+button.gray {
+    color: #585858;
+    background-color: #e7eaf1;
+}
+
+button.gray:hover {
+    background-color: #eff1f6;
+}
+
+.btn:hover, button:hover {
+    text-decoration: none;
+    background-color: #6ba8fc;
 }

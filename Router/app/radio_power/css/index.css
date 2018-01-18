@@ -8,14 +8,14 @@ body {
     overflow: hidden;
 }
 
-.container .power {
+.power {
     position: relative;
     width: 630px;
     height: 200px;
     margin: 75px auto 0;
 }
 
-.container .power .select-bar {
+.power .select-bar {
     position: relative;
     width: 630px;
     height: 38px;
@@ -24,20 +24,20 @@ body {
     text-align: center;
 }
 
-.container .power .select-bar #pwa-low {
+.power .select-bar #pwa-low {
     margin-left: 2px;
 }
 
-.container .power .select-bar #pwa-high {
+.power .select-bar #pwa-high {
     margin-right: 2px;
 }
 
-.container .power .select-bar a,
-.container .power .select-bar i {
+.power .select-bar a,
+.power .select-bar i {
     float: left;
 }
 
-.container .power .select-bar i {
+.power .select-bar i {
     width: 170px;
     border-top: 1px solid #9e9e95;
     position: relative;
@@ -45,7 +45,7 @@ body {
     margin: 0 calc(61px / 4);
 }
 
-.container .power .select-bar a {
+.power .select-bar a {
     width: 75px;
     height: 38px;
     line-height: 38px;
@@ -53,7 +53,7 @@ body {
     cursor: pointer;
 }
 
-.container .power .select-bar a.selected {
+.power .select-bar a.selected {
     background: url("../images/power_selected.png") no-repeat center;
     color: #FFF;
 }
@@ -83,38 +83,60 @@ body {
     padding-left: 10px;
 }
 
-.container .rules {
+.rules {
     font-size: 14px;
     text-align: center;
 }
 
-.container .rules p {
+.rules p {
     line-height: 50px;
     height: 50px;
 }
 
-.container .rules .red {
+.rules .red {
     color: red;
     font-size: 12px;
 }
 
-.container .rules table {
+.rules table {
     width: 100%;
     line-height: 38px;
     text-align: center;
     border-collapse: collapse;
 }
 
-.container .rules table thead th {
+.rules table thead th {
     background: #f6f6f9;
     font-weight: normal;
 }
 
-.container .rules .btn-wrapper {
+.rules .btn-wrapper {
     padding: 30px 0;
 }
 
-.container .rules .btn-wrapper button {
+.rules .btn-wrapper button {
     width: 115px;
     height: 34px;
+}
+
+.new-rule .title {
+    text-align: center;
+    font-size: 14px;
+    color: #000000;
+}
+
+.form-area .item {
+    height: 36px;
+    margin-bottom: 10px;
+    line-height: 36px;
+}
+
+.new-rule .opt {
+    padding: 30px 0;
+    text-align: center;
+    clear: both;
+}
+
+.new-rule .opt button {
+    margin: 0 6px;
 }

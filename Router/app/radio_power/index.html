@@ -12,34 +12,49 @@
 </head>
 <body>
 <div class="container">
-    <div class="power">
-        <div id="pw-bg"></div>
-        <div id="pw-select"></div>
-        <div class="select-bar">
-            <a mode="low" id="pwa-low">孕妇模式</a>
-            <i></i>
-            <a mode="middle" id="pwa-middle">均衡模式</a>
-            <i></i>
-            <a mode="high" id="pwa-high">穿墙模式</a>
+    <div id="pw-index-page">
+        <div class="power">
+            <div id="pw-bg"></div>
+            <div id="pw-select"></div>
+            <div class="select-bar">
+                <a mode="low" id="pwa-low">孕妇模式</a>
+                <i></i>
+                <a mode="middle" id="pwa-middle">均衡模式</a>
+                <i></i>
+                <a mode="high" id="pwa-high">穿墙模式</a>
+            </div>
+            <p class="intro-text" id="pw-intro"></p>
         </div>
-        <p class="intro-text" id="pw-intro"></p>
+        <div class="rules">
+            <p>调节时间段列表<span class="red">&nbsp;(不在规则内，将默认为穿墙模式)</span></p>
+            <table>
+                <thead>
+                <tr>
+                    <th>序列号</th>
+                    <th>调节时间段</th>
+                    <th>调节日期</th>
+                    <th>模式</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <div class="btn-wrapper">
+                <button id="new-rule-btn">新增</button>
+            </div>
+        </div>
     </div>
-    <div class="rules">
-        <p>调节时间段列表<span class="red">&nbsp;(不在规则内，将默认为穿墙模式)</span></p>
-        <table>
-           <thead>
-           <tr>
-               <th>序列号</th>
-               <th>调节时间段</th>
-               <th>调节日期</th>
-               <th>模式</th>
-               <th>操作</th>
-           </tr>
-           </thead>
-            <tbody></tbody>
-        </table>
-        <div class="btn-wrapper">
-           <button id="new-rule-btn">新增</button>
+    <div id="pw-new-rule-page" class="new-rule">
+        <div class="box-hd">
+            <h3 class="title">定时调整信号强度</h3>
+        </div>
+        <div class="box-bd">
+            <form class="form-area">
+                <div class="item opt">
+                    <button type="submit">添加</button>
+                    <button class="gray">取消</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
