@@ -70,16 +70,10 @@ $(document).ajaxError(function(event, jqxhr, settings, thrownError) {
                 if(current_html&&current_html=="login"){
                     return  data;
                 }
-                var loginType=window.top.location.pathname.indexOf("mobile")>-1?"/login_mobile.htm":"/login_pc.htm";
-                if(window.top)
-                {
-                    window.top.location.href = window.top.location.protocol+"//"+window.top.location.host+loginType;
-                }else
-                {
-                    window.location.href = window.location.protocol+"//"+window.location.host+loginType;
-                }
+                var top = window.top || window;
+                var loginUrl= "/web/Router/login.html";
+                top.location.href   = top.location.protocol+"//"+top.location.host+loginUrl;
                 return;
-
             } else if(data.indexOf("failure_tip") != -1){
                 if(window.top)
                 {

@@ -1,4 +1,5 @@
-window.debug    = true;
+window.debug = true;
+var current_html = null;
 
 function funCall(f, param) {
     console.log(param);
@@ -60,7 +61,7 @@ function get_rand_key() {
                 ret["rand_key"] = data.rand_key.substring(32, 64);
                 ret["key_index"] = data.rand_key.substring(0, 32);
             } else {
-                console.log("Get rand key error, data:"+data);
+                console.log("Get rand key error, data:" + data);
             }
         }
     });
@@ -69,9 +70,9 @@ function get_rand_key() {
 
 function aesEncrypt(data, key) {
     key = key || get_rand_key();
-    var keyHex  = CryptoJS.enc.Hex.parse(key.rand_key);
-    var iv  = CryptoJS.enc.Latin1.parse("360luyou@install");
-    var cipher  = CryptoJS.AES.encrypt(data, keyHex, {
+    var keyHex = CryptoJS.enc.Hex.parse(key.rand_key);
+    var iv = CryptoJS.enc.Latin1.parse("360luyou@install");
+    var cipher = CryptoJS.AES.encrypt(data, keyHex, {
         iv: iv,
         mode: CryptoJS.mode.CBC,
         padding: CryptoJS.pad.Pkcs7
@@ -82,4 +83,28 @@ function aesEncrypt(data, key) {
 
 function showMessage(title, message) {
     console.log(title, message);
+}
+
+function resizeAppPage() {
+    if (window.top != window.self && parent.document.getElementById("app_iframe") != null) {
+        var yScroll;
+        parent.document.getElementById("app_iframe").height = 450;
+        if (window.innerHeight && window.scrollMaxY) {
+            yScroll = window.innerHeight + window.scrollMaxY;
+        } else {
+            yScroll = Math.max(document.body.scrollHeight, document.body.offsetHeight);
+        }
+
+        var windowHeight;
+        if (self.innerHeight) {
+            windowHeight = self.innerHeight;
+        } else if (document.documentElement && document.documentElement.clientHeight) {
+            windowHeight = document.documentElement.clientHeight;
+        } else if (document.body) {
+            windowHeight = document.body.clientHeight;
+        }
+
+        var pageHeight = Math.max(yScroll, windowHeight);
+        parent.document.getElementById("app_iframe").height = pageHeight;
+    }
 }

@@ -2,11 +2,10 @@ $(document).ready(function () {
     powerBarUpdate("high");
     $(".power .select-bar a").click(function (e) {
         powerBarUpdate($(this).attr('mode'));
-        getPower();
-        resizePage();
+        resizeAppPage();
     });
+    resizeAppPage();
     getPower();
-    resizePage();
 });
 
 function getPower(onSuccess) {
@@ -15,7 +14,7 @@ function getPower(onSuccess) {
         postData,
         function (data) {
             try {
-                console.log(data);
+                console.log(data.now_power);
             } catch (e) {
                 showMessage("get power failed.");
             }
@@ -52,26 +51,4 @@ function powerBarUpdate(mode) {
     }
 }
 
-function resizePage() {
-    if (window.top != window.self && parent.document.getElementById("app_iframe") != null) {
-        var yScroll;
-        parent.document.getElementById("app_iframe").height = 450;
-        if (window.innerHeight && window.scrollMaxY) {
-            yScroll = window.innerHeight + window.scrollMaxY;
-        } else {
-            yScroll = Math.max(document.body.scrollHeight, document.body.offsetHeight);
-        }
 
-        var windowHeight;
-        if (self.innerHeight) {
-            windowHeight = self.innerHeight;
-        } else if (document.documentElement && document.documentElement.clientHeight) {
-            windowHeight = document.documentElement.clientHeight;
-        } else if (document.body) {
-            windowHeight = document.body.clientHeight;
-        }
-
-        var pageHeight = Math.max(yScroll, windowHeight);
-        parent.document.getElementById("app_iframe").height = pageHeight;
-    }
-}

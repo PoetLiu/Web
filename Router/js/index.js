@@ -1,4 +1,3 @@
-var currentHtml = '';
 var pages = {
     'index_page': initIndexPage,
     'functions': initFuncPage,
