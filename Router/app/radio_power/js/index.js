@@ -1,31 +1,4 @@
-$(document).ready(function () {
-    powerBarUpdate("high");
-    $(".power .select-bar a").click(function (e) {
-        powerBarUpdate($(this).attr('mode'));
-        resizeAppPage();
-    });
-    resizeAppPage();
-    getPower();
-});
-
-function getPower(onSuccess) {
-    var postData = {action: "get"};
-    $.post("/app/radio_power/radio_power.cgi",
-        postData,
-        function (data) {
-            try {
-                console.log(data.now_power);
-            } catch (e) {
-                showMessage("get power failed.");
-            }
-        });
-}
-
-function setPower() {
-
-}
-
-function powerBarUpdate(mode) {
+(function () {
     var modes = {
         "low": {
             width: 40,
@@ -43,12 +16,66 @@ function powerBarUpdate(mode) {
             power: 100
         }
     };
-    var m = modes[mode];
-    if (m) {
-        $("#pw-select").animate({width: m.width + "px"}, 500);
-        $("#pw-intro").html(m.intro);
-        $("#pwa-" + mode).addClass("selected").siblings().removeClass("selected");
+
+    $(document).ready(function () {
+        $(".power .select-bar a").click(function (e) {
+            powerModeSet($(this).attr('mode'));
+        });
+        init();
+    });
+
+    function init() {
+        getPower();
+        resizeAppPage();
     }
-}
 
+    function getPower() {
+        var postData = {action: "get"};
+        $.post("/app/radio_power/radio_power.cgi",
+            postData,
+            function (data) {
+                try {
+                    var j = JSON.parse(data);
+                    var m = powerToMode(j.now_power);
+                    powerModeSet(m, true);
+                } catch (e) {
+                    showMessage("get power failed.");
+                }
+            }
+        );
+    }
 
+    function powerToMode(p) {
+        var m = null;
+        p   = Number(p);
+        $.each(modes, function (i) {
+            if (!m && p <= modes[i].power) {
+                m = i;
+            }
+        });
+        return m || "high";
+    }
+
+    function setPower(p) {
+        $.get("/web360/updateradiopower.cgi",
+            {'power': p},
+            function (data) {
+                var j = JSON.parse(data);
+                if (j["err_no"] !== "0") {
+                    showMessage("set power failed.");
+                }
+            }
+        );
+    }
+
+    function powerModeSet(mode, init) {
+        var m = modes[mode];
+        if (m) {
+            console.log("Set to mode:" + mode);
+            init || setPower(m.power);
+            $("#pw-select").animate({width: m.width + "px"}, 500);
+            $("#pw-intro").html(m.intro);
+            $("#pwa-" + mode).addClass("selected").siblings().removeClass("selected");
+        }
+    }
+})();
