@@ -139,9 +139,23 @@ body {
 }
 
 .form-area .time-slot,
-.form-area .week-slot {
-    line-height: normal;
+.form-area .week-slot,
+.form-area .mode-set {
+    overflow: hidden;
     float: left;
+}
+
+.form-area .mode-set {
+    height: 100%;
+}
+
+.form-area .mode-set * {
+    vertical-align: middle;
+    line-height: 36px;
+}
+
+.time-slot {
+    line-height: normal;
 }
 
 .time-slot b {
@@ -170,15 +184,46 @@ body {
    margin-left: 0;
 }
 
+.week-slot {
+    padding-top: 4px;
+}
+
 .week-slot span {
     float: left;
     margin-left: 15px;
     width: 32px;
     height: 32px;
     text-align: center;
+    line-height: 32px;
+    border: 1px solid #999999;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    color: #999999;
 }
 
-.form-area .item label {
+.week-slot span:first-child {
+    margin-left: 0;
+}
+
+.week-slot span:hover {
+    cursor: pointer;
+}
+
+.week-slot span.active {
+    border: 1px solid #428BEF;
+    color: #428BEF;
+}
+
+.mode-set label{
+    margin: 0 20px 0 3px;
+}
+
+.form-area .item * {
+    vertical-align: middle;
+}
+
+.form-area .item .title {
     float: left;
     width: 34%;
     text-align: right;
