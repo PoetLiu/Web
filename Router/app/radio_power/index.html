@@ -50,6 +50,30 @@
         </div>
         <div class="box-bd">
             <form class="form-area">
+                <div class="item time-slot-wrapper">
+                    <label>开启时间段</label>
+                    <div class="time-slot">
+                        <input autocomplete="off" maxlength="2" placeholder="00" name="start_hour"><b>点</b>
+                        <input autocomplete="off" maxlength="2" placeholder="00" name="start_minute"><b>分&nbsp; ~ &nbsp;</b>
+                        <input autocomplete="off" maxlength="2" placeholder="00" name="end_hour"><b>点</b>
+                        <input autocomplete="off" maxlength="2" placeholder="00" name="end_minute"><b>分</b>
+                    </div>
+                </div>
+                <div class="item week-slot-wrapper">
+                    <label>生效日期</label>
+                    <div class="week-slot">
+                        <span class="active">一</span>
+                        <span class="active">二</span>
+                        <span class="active">三</span>
+                        <span class="active">四</span>
+                        <span class="active">五</span>
+                        <span class="active">六</span>
+                        <span class="active">七</span>
+                    </div>
+                </div>
+                <div class="item">
+                    <label>模式选择</label>
+                </div>
                 <div class="item opt">
                     <button id="add-rule-btn" type="submit">添加</button>
                     <button id="cancel-edit-btn" class="gray">取消</button>

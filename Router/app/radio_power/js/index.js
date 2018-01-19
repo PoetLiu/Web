@@ -41,7 +41,7 @@
     }
 
     function init() {
-        showNewRulePage(false);
+        showNewRulePage(true);
         getPower();
         resizeAppPage();
     }

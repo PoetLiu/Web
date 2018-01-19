@@ -1,4 +1,5 @@
 body {
+    font-size: 14px;
     overflow: hidden;
     font-family: "微软雅黑", Helvetica, Tahoma, Arial, SimSun, Heiti, "黑体", sans-serif;
 }
@@ -129,6 +130,60 @@ body {
     height: 36px;
     margin-bottom: 10px;
     line-height: 36px;
+}
+
+.form-area .item.time-slot-wrapper,
+.form-area .item.week-slot-wrapper {
+    height: 42px;
+    line-height: 42px;
+}
+
+.form-area .time-slot,
+.form-area .week-slot {
+    line-height: normal;
+    float: left;
+}
+
+.time-slot b {
+    float: left;
+    font-weight: 400;
+    margin-top: 14px;
+    vertical-align: center;
+}
+
+.time-slot input {
+    width: 35px;
+    height: 20px;
+    padding: 10px;
+    border: 1px solid #d8d8d8;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    line-height: 20px;
+    font-size: 14px;
+    margin: 0 5px 0 10px;
+    float: left;
+    text-align: center;
+}
+
+.time-slot input:first-child {
+   margin-left: 0;
+}
+
+.week-slot span {
+    float: left;
+    margin-left: 15px;
+    width: 32px;
+    height: 32px;
+    text-align: center;
+}
+
+.form-area .item label {
+    float: left;
+    width: 34%;
+    text-align: right;
+    padding-right: 10px;
+    margin-right: 10px;
 }
 
 .new-rule .opt {
