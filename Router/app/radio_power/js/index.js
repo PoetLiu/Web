@@ -16,6 +16,10 @@
             power: 100
         }
     };
+    var CGI = {
+        "common": "/app/radio_power/radio_power.cgi",
+        "set": "/web360/updateradiopower.cgi"
+    };
     var timeSlot = {
         check: function () {
             console.log("new rule");
@@ -42,7 +46,7 @@
             showNewRulePage(true);
         });
         $("#cancel-edit-btn").click(function (e) {
-            showNewRulePage(false);
+            init();
         });
         $("#week-slot span").click(function (e) {
             $(this).toggleClass("active");
@@ -51,6 +55,7 @@
             e.preventDefault();
             addNewRule();
         });
+        window.rule_del = rule_del;
         init();
     });
 
@@ -74,7 +79,7 @@
         if (!timeSlot.check()) {
             return false;
         }
-        var data    = {
+        var data = {
             "start_hour": $(".start.hour").val() || 0,
             "start_minute": $(".start.minute").val() || 0,
             "end_hour": $(".end.hour").val() || 0,
@@ -84,27 +89,71 @@
             "timer_enable": 1,
             "action": "add"
         };
-        $.post("/app/radio_power/radio_power.cgi", data, function (data) {
-            data    = eval("(" + data + ")");
+        $.post(CGI.common, data, function (data) {
+            data = eval("(" + data + ")");
             if (data[0] === "SUCCESS") {
                 console.log("Add rule success!");
-                showNewRulePage(false);
+                init();
                 return true;
             }
         });
     }
 
+    function rule_del(id) {
+        $.post(CGI.common, {action:"del", idx:id}, function (data) {
+            data = eval("(" + data + ")");
+            if (data[0] === "SUCCESS") {
+                console.log("del rule success!");
+                init();
+                return true;
+            }
+        });
+    }
+
+    function paintRules(rules) {
+        var root = $("#pw-rule-tb-bd");
+        root.empty();
+        for (var i = 0; i < rules.length; i++) {
+            var c = "";
+            var r = rules[i];
+            c += "<tr><td>" + r.idx + "</td><td>" + getRuleTimeStr(r) + "</td><td>" + getRuleDayStr(r)
+                + "</td><td>" + getRuleModeStr(r) + "</td><td>" + getRuleEditStr(r) + "</td></tr>";
+            console.log(c);
+            root.append(c);
+        }
+
+        function getRuleEditStr(r) {
+            return "<a href='javascript:void(0)'>修改</a>" +
+                " <a href='javascript:void(0)' onclick='rule_del(\"" + r.idx + "\")'>删除</a>" +
+                " <a href='javascript:void(0)'>禁用</a>";
+        }
+
+        function getRuleModeStr(r) {
+            return "穿墙模式";
+        }
+
+        function getRuleDayStr(r) {
+            return "每天";
+        }
+
+        function getRuleTimeStr(r) {
+            return r.start_hour + ":" + r.start_minute + "~" + r.end_hour + ":" + r.end_minute;
+        }
+    }
+
     function getPower() {
         var postData = {action: "get"};
-        $.post("/app/radio_power/radio_power.cgi",
+        $.post(CGI.common,
             postData,
             function (data) {
                 try {
                     var j = JSON.parse(data);
                     var m = powerToMode(j["now_power"]);
                     powerModeSet(m);
+                    paintRules(j["time"]);
+                    resizeAppPage();
                 } catch (e) {
-                    showMessage("get power failed.");
+                    showMessage("get power failed.", e);
                 }
             }
         );
@@ -122,7 +171,7 @@
     }
 
     function setPower(p) {
-        $.get("/web360/updateradiopower.cgi",
+        $.get(CGI.set,
             {'power': p},
             function (data) {
                 var j = JSON.parse(data);
