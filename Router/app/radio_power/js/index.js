@@ -123,9 +123,9 @@
         }
 
         function getRuleEditStr(r) {
-            return "<a href='javascript:void(0)'>修改</a>" +
-                " <a href='javascript:void(0)' onclick='rule_del(\"" + r.idx + "\")'>删除</a>" +
-                " <a href='javascript:void(0)'>禁用</a>";
+            return "<a href=\"javascript:void(0)\">修改</a>" +
+                " <a href=\"javascript:void(0)\" onclick=\"rule_del(\'" + r.idx + "\')\">删除</a>" +
+                " <a href=\"javascript:void(0)\">禁用</a>";
         }
 
         function getRuleModeStr(r) {
