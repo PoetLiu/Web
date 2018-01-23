@@ -111,14 +111,14 @@
     }
 
     function paintRules(rules) {
-        var root = $("#pw-rule-tb-bd");
+        var root = $("#pw-rule-tb tbody");
         root.empty();
         for (var i = 0; i < rules.length; i++) {
             var c = "";
             var r = rules[i];
             c += "<tr><td>" + r.idx + "</td><td>" + getRuleTimeStr(r) + "</td><td>" + getRuleDayStr(r)
                 + "</td><td>" + getRuleModeStr(r) + "</td><td>" + getRuleEditStr(r) + "</td></tr>";
-            console.log(c);
+            // console.log(c);
             root.append(c);
         }
 
