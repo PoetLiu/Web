@@ -180,7 +180,7 @@ body {
     text-align: center;
 }
 
-.time-slot input:first-child {
+.time-slot .start.hour {
    margin-left: 0;
 }
 

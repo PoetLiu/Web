@@ -16,6 +16,23 @@
             power: 100
         }
     };
+    var timeSlot = {
+        check: function () {
+            console.log("new rule");
+            var startH = $(".start.hour").val() >> 0;
+            var startM = $(".start.minute").val() >> 0;
+            var endH = $(".end.hour").val() >> 0;
+            var endM = $(".end.minute").val() >> 0;
+
+            if (startH === endH) {
+                if (startM === endM || endM - startM <= 5) {
+                    console.log("End time must at least latter than Start time 5s.");
+                    return false;
+                }
+            }
+            return true;
+        }
+    };
 
     $(document).ready(function () {
         $(".power .select-bar a").click(function (e) {
@@ -26,6 +43,13 @@
         });
         $("#cancel-edit-btn").click(function (e) {
             showNewRulePage(false);
+        });
+        $("#week-slot span").click(function (e) {
+            $(this).toggleClass("active");
+        });
+        $("#new-rule-form").delegate("#add-rule-btn", "click", function (e) {
+            e.preventDefault();
+            addNewRule();
         });
         init();
     });
@@ -41,9 +65,33 @@
     }
 
     function init() {
-        showNewRulePage(true);
+        showNewRulePage(false);
         getPower();
         resizeAppPage();
+    }
+
+    function addNewRule() {
+        if (!timeSlot.check()) {
+            return false;
+        }
+        var data    = {
+            "start_hour": $(".start.hour").val() || 0,
+            "start_minute": $(".start.minute").val() || 0,
+            "end_hour": $(".end.hour").val() || 0,
+            "end_minute": $(".end.minute").val() || 0,
+            "timer_day": "1 2 3 4 5 6 7",
+            "power": 100,
+            "timer_enable": 1,
+            "action": "add"
+        };
+        $.post("/app/radio_power/radio_power.cgi", data, function (data) {
+            data    = eval("(" + data + ")");
+            if (data[0] === "SUCCESS") {
+                console.log("Add rule success!");
+                showNewRulePage(false);
+                return true;
+            }
+        });
     }
 
     function getPower() {
@@ -53,7 +101,7 @@
             function (data) {
                 try {
                     var j = JSON.parse(data);
-                    var m = powerToMode(j.now_power);
+                    var m = powerToMode(j["now_power"]);
                     powerModeSet(m);
                 } catch (e) {
                     showMessage("get power failed.");
@@ -64,7 +112,7 @@
 
     function powerToMode(p) {
         var m = null;
-        p   = Number(p);
+        p = Number(p);
         $.each(modes, function (i) {
             if (!m && p <= modes[i].power) {
                 m = i;

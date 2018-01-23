@@ -49,19 +49,19 @@
             <h3 class="title">定时调整信号强度</h3>
         </div>
         <div class="box-bd">
-            <form class="form-area">
+            <form class="form-area" id="new-rule-form">
                 <div class="item time-slot-wrapper">
                     <label class="title">开启时间段</label>
                     <div class="time-slot">
-                        <input autocomplete="off" maxlength="2" placeholder="00" name="start_hour"><b>点</b>
-                        <input autocomplete="off" maxlength="2" placeholder="00" name="start_minute"><b>分&nbsp; ~ &nbsp;</b>
-                        <input autocomplete="off" maxlength="2" placeholder="00" name="end_hour"><b>点</b>
-                        <input autocomplete="off" maxlength="2" placeholder="00" name="end_minute"><b>分</b>
+                        <input class="start hour" autocomplete="off" maxlength="2" placeholder="00" name="start_hour"><b>点</b>
+                        <input class="start minute" autocomplete="off" maxlength="2" placeholder="00" name="start_minute"><b>分&nbsp; ~ &nbsp;</b>
+                        <input class="end hour" autocomplete="off" maxlength="2" placeholder="00" name="end_hour"><b>点</b>
+                        <input class="end minute" autocomplete="off" maxlength="2" placeholder="00" name="end_minute"><b>分</b>
                     </div>
                 </div>
                 <div class="item week-slot-wrapper">
                     <label class="title">生效日期</label>
-                    <div class="week-slot">
+                    <div class="week-slot" id="week-slot">
                         <span class="active">一</span>
                         <span class="active">二</span>
                         <span class="active">三</span>
