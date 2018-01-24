@@ -23,15 +23,15 @@
         "common": "/app/radio_power/radio_power.cgi",
         "set": "/web360/updateradiopower.cgi"
     };
-     var week = [
-                   "星期一",
-                    "星期二",
-                    "星期三",
-                    "星期四",
-                    "星期五",
-                    "星期六",
-                    "星期日"
-     ];
+    var week = [
+        "星期一",
+        "星期二",
+        "星期三",
+        "星期四",
+        "星期五",
+        "星期六",
+        "星期日"
+    ];
     var timeSlot = {
         check: function () {
             console.log("new rule");
@@ -86,8 +86,27 @@
     }
 
     function initRulePage(idx) {
-       var r = ruleFindByIdx(idx);
+        var r = ruleFindByIdx(idx);
+        var m = powerToMode(r.power);
 
+        // time slot
+        $(".start.hour").val(timeStrFormat(r.start_hour));
+        $(".start.minute").val(timeStrFormat(r.start_minute));
+        $(".end.hour").val(timeStrFormat(r.end_hour));
+        $(".end.minute").val(timeStrFormat(r.end_minute));
+
+        // week
+        $("#week-slot span").each(function (id, obj) {
+            id++;
+            if (r["timer_day"].indexOf(id) === -1) {
+                $(obj).removeClass("active");
+            }
+        });
+
+        // mode
+        $("#mode-set ."+m).prop("checked", true);
+
+        $("#add-rule-btn").text("修改");
     }
 
     function init() {
@@ -175,7 +194,7 @@
         for (var i = 0; i < rules.length; i++) {
             var c = "";
             var r = rules[i];
-            c += "<tr><td>" + (Number(r.idx)+1) + "</td><td>" + getRuleTimeStr(r) + "</td><td>" + getRuleDayStr(r)
+            c += "<tr><td>" + (Number(r.idx) + 1) + "</td><td>" + getRuleTimeStr(r) + "</td><td>" + getRuleDayStr(r)
                 + "</td><td>" + getRuleModeStr(r) + "</td><td>" + getRuleEditStr(r) + "</td></tr>";
             // console.log(c);
             root.append(c);
@@ -201,8 +220,8 @@
 
             var ret = "";
             for (var i = 0; i < day.length; i++) {
-                ret += week[day[i]-1];
-                if (i !== day.length-1) {
+                ret += week[day[i] - 1];
+                if (i !== day.length - 1) {
                     ret += " ";
                 }
             }
@@ -212,17 +231,17 @@
         function getRuleTimeStr(r) {
             return timeStrFormat(r.start_hour) + ":" + timeStrFormat(r.start_minute)
                 + "~" + timeStrFormat(r.end_hour) + ":" + timeStrFormat(r.end_minute);
-
-            function timeStrFormat(t) {
-                if (typeof(t) !== "string") {
-                    t = t.toString();
-                }
-                if (t.length < 2) {
-                    return "0" + t;
-                }
-                return t;
-            }
         }
+    }
+
+    function timeStrFormat(t) {
+        if (typeof(t) !== "string") {
+            t = t.toString();
+        }
+        if (t.length < 2) {
+            return "0" + t;
+        }
+        return t;
     }
 
     function getPower() {
