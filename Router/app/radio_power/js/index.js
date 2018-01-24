@@ -50,6 +50,7 @@
         }
     };
     var powerData;
+    var ruleModIdx = -1;
 
     $(document).ready(function () {
         $(".power .select-bar a").click(function (e) {
@@ -66,7 +67,11 @@
         });
         $("#new-rule-form").delegate("#add-rule-btn", "click", function (e) {
             e.preventDefault();
-            addNewRule();
+            if (ruleModIdx !== -1) {
+                ruleMod(ruleModIdx);
+            } else {
+                addNewRule();
+            }
         });
         window.ruleDel = ruleDel;
         window.ruleMod = ruleMod;
@@ -78,7 +83,7 @@
         if (en) {
             $("#pw-index-page").hide();
             $("#pw-new-rule-page").show();
-            initRulePage(idx);
+            idx && initRulePage(idx);
         } else {
             $("#pw-index-page").show();
             $("#pw-new-rule-page").hide();
@@ -89,6 +94,7 @@
         var r = ruleFindByIdx(idx);
         var m = powerToMode(r.power);
 
+        ruleModIdx = idx;
         // time slot
         $(".start.hour").val(timeStrFormat(r.start_hour));
         $(".start.minute").val(timeStrFormat(r.start_minute));
@@ -104,7 +110,7 @@
         });
 
         // mode
-        $("#mode-set ."+m).prop("checked", true);
+        $("#mode-set ." + m).prop("checked", true);
 
         $("#add-rule-btn").text("修改");
     }
@@ -115,22 +121,51 @@
         resizeAppPage();
     }
 
+    function domRulePrint(data) {
+        data = data || {};
+
+        data["start_hour"] = $(".start.hour").val() || 0;
+        data["start_minute"] = $(".start.minute").val() || 0;
+        data["end_hour"] = $(".end.hour").val() || 0;
+        data["end_minute"] = $(".end.minute").val() || 0;
+        data["timer_day"] = getTimerDayStr();
+        data["power"] = getPowerStr();
+        return data;
+
+        function getPowerStr() {
+            var p;
+            $("#mode-set input").each(function (id, obj) {
+                if (!p && $(obj).is(":checked")) {
+                    p = $(obj).attr("value");
+                }
+            });
+            return p;
+        }
+
+        function getTimerDayStr() {
+            var ret = "";
+            $("#week-slot span").each(function (id, obj) {
+                id++;
+                if ($(obj).hasClass('active')) {
+                    ret += id + " ";
+                }
+            });
+            // remove tailing space.
+            return ret.substring(0, ret.length - 1);
+        }
+    }
+
     function addNewRule() {
         if (!timeSlot.check()) {
             return false;
         }
-        var data = {
-            "start_hour": $(".start.hour").val() || 0,
-            "start_minute": $(".start.minute").val() || 0,
-            "end_hour": $(".end.hour").val() || 0,
-            "end_minute": $(".end.minute").val() || 0,
-            "timer_day": "1 2 3 4 5 6 7",
-            "power": 100,
-            "timer_enable": 1,
-            "action": "add"
-        };
+
+        var data = domRulePrint();
+        data["action"]  = 'add';
+        // console.log(data);
         $.post(CGI.common, data, function (data) {
             data = eval("(" + data + ")");
+            console.log(data);
             if (data[0] === "SUCCESS") {
                 console.log("Add rule success!");
                 init();
@@ -151,18 +186,19 @@
 
     function ruleMod(idx, action) {
         var r = ruleFindByIdx(idx);
-        var data = jQuery.extend(true, {}, r);
-
-        data.action = "mod";
-        action = action || "mod";
         if (!r) {
             console.log("Can't find rule by idx:" + idx);
             return false;
         }
 
+        var data = jQuery.extend(true, {}, r);
+        action = action || "mod";
         if (action === "toggle") {
             ruleEnToggle(data);
+        } else {
+            data    = domRulePrint(data);
         }
+        data.action = "mod";
         $.post(CGI.common, data, function (data) {
             data = eval("(" + data + ")");
             if (data[0] === "SUCCESS") {
