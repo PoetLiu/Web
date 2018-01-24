@@ -3,23 +3,35 @@
         "low": {
             width: 40,
             intro: "2%的WiFi发射功率，准妈妈再也不用担心辐射问题",
-            power: 2
+            power: 2,
+            text: "孕妇模式"
         },
         "middle": {
             width: 316,
             intro: "WiFi发射功率50%，既能轻松上网，又能降低辐射",
-            power: 50
+            power: 50,
+            text: "均衡模式"
         },
         "high": {
             width: 630,
             intro: "P+内核信号增益已开，手机WiFi信号较弱时自动增强发射功率，家中信号死角地区也能畅快上网",
-            power: 100
+            power: 100,
+            text: "穿墙模式"
         }
     };
     var CGI = {
         "common": "/app/radio_power/radio_power.cgi",
         "set": "/web360/updateradiopower.cgi"
     };
+     var week = [
+                   "星期一",
+                    "星期二",
+                    "星期三",
+                    "星期四",
+                    "星期五",
+                    "星期六",
+                    "星期日"
+     ];
     var timeSlot = {
         check: function () {
             console.log("new rule");
@@ -102,7 +114,7 @@
     }
 
     function ruleFindByIdx(idx) {
-        var rules   = powerData["time"];
+        var rules = powerData["time"];
         for (var i = 0; i < rules.length; i++) {
             var r = rules[i];
             if (r.idx === idx) {
@@ -118,7 +130,7 @@
         data.action = "mod";
         action = action || "mod";
         if (!r) {
-            console.log("Can't find rule by idx:"+idx);
+            console.log("Can't find rule by idx:" + idx);
             return false;
         }
 
@@ -136,11 +148,11 @@
     }
 
     function ruleEnToggle(r) {
-       r.timer_enable = (r.timer_enable === '0'?'1':'0');
+        r.timer_enable = (r.timer_enable === '0' ? '1' : '0');
     }
 
     function ruleDel(id) {
-        $.post(CGI.common, {action:"del", idx:id}, function (data) {
+        $.post(CGI.common, {action: "del", idx: id}, function (data) {
             data = eval("(" + data + ")");
             if (data[0] === "SUCCESS") {
                 console.log("del rule success!");
@@ -166,20 +178,43 @@
             console.log(r);
             return "<a href=\"javascript:void(0)\" onclick=\"ruleMod(\'" + r.idx + "\')\">修改</a>" +
                 " <a href=\"javascript:void(0)\" onclick=\"ruleDel(\'" + r.idx + "\')\">删除</a>" +
-                " <a href=\"javascript:void(0)\" onclick=\"ruleMod(\'" + r.idx + "\', \'toggle\')\">"+
-                (r.timer_enable==='1'?"禁用":"启用")+"</a>";
+                " <a href=\"javascript:void(0)\" onclick=\"ruleMod(\'" + r.idx + "\', \'toggle\')\">" +
+                (r.timer_enable === '1' ? "禁用" : "启用") + "</a>";
         }
 
         function getRuleModeStr(r) {
-            return "穿墙模式";
+            return modes[powerToMode(r.power)].text;
         }
 
         function getRuleDayStr(r) {
-            return "每天";
+            var day = r.timer_day.split(' ');
+            if (day.length === 7) {
+                return "每天";
+            }
+
+            var ret = "";
+            for (var i = 0; i < day.length; i++) {
+                ret += week[day[i]-1];
+                if (i !== day.length-1) {
+                    ret += " ";
+                }
+            }
+            return ret;
         }
 
         function getRuleTimeStr(r) {
-            return r.start_hour + ":" + r.start_minute + "~" + r.end_hour + ":" + r.end_minute;
+            return timeStrFormat(r.start_hour) + ":" + timeStrFormat(r.start_minute)
+                + "~" + timeStrFormat(r.end_hour) + ":" + timeStrFormat(r.end_minute);
+
+            function timeStrFormat(t) {
+                if (typeof(t) !== "string") {
+                    t = t.toString();
+                }
+                if (t.length < 2) {
+                    return "0" + t;
+                }
+                return t;
+            }
         }
     }
 
@@ -194,7 +229,7 @@
                     powerModeSet(m);
                     paintRules(j["time"]);
                     resizeAppPage();
-                    powerData   = j;
+                    powerData = j;
                 } catch (e) {
                     showMessage("get power failed.", e);
                 }
