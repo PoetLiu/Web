@@ -23,8 +23,7 @@
         "common": "/app/radio_power/radio_power.cgi",
         "set": "/web360/updateradiopower.cgi"
     };
-    var ruleModIdx = -1;
-    var table   = new Table("#pw-tbody");
+    var table = new Table("#pw-tbody");
 
     $(document).ready(function () {
         $(".power .select-bar a").click(function (e) {
@@ -41,15 +40,17 @@
         });
         $("#new-rule-form").delegate("#add-rule-btn", "click", function (e) {
             e.preventDefault();
-            if (ruleModIdx !== -1) {
-                ruleMod(ruleModIdx);
+            if (table.modId !== -1) {
+                ruleMod(table.modId);
+                table.modId = -1;
             } else {
-                addNewRule();
+                ruleAdd();
             }
         });
         window.ruleDel = ruleDel;
         window.ruleMod = ruleMod;
         window.showRulePage = showRulePage;
+        window.powerToMode  = powerToMode;
         init();
     });
 
@@ -65,28 +66,9 @@
     }
 
     function initRulePage(idx) {
-        var r = table.ruleFind(idx).data;
-        var m = powerToMode(r.power);
-
-        ruleModIdx = idx;
-        // time slot
-        $(".start.hour").val(timeStrFormat(r.start_hour));
-        $(".start.minute").val(timeStrFormat(r.start_minute));
-        $(".end.hour").val(timeStrFormat(r.end_hour));
-        $(".end.minute").val(timeStrFormat(r.end_minute));
-
-        // week
-        $("#week-slot span").each(function (id, obj) {
-            id++;
-            if (r["timer_day"].indexOf(id) === -1) {
-                $(obj).removeClass("active");
-            }
-        });
-
-        // mode
-        $("#mode-set ." + m).prop("checked", true);
-
-        $("#add-rule-btn").text("修改");
+        var r = table.ruleFind(idx);
+        table.modId = idx;
+        r.sync("model2View");
     }
 
     function init() {
@@ -95,70 +77,22 @@
         resizeAppPage();
     }
 
-    function addNewRule() {
+    function ruleAdd() {
         var r = new Rule();
-
-        if (!r.check()) {
-            return false;
-        }
-
-        r.data["action"]  = 'add';
-        // console.log(data);
-        $.post(CGI.common, r.data, function (data) {
-            data = eval("(" + data + ")");
-            console.log(data);
-            if (data[0] === "SUCCESS") {
-                console.log("Add rule success!");
-                init();
-                return true;
-            }
-        });
+        r.add(init);
     }
 
     function ruleMod(idx, action) {
         var r = table.ruleFind(idx);
-        if (!r) {
-            console.log("Can't find rule by idx:" + idx);
-            return false;
-        }
-
-        var data = jQuery.extend(true, {}, r);
-        action = action || "mod";
         if (action === "toggle") {
             r.toggle();
-        } else {
-            data    = r.sync();
         }
-        data.action = "mod";
-        $.post(CGI.common, data, function (data) {
-            data = eval("(" + data + ")");
-            if (data[0] === "SUCCESS") {
-                console.log("Mod rule success!");
-                init();
-                return true;
-            }
-        });
+        r.modify(init);
     }
 
     function ruleDel(id) {
-        $.post(CGI.common, {action: "del", idx: id}, function (data) {
-            data = eval("(" + data + ")");
-            if (data[0] === "SUCCESS") {
-                console.log("del rule success!");
-                init();
-                return true;
-            }
-        });
-    }
-
-    function timeStrFormat(t) {
-        if (typeof(t) !== "string") {
-            t = t.toString();
-        }
-        if (t.length < 2) {
-            return "0" + t;
-        }
-        return t;
+        var r = table.ruleFind(idx);
+        r.delete(init);
     }
 
     function getPower() {
@@ -180,7 +114,7 @@
         );
     }
 
-    function powerToMode(p) {
+    function powerToMode(p, obj) {
         var m = null;
         p = Number(p);
         $.each(modes, function (i) {
@@ -188,7 +122,7 @@
                 m = i;
             }
         });
-        return m || "high";
+        return obj ? modes[m] : (m || "high");
     }
 
     function setPower(p) {

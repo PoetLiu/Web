@@ -1,11 +1,8 @@
 function Rule(data) {
     this.data = data;
-    if (!data) {
-        this.sync();
-    }
 }
 
-Rule.prototype.week = [
+Rule.prototype.WEEK = [
     "星期一",
     "星期二",
     "星期三",
@@ -15,13 +12,15 @@ Rule.prototype.week = [
     "星期日"
 ];
 
+Rule.prototype.CGI = "/app/radio_power/radio_power.cgi";
+
 Rule.prototype.serialize = function () {
     var d = this.data;
     return {
         id: Number(d.idx) + 1,
         timeSlot: this.getTimeStr(),
         date: this.getDayStr(),
-        mode: "均衡模式",
+        mode: powerToMode(d.power),
         option: this.getOptionHTML()
     };
 };
@@ -58,7 +57,7 @@ Rule.prototype.getDayStr = function () {
 
     var ret = "";
     for (var i = 0; i < day.length; i++) {
-        ret += this.week[day[i] - 1];
+        ret += this.WEEK[day[i] - 1];
         if (i !== day.length - 1) {
             ret += " ";
         }
@@ -66,10 +65,19 @@ Rule.prototype.getDayStr = function () {
     return ret;
 };
 
-Rule.prototype.getTimeStr = function () {
+Rule.prototype.getTimeStr = function (isString) {
     var d = this.data;
-    return timeStrFormat(d.start_hour) + ":" + timeStrFormat(d.start_minute)
-        + "~" + timeStrFormat(d.end_hour) + ":" + timeStrFormat(d.end_minute);
+    if (!isString) {
+        return {
+            start_hour: timeStrFormat(d.start_hour),
+            start_minute: timeStrFormat(d.start_minute),
+            end_hour: timeStrFormat(d.end_hour),
+            end_minute: timeStrFormat(d.end_minute)
+        }
+    } else {
+        return timeStrFormat(d.start_hour) + ":" + timeStrFormat(d.start_minute)
+            + "~" + timeStrFormat(d.end_hour) + ":" + timeStrFormat(d.end_minute);
+    }
 
     function timeStrFormat(t) {
         if (typeof(t) !== "string") {
@@ -82,16 +90,38 @@ Rule.prototype.getTimeStr = function () {
     }
 };
 
-Rule.prototype.sync = function () {
+Rule.prototype.sync = function (dir) {
     var data = this.data;
+    dir = "view2model";
 
-    data["start_hour"] = $(".start.hour").val() || 0;
-    data["start_minute"] = $(".start.minute").val() || 0;
-    data["end_hour"] = $(".end.hour").val() || 0;
-    data["end_minute"] = $(".end.minute").val() || 0;
-    data["timer_day"] = getTimerDayStr();
-    data["power"] = getPowerStr();
-    return data;
+    if (dir === "view2model") {
+        data["start_hour"] = $(".start.hour").val() || 0;
+        data["start_minute"] = $(".start.minute").val() || 0;
+        data["end_hour"] = $(".end.hour").val() || 0;
+        data["end_minute"] = $(".end.minute").val() || 0;
+        data["timer_day"] = getTimerDayStr();
+        data["power"] = getPowerStr();
+        return data;
+    } else {    // model2View
+        var t = this.getTimeStr();
+        $(".start.hour").val(t.start_hour);
+        $(".start.minute").val(t.start_minute);
+        $(".end.hour").val(t.end_hour);
+        $(".end.minute").val(t.end_minute);
+
+        // week
+        $("#week-slot span").each(function (id, obj) {
+            id++;
+            if (r["timer_day"].indexOf(id) === -1) {
+                $(obj).removeClass("active");
+            }
+        });
+
+        // mode
+        $("#mode-set ." + m).prop("checked", true);
+
+        $("#add-rule-btn").text("修改");
+    }
 
     function getPowerStr() {
         var p;
@@ -130,5 +160,51 @@ Rule.prototype.check = function () {
         }
     }
     return true;
+};
+
+Rule.prototype.add = function (fn) {
+    this.sync("view2Model");
+    if (!this.check()) {
+        return false;
+    }
+
+    var d = this.data;
+    d["action"] = 'add';
+    // console.log(data);
+    $.post(this.CGI, d, function (data) {
+        data = eval("(" + data + ")");
+        console.log(data);
+        if (data[0] === "SUCCESS") {
+            console.log("Add rule success!");
+            fn && fn();
+            return true;
+        }
+    });
+};
+
+Rule.prototype.modify = function (fn) {
+    var d = this.sync("view2Model");
+    d.action = "mod";
+    $.post(this.CGI, d, function (data) {
+        data = eval("(" + data + ")");
+        if (data[0] === "SUCCESS") {
+            console.log("Mod rule success!");
+            fn && fn();
+            return true;
+        }
+    });
+};
+
+
+Rule.prototype.delete = function (fn) {
+    var d = this.data;
+    $.post(this.CGI, {action: "del", idx: d.idx}, function (data) {
+        data = eval("(" + data + ")");
+        if (data[0] === "SUCCESS") {
+            console.log("del rule success!");
+            fn && fn();
+            return true;
+        }
+    });
 };
 
