@@ -37,6 +37,7 @@
             return true;
         }
     };
+    var powerData;
 
     $(document).ready(function () {
         $(".power .select-bar a").click(function (e) {
@@ -55,7 +56,8 @@
             e.preventDefault();
             addNewRule();
         });
-        window.rule_del = rule_del;
+        window.ruleDel = ruleDel;
+        window.ruleMod = ruleMod;
         init();
     });
 
@@ -99,7 +101,45 @@
         });
     }
 
-    function rule_del(id) {
+    function ruleFindByIdx(idx) {
+        var rules   = powerData["time"];
+        for (var i = 0; i < rules.length; i++) {
+            var r = rules[i];
+            if (r.idx === idx) {
+                return r;
+            }
+        }
+    }
+
+    function ruleMod(idx, action) {
+        var r = ruleFindByIdx(idx);
+        var data = jQuery.extend(true, {}, r);
+
+        data.action = "mod";
+        action = action || "mod";
+        if (!r) {
+            console.log("Can't find rule by idx:"+idx);
+            return false;
+        }
+
+        if (action === "toggle") {
+            ruleEnToggle(data);
+        }
+        $.post(CGI.common, data, function (data) {
+            data = eval("(" + data + ")");
+            if (data[0] === "SUCCESS") {
+                console.log("Mod rule success!");
+                init();
+                return true;
+            }
+        });
+    }
+
+    function ruleEnToggle(r) {
+       r.timer_enable = (r.timer_enable === '0'?'1':'0');
+    }
+
+    function ruleDel(id) {
         $.post(CGI.common, {action:"del", idx:id}, function (data) {
             data = eval("(" + data + ")");
             if (data[0] === "SUCCESS") {
@@ -123,9 +163,11 @@
         }
 
         function getRuleEditStr(r) {
-            return "<a href=\"javascript:void(0)\">修改</a>" +
-                " <a href=\"javascript:void(0)\" onclick=\"rule_del(\'" + r.idx + "\')\">删除</a>" +
-                " <a href=\"javascript:void(0)\">禁用</a>";
+            console.log(r);
+            return "<a href=\"javascript:void(0)\" onclick=\"ruleMod(\'" + r.idx + "\')\">修改</a>" +
+                " <a href=\"javascript:void(0)\" onclick=\"ruleDel(\'" + r.idx + "\')\">删除</a>" +
+                " <a href=\"javascript:void(0)\" onclick=\"ruleMod(\'" + r.idx + "\', \'toggle\')\">"+
+                (r.timer_enable==='1'?"禁用":"启用")+"</a>";
         }
 
         function getRuleModeStr(r) {
@@ -152,6 +194,7 @@
                     powerModeSet(m);
                     paintRules(j["time"]);
                     resizeAppPage();
+                    powerData   = j;
                 } catch (e) {
                     showMessage("get power failed.", e);
                 }
