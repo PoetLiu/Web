@@ -56,7 +56,7 @@
             powerModeSet($(this).attr('mode'), true);
         });
         $("#new-rule-btn").click(function (e) {
-            showNewRulePage(true);
+            showRulePage(true);
         });
         $("#cancel-edit-btn").click(function (e) {
             init();
@@ -70,21 +70,28 @@
         });
         window.ruleDel = ruleDel;
         window.ruleMod = ruleMod;
+        window.showRulePage = showRulePage;
         init();
     });
 
-    function showNewRulePage(en) {
+    function showRulePage(en, idx) {
         if (en) {
             $("#pw-index-page").hide();
             $("#pw-new-rule-page").show();
+            initRulePage(idx);
         } else {
             $("#pw-index-page").show();
             $("#pw-new-rule-page").hide();
         }
     }
 
+    function initRulePage(idx) {
+       var r = ruleFindByIdx(idx);
+
+    }
+
     function init() {
-        showNewRulePage(false);
+        showRulePage(false);
         getPower();
         resizeAppPage();
     }
@@ -168,7 +175,7 @@
         for (var i = 0; i < rules.length; i++) {
             var c = "";
             var r = rules[i];
-            c += "<tr><td>" + r.idx + "</td><td>" + getRuleTimeStr(r) + "</td><td>" + getRuleDayStr(r)
+            c += "<tr><td>" + (Number(r.idx)+1) + "</td><td>" + getRuleTimeStr(r) + "</td><td>" + getRuleDayStr(r)
                 + "</td><td>" + getRuleModeStr(r) + "</td><td>" + getRuleEditStr(r) + "</td></tr>";
             // console.log(c);
             root.append(c);
@@ -176,7 +183,7 @@
 
         function getRuleEditStr(r) {
             console.log(r);
-            return "<a href=\"javascript:void(0)\" onclick=\"ruleMod(\'" + r.idx + "\')\">修改</a>" +
+            return "<a href=\"javascript:void(0)\" onclick=\"showRulePage(true,\'" + r.idx + "\')\">修改</a>" +
                 " <a href=\"javascript:void(0)\" onclick=\"ruleDel(\'" + r.idx + "\')\">删除</a>" +
                 " <a href=\"javascript:void(0)\" onclick=\"ruleMod(\'" + r.idx + "\', \'toggle\')\">" +
                 (r.timer_enable === '1' ? "禁用" : "启用") + "</a>";
