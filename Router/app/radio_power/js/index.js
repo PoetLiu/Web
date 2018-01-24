@@ -23,34 +23,8 @@
         "common": "/app/radio_power/radio_power.cgi",
         "set": "/web360/updateradiopower.cgi"
     };
-    var week = [
-        "星期一",
-        "星期二",
-        "星期三",
-        "星期四",
-        "星期五",
-        "星期六",
-        "星期日"
-    ];
-    var timeSlot = {
-        check: function () {
-            console.log("new rule");
-            var startH = $(".start.hour").val() >> 0;
-            var startM = $(".start.minute").val() >> 0;
-            var endH = $(".end.hour").val() >> 0;
-            var endM = $(".end.minute").val() >> 0;
-
-            if (startH === endH) {
-                if (startM === endM || endM - startM <= 5) {
-                    console.log("End time must at least latter than Start time 5s.");
-                    return false;
-                }
-            }
-            return true;
-        }
-    };
-    var powerData;
     var ruleModIdx = -1;
+    var table   = new Table("#pw-tbody");
 
     $(document).ready(function () {
         $(".power .select-bar a").click(function (e) {
@@ -91,7 +65,7 @@
     }
 
     function initRulePage(idx) {
-        var r = ruleFindByIdx(idx);
+        var r = table.ruleFind(idx).data;
         var m = powerToMode(r.power);
 
         ruleModIdx = idx;
@@ -121,49 +95,16 @@
         resizeAppPage();
     }
 
-    function domRulePrint(data) {
-        data = data || {};
-
-        data["start_hour"] = $(".start.hour").val() || 0;
-        data["start_minute"] = $(".start.minute").val() || 0;
-        data["end_hour"] = $(".end.hour").val() || 0;
-        data["end_minute"] = $(".end.minute").val() || 0;
-        data["timer_day"] = getTimerDayStr();
-        data["power"] = getPowerStr();
-        return data;
-
-        function getPowerStr() {
-            var p;
-            $("#mode-set input").each(function (id, obj) {
-                if (!p && $(obj).is(":checked")) {
-                    p = $(obj).attr("value");
-                }
-            });
-            return p;
-        }
-
-        function getTimerDayStr() {
-            var ret = "";
-            $("#week-slot span").each(function (id, obj) {
-                id++;
-                if ($(obj).hasClass('active')) {
-                    ret += id + " ";
-                }
-            });
-            // remove tailing space.
-            return ret.substring(0, ret.length - 1);
-        }
-    }
-
     function addNewRule() {
-        if (!timeSlot.check()) {
+        var r = new Rule();
+
+        if (!r.check()) {
             return false;
         }
 
-        var data = domRulePrint();
-        data["action"]  = 'add';
+        r.data["action"]  = 'add';
         // console.log(data);
-        $.post(CGI.common, data, function (data) {
+        $.post(CGI.common, r.data, function (data) {
             data = eval("(" + data + ")");
             console.log(data);
             if (data[0] === "SUCCESS") {
@@ -174,18 +115,8 @@
         });
     }
 
-    function ruleFindByIdx(idx) {
-        var rules = powerData["time"];
-        for (var i = 0; i < rules.length; i++) {
-            var r = rules[i];
-            if (r.idx === idx) {
-                return r;
-            }
-        }
-    }
-
     function ruleMod(idx, action) {
-        var r = ruleFindByIdx(idx);
+        var r = table.ruleFind(idx);
         if (!r) {
             console.log("Can't find rule by idx:" + idx);
             return false;
@@ -194,9 +125,9 @@
         var data = jQuery.extend(true, {}, r);
         action = action || "mod";
         if (action === "toggle") {
-            ruleEnToggle(data);
+            r.toggle();
         } else {
-            data    = domRulePrint(data);
+            data    = r.sync();
         }
         data.action = "mod";
         $.post(CGI.common, data, function (data) {
@@ -209,10 +140,6 @@
         });
     }
 
-    function ruleEnToggle(r) {
-        r.timer_enable = (r.timer_enable === '0' ? '1' : '0');
-    }
-
     function ruleDel(id) {
         $.post(CGI.common, {action: "del", idx: id}, function (data) {
             data = eval("(" + data + ")");
@@ -222,52 +149,6 @@
                 return true;
             }
         });
-    }
-
-    function paintRules(rules) {
-        var root = $("#pw-rule-tb tbody");
-        root.empty();
-        for (var i = 0; i < rules.length; i++) {
-            var c = "";
-            var r = rules[i];
-            c += "<tr><td>" + (Number(r.idx) + 1) + "</td><td>" + getRuleTimeStr(r) + "</td><td>" + getRuleDayStr(r)
-                + "</td><td>" + getRuleModeStr(r) + "</td><td>" + getRuleEditStr(r) + "</td></tr>";
-            // console.log(c);
-            root.append(c);
-        }
-
-        function getRuleEditStr(r) {
-            console.log(r);
-            return "<a href=\"javascript:void(0)\" onclick=\"showRulePage(true,\'" + r.idx + "\')\">修改</a>" +
-                " <a href=\"javascript:void(0)\" onclick=\"ruleDel(\'" + r.idx + "\')\">删除</a>" +
-                " <a href=\"javascript:void(0)\" onclick=\"ruleMod(\'" + r.idx + "\', \'toggle\')\">" +
-                (r.timer_enable === '1' ? "禁用" : "启用") + "</a>";
-        }
-
-        function getRuleModeStr(r) {
-            return modes[powerToMode(r.power)].text;
-        }
-
-        function getRuleDayStr(r) {
-            var day = r.timer_day.split(' ');
-            if (day.length === 7) {
-                return "每天";
-            }
-
-            var ret = "";
-            for (var i = 0; i < day.length; i++) {
-                ret += week[day[i] - 1];
-                if (i !== day.length - 1) {
-                    ret += " ";
-                }
-            }
-            return ret;
-        }
-
-        function getRuleTimeStr(r) {
-            return timeStrFormat(r.start_hour) + ":" + timeStrFormat(r.start_minute)
-                + "~" + timeStrFormat(r.end_hour) + ":" + timeStrFormat(r.end_minute);
-        }
     }
 
     function timeStrFormat(t) {
@@ -289,9 +170,9 @@
                     var j = JSON.parse(data);
                     var m = powerToMode(j["now_power"]);
                     powerModeSet(m);
-                    paintRules(j["time"]);
+                    table.parseRules(j["time"]);
+                    table.render();
                     resizeAppPage();
-                    powerData = j;
                 } catch (e) {
                     showMessage("get power failed.", e);
                 }

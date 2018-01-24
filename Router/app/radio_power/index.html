@@ -8,6 +8,8 @@
     <script type="text/javascript" src="../../js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="../../js/jq.plugin.js"></script>
     <script type="text/javascript" src="../../js/utility.js"></script>
+    <script type="text/javascript" src="js/Rule.js"></script>
+    <script type="text/javascript" src="js/Table.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
 </head>
 <body>
@@ -27,7 +29,7 @@
         </div>
         <div class="rules">
             <p>调节时间段列表<span class="red">&nbsp;(不在规则内，将默认为穿墙模式)</span></p>
-            <table id="pw-rule-tb">
+            <table id="pw-tb">
                 <thead>
                 <tr>
                     <th>序列号</th>
@@ -37,7 +39,7 @@
                     <th>操作</th>
                 </tr>
                 </thead>
-                <tbody></tbody>
+                <tbody id="pw-tbody"></tbody>
             </table>
             <div class="btn-wrapper">
                 <button id="new-rule-btn">新增</button>
