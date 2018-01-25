@@ -50,7 +50,7 @@
         window.ruleDel = ruleDel;
         window.ruleMod = ruleMod;
         window.showRulePage = showRulePage;
-        window.powerToMode  = powerToMode;
+        window.powerToMode = powerToMode;
         init();
     });
 
@@ -58,7 +58,7 @@
         if (en) {
             $("#pw-index-page").hide();
             $("#pw-new-rule-page").show();
-            idx && initRulePage(idx);
+            (typeof idx !== 'undefined') && initRulePage(idx);
         } else {
             $("#pw-index-page").show();
             $("#pw-new-rule-page").hide();
@@ -90,9 +90,20 @@
         r.modify(init);
     }
 
-    function ruleDel(id) {
+    function ruleDel(idx) {
         var r = table.ruleFind(idx);
         r.delete(init);
+    }
+
+    function powerToMode(p, obj) {
+        var m = null;
+        p = Number(p);
+        $.each(modes, function (i) {
+            if (!m && p <= modes[i].power) {
+                m = i;
+            }
+        });
+        return obj ? modes[m] : (m || "high");
     }
 
     function getPower() {
@@ -112,17 +123,6 @@
                 }
             }
         );
-    }
-
-    function powerToMode(p, obj) {
-        var m = null;
-        p = Number(p);
-        $.each(modes, function (i) {
-            if (!m && p <= modes[i].power) {
-                m = i;
-            }
-        });
-        return obj ? modes[m] : (m || "high");
     }
 
     function setPower(p) {

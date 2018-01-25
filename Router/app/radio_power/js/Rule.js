@@ -18,9 +18,9 @@ Rule.prototype.serialize = function () {
     var d = this.data;
     return {
         id: Number(d.idx) + 1,
-        timeSlot: this.getTimeStr(),
+        timeSlot: this.getTimeStr(true),
         date: this.getDayStr(),
-        mode: powerToMode(d.power),
+        mode: powerToMode(d.power, true).text,
         option: this.getOptionHTML()
     };
 };
@@ -92,18 +92,18 @@ Rule.prototype.getTimeStr = function (isString) {
 
 Rule.prototype.sync = function (dir) {
     var data = this.data;
-    dir = "view2model";
+    dir = dir || "view2Model";
 
-    if (dir === "view2model") {
+    if (dir === "view2Model") {
         data["start_hour"] = $(".start.hour").val() || 0;
         data["start_minute"] = $(".start.minute").val() || 0;
         data["end_hour"] = $(".end.hour").val() || 0;
         data["end_minute"] = $(".end.minute").val() || 0;
         data["timer_day"] = getTimerDayStr();
         data["power"] = getPowerStr();
-        return data;
     } else {    // model2View
         var t = this.getTimeStr();
+        // console.log(t);
         $(".start.hour").val(t.start_hour);
         $(".start.minute").val(t.start_minute);
         $(".end.hour").val(t.end_hour);
@@ -112,16 +112,18 @@ Rule.prototype.sync = function (dir) {
         // week
         $("#week-slot span").each(function (id, obj) {
             id++;
-            if (r["timer_day"].indexOf(id) === -1) {
+            if (data["timer_day"].indexOf(id) === -1) {
                 $(obj).removeClass("active");
             }
         });
 
         // mode
+        var m = powerToMode(data.power);
         $("#mode-set ." + m).prop("checked", true);
 
         $("#add-rule-btn").text("修改");
     }
+    return data;
 
     function getPowerStr() {
         var p;
@@ -206,5 +208,9 @@ Rule.prototype.delete = function (fn) {
             return true;
         }
     });
+};
+
+Rule.prototype.idEqualWith  = function (id) {
+    return Number(this.data.idx) === Number(id);
 };
 
