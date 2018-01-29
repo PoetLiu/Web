@@ -173,7 +173,6 @@ Rule.prototype.check = function () {
 };
 
 Rule.prototype.add = function (fn) {
-    this.sync("view2Model");
     if (!this.check()) {
         return false;
     }
@@ -193,7 +192,7 @@ Rule.prototype.add = function (fn) {
 };
 
 Rule.prototype.modify = function (fn) {
-    var d = this.sync("view2Model");
+    var d = this.data;
     d.action = "mod";
     $.post(this.CGI, d, function (data) {
         data = eval("(" + data + ")");
@@ -204,7 +203,6 @@ Rule.prototype.modify = function (fn) {
         }
     });
 };
-
 
 Rule.prototype.delete = function (fn) {
     var d = this.data;

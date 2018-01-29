@@ -79,11 +79,13 @@
 
     function ruleAdd() {
         var r = new Rule();
+        r.sync("view2Model");
         r.add(init);
     }
 
     function ruleMod(idx, action) {
         var r = table.ruleFind(idx);
+        r.sync("view2Model");
         if (action === "toggle") {
             r.toggle();
             console.log(r);
