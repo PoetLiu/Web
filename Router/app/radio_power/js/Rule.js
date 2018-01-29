@@ -165,7 +165,7 @@ Rule.prototype.check = function () {
 
     if (startH === endH) {
         if (startM === endM || endM - startM <= 5) {
-            console.log("End time must at least latter than Start time 5s.");
+            showMessage("End time must at least latter than Start time 5s.");
             return false;
         }
     }

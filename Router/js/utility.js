@@ -81,10 +81,6 @@ function aesEncrypt(data, key) {
     return key.key_index + cipher.ciphertext.toString();
 }
 
-function showMessage(title, message) {
-    console.log(title, message);
-}
-
 function resizeAppPage() {
     if (window.top != window.self && parent.document.getElementById("app_iframe") != null) {
         var yScroll;
@@ -108,3 +104,53 @@ function resizeAppPage() {
         parent.document.getElementById("app_iframe").height = pageHeight;
     }
 }
+
+function showMessage(title, message) {
+    msgBox = msgBox || new MsgBox("init");
+    msgBox.showMsg(title, true);
+    console.log(title, message);
+}
+
+/*
+*  MsgBox begin.
+* */
+function MsgBox(msg, type, cfg) {
+    this.msg = msg;
+    this.cfg = cfg || {};
+    this.setup();
+}
+
+MsgBox.prototype.setup = function (cfg) {
+    cfg = cfg || this.cfg;
+    var parent = window.top.document.body;
+    var $cover = $("<div></div>").addClass('cover').appendTo(parent).hide();
+    var $box = $("<div></div>").addClass('msg-box').appendTo(parent).hide();
+    var $img = $("<img>").attr('src', "./image/msg-info.png").appendTo($box);
+    var $msg = $("<p></p>").addClass('title').text(this.msg).appendTo($box);
+    this.$box = $box;
+    this.$msg = $msg;
+    this.$img = $img;
+    this.$cover = $cover;
+
+    this.duration = 2000;
+};
+
+MsgBox.prototype.showMsg = function (msg, autoHide) {
+    this.$msg.text(msg);
+    this.show(autoHide);
+};
+
+MsgBox.prototype.show = function (autoHide) {
+    this.$cover.show();
+    this.$box.show();
+    if (autoHide) {
+        window.setTimeout(this.hide.bind(this), this.duration);
+    }
+};
+
+MsgBox.prototype.hide = function () {
+    this.$cover.hide();
+    this.$box.hide();
+};
+
+var msgBox;
