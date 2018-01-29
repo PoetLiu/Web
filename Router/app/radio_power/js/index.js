@@ -86,6 +86,7 @@
         var r = table.ruleFind(idx);
         if (action === "toggle") {
             r.toggle();
+            console.log(r);
         }
         r.modify(init);
     }

@@ -1,6 +1,7 @@
 function Table(body) {
     this.items = [];
     this.body = body;
+    this.modId  = -1;
 }
 
 Table.prototype.parseRules = function (rules) {
@@ -23,7 +24,7 @@ Table.prototype.itemForEach = function (iterator) {
 Table.prototype.ruleFind    = function(id) {
     var r = null;
     this.itemForEach(function (idx, item) {
-        if (item.idEqualWith(idx)) {
+        if (item.checkEqual(idx)) {
             r = item;
         }
     });

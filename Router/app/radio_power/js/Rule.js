@@ -1,5 +1,5 @@
 function Rule(data) {
-    this.data = data;
+    this.data = data || {};
 }
 
 Rule.prototype.WEEK = [
@@ -37,8 +37,8 @@ Rule.prototype.getHTML = function () {
 };
 
 Rule.prototype.toggle = function () {
-    var d = this.data;
-    d.timer_enable = (d.timer_enable === '0' ? '1' : '0');
+    this.data.timer_enable = (this.isEnable() ? '0' : '1');
+    console.log(this);
 };
 
 Rule.prototype.getOptionHTML = function () {
@@ -46,7 +46,12 @@ Rule.prototype.getOptionHTML = function () {
     return "<a href=\"javascript:void(0)\" onclick=\"showRulePage(true,\'" + d.idx + "\')\">修改</a>" +
         " <a href=\"javascript:void(0)\" onclick=\"ruleDel(\'" + d.idx + "\')\">删除</a>" +
         " <a href=\"javascript:void(0)\" onclick=\"ruleMod(\'" + d.idx + "\', \'toggle\')\">" +
-        (d.timer_enable === '1' ? "禁用" : "启用") + "</a>";
+        (this.isEnable() ? "禁用" : "启用") + "</a>";
+};
+
+Rule.prototype.isEnable = function () {
+    var en = Number(this.data.timer_enable);
+    return en === 1;
 };
 
 Rule.prototype.getDayStr = function () {
@@ -101,6 +106,9 @@ Rule.prototype.sync = function (dir) {
         data["end_minute"] = $(".end.minute").val() || 0;
         data["timer_day"] = getTimerDayStr();
         data["power"] = getPowerStr();
+        if (!data["timer_enable"]) {
+            data["timer_enable"] = "1";
+        }
     } else {    // model2View
         var t = this.getTimeStr();
         // console.log(t);
@@ -210,7 +218,7 @@ Rule.prototype.delete = function (fn) {
     });
 };
 
-Rule.prototype.idEqualWith  = function (id) {
+Rule.prototype.checkEqual = function (id) {
     return Number(this.data.idx) === Number(id);
 };
 
