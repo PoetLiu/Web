@@ -105,46 +105,90 @@ function resizeAppPage() {
     }
 }
 
-function showMessage(title, message) {
+var msgBox;
+function showMessage(type, title, message) {
     msgBox = msgBox || new MsgBox("init");
-    msgBox.showMsg(title, true);
+    msgBox.showMsg({
+        msg: title,
+        autoHide: true,
+        type: type
+    });
     console.log(title, message);
 }
 
 /*
 *  MsgBox begin.
 * */
-function MsgBox(msg, type, cfg) {
+function MsgBox(msg, cfg) {
     this.msg = msg;
-    this.cfg = cfg || {};
+    this.cfg = cfg || {
+        autoHide: true,
+    };
+
+    this.init();
     this.setup();
 }
 
-MsgBox.prototype.setup = function (cfg) {
-    cfg = cfg || this.cfg;
+MsgBox.prototype.getImgSrc = function() {
+    var s;
+    switch (this.cfg.type)  {
+        case MsgType.NOTICE:
+            s   = "./image/msg-info.png";
+            break;
+        case MsgType.ERROR:
+            s   = "./image/msg-error.png";
+            break;
+        case MsgType.SUCCESS:
+            s   = "./image/msg-success.png";
+            break;
+    }
+    console.log(this, s);
+    return s;
+};
+
+MsgBox.prototype.init = function () {
     var parent = window.top.document.body;
     var $cover = $("<div></div>").addClass('cover').appendTo(parent).hide();
     var $box = $("<div></div>").addClass('msg-box').appendTo(parent).hide();
-    var $img = $("<img>").attr('src', "./image/msg-info.png").appendTo($box);
-    var $msg = $("<p></p>").addClass('title').text(this.msg).appendTo($box);
+    var $img = $("<img>").appendTo($box);
+    var $msg = $("<p></p>").addClass('title').appendTo($box);
     this.$box = $box;
     this.$msg = $msg;
     this.$img = $img;
     this.$cover = $cover;
 
-    this.duration = 2000;
+    var c = this.cfg;
+
+    c.duration = 2000;
+    c.type  = MsgType.NOTICE;
 };
 
-MsgBox.prototype.showMsg = function (msg, autoHide) {
-    this.$msg.text(msg);
-    this.show(autoHide);
+MsgBox.prototype.setup = function (cfg) {
+    var c = this.cfg;
+
+    if (cfg) {
+        c.autoHide = cfg.autoHide || c.autoHide;
+        c.type = cfg.type || c.type;
+        c.msg = cfg.msg || c.msg;
+        c.duration = cfg.duration || c.duration;
+        console.log(c, cfg);
+    }
+
+    this.$img.attr('src', this.getImgSrc());
+    this.$msg.text(c.msg);
 };
 
-MsgBox.prototype.show = function (autoHide) {
+MsgBox.prototype.showMsg = function (cfg) {
+    cfg && this.setup(cfg);
+    this.show();
+};
+
+MsgBox.prototype.show = function () {
+    var c = this.cfg;
     this.$cover.show();
     this.$box.show();
-    if (autoHide) {
-        window.setTimeout(this.hide.bind(this), this.duration);
+    if (c.autoHide) {
+        window.setTimeout(this.hide.bind(this), c.duration);
     }
 };
 
@@ -153,4 +197,9 @@ MsgBox.prototype.hide = function () {
     this.$box.hide();
 };
 
-var msgBox;
+var MsgType = {
+    NOTICE: 1,
+    ERROR:  2,
+    SUCCESS: 3
+};
+

@@ -165,7 +165,8 @@ Rule.prototype.check = function () {
 
     if (startH === endH) {
         if (startM === endM || endM - startM <= 5) {
-            showMessage("End time must at least latter than Start time 5s.");
+            showMessage(MsgType.NOTICE,
+                "End time must at least latter than Start time 5s.");
             return false;
         }
     }
@@ -184,7 +185,7 @@ Rule.prototype.add = function (fn) {
         data = eval("(" + data + ")");
         console.log(data);
         if (data[0] === "SUCCESS") {
-            console.log("Add rule success!");
+            showMessage(MsgType.SUCCESS, "Add rule success!");
             fn && fn();
             return true;
         }
@@ -197,7 +198,7 @@ Rule.prototype.modify = function (fn) {
     $.post(this.CGI, d, function (data) {
         data = eval("(" + data + ")");
         if (data[0] === "SUCCESS") {
-            console.log("Mod rule success!");
+            showMessage(MsgType.SUCCESS, "Mod rule success!");
             fn && fn();
             return true;
         }
@@ -209,7 +210,7 @@ Rule.prototype.delete = function (fn) {
     $.post(this.CGI, {action: "del", idx: d.idx}, function (data) {
         data = eval("(" + data + ")");
         if (data[0] === "SUCCESS") {
-            console.log("del rule success!");
+            showMessage(MsgType.SUCCESS, "del rule success!");
             fn && fn();
             return true;
         }
