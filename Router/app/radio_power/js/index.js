@@ -30,9 +30,11 @@
             powerModeSet($(this).attr('mode'), true);
         });
         $("#new-rule-btn").click(function (e) {
+            e.preventDefault();
             showRulePage(true);
         });
         $("#cancel-edit-btn").click(function (e) {
+            e.preventDefault();
             init();
         });
         $("#week-slot span").click(function (e) {
@@ -74,7 +76,6 @@
     function init() {
         showRulePage(false);
         getPower();
-        resizeAppPage();
     }
 
     function ruleAdd() {
@@ -122,7 +123,7 @@
                     table.render();
                     resizeAppPage();
                 } catch (e) {
-                    showMessage("get power failed.", e);
+                    showMessage(MsgType.ERROR, "get power failed.", e);
                 }
             }
         );
@@ -134,7 +135,7 @@
             function (data) {
                 var j = JSON.parse(data);
                 if (j["err_no"] !== "0") {
-                    showMessage("set power failed.");
+                    showMessage(MsgType.ERROR, "set power failed.");
                 }
             }
         );
