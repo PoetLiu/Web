@@ -84,7 +84,6 @@ function aesEncrypt(data, key) {
 function resizeAppPage() {
     if (window.top != window.self && parent.document.getElementById("app_iframe") != null) {
         var yScroll;
-        parent.document.getElementById("app_iframe").height = 450;
         if (window.innerHeight && window.scrollMaxY) {
             yScroll = window.innerHeight + window.scrollMaxY;
         } else {
@@ -99,9 +98,7 @@ function resizeAppPage() {
         } else if (document.body) {
             windowHeight = document.body.clientHeight;
         }
-
-        var pageHeight = Math.max(yScroll, windowHeight);
-        parent.document.getElementById("app_iframe").height = pageHeight;
+        parent.document.getElementById("app_iframe").height = Math.max(yScroll, windowHeight);
     }
 }
 
