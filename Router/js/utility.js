@@ -82,7 +82,9 @@ function aesEncrypt(data, key) {
 }
 
 function resizeAppPage() {
-    if (window.top != window.self && parent.document.getElementById("app_iframe") != null) {
+    if (window.top != window.self // Checking if it's the most outer window.
+        && parent.document.getElementById("app_iframe") != null) {
+        parent.document.getElementById("app_iframe").height = 450;
         var yScroll;
         if (window.innerHeight && window.scrollMaxY) {
             yScroll = window.innerHeight + window.scrollMaxY;
