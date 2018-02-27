@@ -14,6 +14,12 @@ function onWinHashChange() {
     console.log("Window loc hash changed, now:" + hash);
     setCurClass("#" + pageName);
 
+    switch (pageName) {
+        case "index_page":
+        case "settings":
+            pageName = p[p.length-1];
+            break;
+    }
     loadHtml(pageName, pages[pageName], p);
 }
 
