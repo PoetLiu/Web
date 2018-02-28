@@ -31,14 +31,10 @@ function login() {
             if (data["success"] == "1" && data["token_id"] != "") {
                 location.href = "./index.html?token_id=" + data["token_id"];
             } else {
-                if (!isNaN(data.err_no) && errNo.indexOf(data.err_no) !== -1) {
-                    showMessage("login_failure" + data.err_no);
-                } else {
-                    showMessage("login_failure");
-                }
+                showMessage(MsgType.ERROR, "login_failure:<br/>" + data["err_msg"]);
             }
         } catch (e) {
-            showMessage("login_failure");
+            showMessage(MsgType.ERROR, "login_failure:<br/>"+e);
         }
     });
 }
