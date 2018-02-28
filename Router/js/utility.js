@@ -174,7 +174,7 @@ MsgBox.prototype.setup = function (cfg) {
     }
 
     this.$img.attr('src', this.getImgSrc());
-    this.$msg.text(c.msg);
+    this.$msg.append(c.msg);
 };
 
 MsgBox.prototype.showMsg = function (cfg) {
@@ -201,4 +201,12 @@ var MsgType = {
     ERROR:  2,
     SUCCESS: 3
 };
+
+function showPathNav() {
+   var n = $('<div class="nav">' +
+       '<span id="main-nav">功能扩展</span>' +
+       '&nbsp;>&nbsp;<span id="sub-nav">信号调节</span>'+
+       '</div>');
+   $("#container").prepend(n);
+}
 

@@ -22,6 +22,7 @@ function initFuncPage(path) {
         $(".functions .app-list").hide();
         $(".functions .nav").show();
         loadApp(app);
+        showPathNav();
     } else {
         $(".functions .nav").hide();
         $(".functions .app").hide();

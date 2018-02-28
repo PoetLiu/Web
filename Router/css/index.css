@@ -599,7 +599,7 @@ body {
     background: url("../image/router_info_tab_w.png") no-repeat center 20px;
 }
 
-.functions .nav {
+#container .nav {
     font-size: 14px;
     height: 40px;
     line-height: 40px;
