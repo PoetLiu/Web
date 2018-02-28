@@ -1,5 +1,5 @@
 window.debug = true;
-var current_html = null;
+window.current_html = null;
 
 function funCall(f, param) {
     console.log(param);
@@ -204,9 +204,13 @@ var MsgType = {
 
 function showPathNav() {
    var n = $('<div class="nav">' +
-       '<span id="main-nav">功能扩展</span>' +
-       '&nbsp;>&nbsp;<span id="sub-nav">信号调节</span>'+
+       '<a href="javascript:void(0)" id="main-nav">功能扩展</a>' +
+       '&nbsp;>&nbsp;<a href="javascript:void(0)" id="sub-nav">信号调节</a>'+
        '</div>');
+   var r = $('<button class="return_a">返回</button>').off("click").on("click", function() {
+        window.history.go(-1);
+   });
+   n.append(r);
    $("#container").prepend(n);
 }
 

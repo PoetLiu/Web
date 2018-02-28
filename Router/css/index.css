@@ -45,7 +45,6 @@ body {
 
 .nav-link li a {
     color: #A3A3A3;
-    text-decoration: none;
 }
 
 .nav-link {
@@ -600,10 +599,26 @@ body {
 }
 
 #container .nav {
+    position: relative;
     font-size: 14px;
     height: 40px;
     line-height: 40px;
     padding: 0 20px;
+}
+
+
+#container .nav .return_a {
+    width: auto;
+    height: 23px;
+    line-height: 14px;
+    position: absolute;
+    top:10px;
+    right:20px;
+}
+
+#container .nav a:visited,
+#container .nav a:link {
+   color: #000000;
 }
 
 .functions .app .title,

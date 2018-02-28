@@ -39,3 +39,16 @@ button.gray:hover {
     text-decoration: none;
     background-color: #6ba8fc;
 }
+
+a:visited {
+   color: #428BEF;
+}
+
+a:link {
+    color: #428BEF;
+}
+
+a {
+    text-decoration: none;
+    outline: none;
+}
