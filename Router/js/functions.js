@@ -22,7 +22,7 @@ function initFuncPage(path) {
         $(".functions .app-list").hide();
         $(".functions .nav").show();
         loadApp(app);
-        showPathNav();
+        showPathNav("功能扩展", "信号调节");
     } else {
         $(".functions .nav").hide();
         $(".functions .app").hide();

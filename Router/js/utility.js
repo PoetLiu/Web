@@ -202,10 +202,10 @@ var MsgType = {
     SUCCESS: 3
 };
 
-function showPathNav() {
+function showPathNav(main, sub) {
    var n = $('<div class="nav">' +
-       '<a href="javascript:void(0)" id="main-nav">功能扩展</a>' +
-       '&nbsp;>&nbsp;<a href="javascript:void(0)" id="sub-nav">信号调节</a>'+
+       '<a href="javascript:void(0)" id="main-nav">'+main+'</a>' +
+       '&nbsp;>&nbsp;<a href="javascript:void(0)" id="sub-nav">'+sub+'</a>'+
        '</div>');
    var r = $('<button class="return_a">返回</button>').off("click").on("click", function() {
         window.history.go(-1);
