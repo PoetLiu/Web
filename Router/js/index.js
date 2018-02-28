@@ -2,9 +2,9 @@ var pages = {
     'index_page': initIndexPage,
     'functions': initFuncPage,
     'settings': initSetPage,
-    'management': initManagePage
+    'management': initManagePage,
+    'wifi_set': initWifiSetPage
 };
-
 
 function onWinHashChange() {
     var hash = window.location.hash || "#index_page";
