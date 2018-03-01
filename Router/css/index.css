@@ -621,6 +621,71 @@ body {
    color: #000000;
 }
 
+.form-border-shadow {
+   width: 96%;
+    min-height: 495px;
+    padding-top: 70px;
+    border: 1px solid #e8e8e8;
+    margin: 0 auto;
+    background: #ffffff;
+    -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+}
+
+.form .intro {
+    padding-bottom: 20px;
+}
+
+.form .item {
+    height: 36px;
+    margin-bottom: 10px;
+    line-height: 36px;
+}
+
+.form .item .left,
+.form .item .right {
+    float: left;
+}
+
+.form .item .left {
+    margin-right: 10px;
+    padding-right: 10px;
+    width: 40.5%;
+    text-align: right;
+}
+
+.radio {
+    width: 49px;
+    height: 16px;
+    margin-top: 11px;
+    cursor: pointer;
+    background: url("../image/form-toggle.png") no-repeat 0 -32px;
+}
+
+.radio.radio_on {
+    background: url("../image/form-toggle.png") no-repeat 0 0;
+}
+
+.radio.radio_off {
+    background: url("../image/form-toggle.png") no-repeat 0 -16px;
+}
+
+.input-text {
+    width: 240px;
+    height: 16px;
+    padding: 8px;
+    border: 1px solid #d8d8d8;
+    border-radius: 0;
+    line-height: 14px;
+    font-size: 14px;
+}
+
+.gray-text {
+    color: #999;
+    text-align: center;
+}
+
 .functions .app .title,
 .functions .app .content {
     width: 95%;
