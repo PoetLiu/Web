@@ -14,17 +14,27 @@
             <input class="input-text">
         </div>
     </div>
-    <div class="item clear-fix clear-vmargin">
+    <div class="item clear-fix clear-top-margin clear-bottom-margin">
         <div class="left"></div>
         <div class="right">
             <input id="hide-ssid" type="checkbox">
             <label class="middle" for="hide-ssid">隐藏网络名称</label>
         </div>
     </div>
-    <div class="item clear-fix">
+    <div class="item clear-fix clear-bottom-margin">
         <div class="left"></div>
         <div class="right">
             <label id="hide-ssid-intro">(SSID隐藏后，电脑和手机将搜索不到无线信号，需要手动添加无线网络)</label>
+        </div>
+    </div>
+    <div class="item clear-fix">
+        <div class="left">加密方式</div>
+        <div class="right">
+            <select id="encrypt-mode">
+                <option>无</option>
+                <option>WPA2-PSK AES</option>
+                <option>WPA/WPA2-PSK AES</option>
+            </select>
         </div>
     </div>
 </div>

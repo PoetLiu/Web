@@ -57,3 +57,13 @@ input {
     outline: none;
     vertical-align: middle;
 }
+
+select {
+    padding: 7px;
+}
+
+input, textarea, select {
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+}

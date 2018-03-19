@@ -643,6 +643,10 @@ body {
     line-height: 36px;
 }
 
+.form .item select {
+    width: 258px;
+}
+
 .form .item .left,
 .form .item .right {
     float: left;
@@ -656,9 +660,12 @@ body {
     text-align: right;
 }
 
-.form .item.clear-vmargin {
+.form .item.clear-top-margin {
     margin-top: -10px;
-    margin-bottom: 0px;
+}
+
+.form .item.clear-bottom-margin {
+    margin-bottom: 0;
 }
 
 #hide-ssid-intro {
