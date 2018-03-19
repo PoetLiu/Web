@@ -34,3 +34,11 @@
 .msg-box .title {
     font-size: 15px;
 }
+
+label[class|=top] {
+    vertical-align: top;
+}
+
+label[class|=middle] {
+    vertical-align: middle;
+}

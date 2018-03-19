@@ -646,6 +646,7 @@ body {
 .form .item .left,
 .form .item .right {
     float: left;
+    height: 100%;
 }
 
 .form .item .left {
@@ -653,6 +654,16 @@ body {
     padding-right: 10px;
     width: 40.5%;
     text-align: right;
+}
+
+.form .item.clear-vmargin {
+    margin-top: -10px;
+    margin-bottom: 0px;
+}
+
+#hide-ssid-intro {
+    position: relative;
+    top: -10px;
 }
 
 .radio {
