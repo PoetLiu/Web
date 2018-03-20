@@ -9,62 +9,62 @@
         </div>
     </div>
     <div class="item clear-fix">
-        <div class="left"><label for="wifi-ssid">WiFi名称(SSID)</label></div>
+        <div class="left"><label for="wifi_24g_ssid">WiFi名称(SSID)</label></div>
         <div class="right">
-            <input id="wifi-ssid" class="input-text">
+            <input id="wifi_24g_ssid" class="input-text">
         </div>
     </div>
     <div class="item clear-fix clear-top-margin clear-bottom-margin">
         <div class="left"></div>
         <div class="right">
-            <input id="hide-ssid" type="checkbox">
-            <label class="middle" for="hide-ssid">隐藏网络名称</label>
+            <input id="wifi_24g_hide_ssid" type="checkbox">
+            <label class="middle" for="wifi_24g_hide_ssid">隐藏网络名称</label>
         </div>
     </div>
     <div class="item clear-fix clear-bottom-margin">
         <div class="left"></div>
         <div class="right">
-            <label id="hide-ssid-intro">(SSID隐藏后，电脑和手机将搜索不到无线信号，需要手动添加无线网络)</label>
+            <label id="wifi_24g_hide_ssid_intro">(SSID隐藏后，电脑和手机将搜索不到无线信号，需要手动添加无线网络)</label>
         </div>
     </div>
     <div class="item clear-fix">
-        <div class="left"><label for="encrypt-mode">加密方式</label></div>
+        <div class="left"><label for="wifi_24g_encrypt_mode">加密方式</label></div>
         <div class="right">
-            <select id="encrypt-mode">
-                <option>无</option>
-                <option>WPA2-PSK AES</option>
-                <option>WPA/WPA2-PSK AES</option>
+            <select id="wifi_24g_encrypt_mode">
+                <option value="0">无</option>
+                <option value="3">WPA2-PSK AES</option>
+                <option value="4">WPA/WPA2-PSK AES</optionv>
             </select>
         </div>
     </div>
     <div class="item clear-fix">
-        <div class="left"><label for="band-width">频道带宽</label></div>
+        <div class="left"><label for="wifi_24g_bandwidth">频道带宽</label></div>
         <div class="right">
-            <select id="band-width">
-                <option>自动</option>
-                <option>20M(抗干扰能力强)</option>
-                <option>40M(速度快)</option>
+            <select id="wifi_24g_bandwidth">
+                <option value="4">自动</option>
+                <option value="2">20M(抗干扰能力强)</option>
+                <option value="3">40M(速度快)</option>
             </select>
         </div>
     </div>
     <div class="item clear-fix">
-        <div class="left"><label for="channel">无线信道</label></div>
+        <div class="left"><label for="wifi_24g_channel">无线信道</label></div>
         <div class="right">
-            <select id="channel">
-                <option>自动（当前信道 1）</option>
-                <option>信道 1</option>
-                <option>信道 2</option>
-                <option>信道 3</option>
-                <option>信道 4</option>
-                <option>信道 5</option>
-                <option>信道 6</option>
-                <option>信道 7</option>
-                <option>信道 8</option>
-                <option>信道 9</option>
-                <option>信道 10</option>
-                <option>信道 11</option>
-                <option>信道 12</option>
-                <option>信道 13</option>
+            <select id="wifi_24g_channel">
+                <option value="0">自动（当前信道 1）</option>
+                <option value="1">信道 1</option>
+                <option value="2">信道 2</option>
+                <option value="3">信道 3</option>
+                <option value="4">信道 4</option>
+                <option value="5">信道 5</option>
+                <option value="6">信道 6</option>
+                <option value="7">信道 7</option>
+                <option value="8">信道 8</option>
+                <option value="9">信道 9</option>
+                <option value="10">信道 10</option>
+                <option value="11">信道 11</option>
+                <option value="l2">信道 12</option>
+                <option value="13">信道 13</option>
             </select>
         </div>
     </div>
@@ -72,6 +72,6 @@
         <a href="javascript:void(0);">智能优化无线</a>
     </div>
     <div class="item clear-fix opt">
-        <input id="wifi-submit-btn" type="submit" value="确定" class="btn">
+        <input id="wifi_24g_submit_btn" type="submit" value="确定" class="btn">
     </div>
 </div>
