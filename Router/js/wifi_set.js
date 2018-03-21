@@ -32,11 +32,11 @@ function initWifiSetPage() {
             }
         }
     };
-   showPathNav("我的安全路由", "WiFi设置");
 
-   initView();
+    var testCircle = 0, testMode = false;
+    var wifi_cfg;
 
-   var wifi_cfg;
+
    function paintView(data) {
         $.each(dom, function (id, item) {
             // console.log(id, item, data[id]);
@@ -50,6 +50,35 @@ function initWifiSetPage() {
         });
    }
 
+   function test() {
+       var ret = 0;
+       switch (testCircle) {
+           case 0:
+               paintView({
+                   "SSID_broadcast":"1"
+               });
+               testCircle++;
+               break;
+           case 1:
+               paintView({
+                   "SSID_broadcast":"0"
+               });
+               testCircle++;
+               break;
+           default:
+               ret = -1;
+       }
+       return ret;
+   }
+
+   function testRun() {
+        window.setTimeout(function(){
+            if (test() !== -1) {
+                testRun();
+            }
+        }, 1000);
+   }
+
    function initView() {
        var p = {
            ap_id:       0,
@@ -57,6 +86,11 @@ function initWifiSetPage() {
            port_id:     "WIFI1",
            ap_mode:     0
        };
+
+       if (testMode) {
+            testRun();
+            return;
+       }
 
        $.post("/router/wireless_base_show.cgi", p, function (data) {
            data = eval("("+data+")");
@@ -69,4 +103,7 @@ function initWifiSetPage() {
            paintView(data);
        });
    }
+
+    showPathNav("我的安全路由", "WiFi设置");
+    initView();
 }
