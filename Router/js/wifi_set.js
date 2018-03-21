@@ -1,11 +1,11 @@
 function initWifiSetPage() {
     var dom = {
-        "AP_SSID":"#wifi_24g_ssid",
-        "wire_enable":"#wifi_24g_enable",
+        "AP_SSID":      "#wifi_24g_ssid",
+        "wire_enable":  "#wifi_24g_enable",
         "channel_width":"#wifi_24g_bandwidth",
-        "ap_mode":"#wifi_24g_encrypt_mode",
-        "password":"#wifi_24g_pwd",
-        "channel_num":"#wifi_24g_channel"
+        "ap_mode":      "#wifi_24g_encrypt_mode",
+        "password":     "#wifi_24g_pwd",
+        "channel_num":  "#wifi_24g_channel"
     };
    showPathNav("我的安全路由", "WiFi设置");
 
