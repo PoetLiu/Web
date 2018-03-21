@@ -15,7 +15,7 @@ function initWifiSetPage() {
    function paintView(data) {
         $.each(dom, function (id, item) {
             console.log(id, item, data[id]);
-            if (data[id]) {
+            if (data[id] !== undefined) {
                 $(item).val(data[id]);
             }
         });
@@ -36,6 +36,7 @@ function initWifiSetPage() {
 
        $.post("/router/wireless_sec_show.cgi", p, function (data) {
            data = eval("("+data+")");
+           data.password    = aesDecrypt(data.wpa_key);
            paintView(data);
        });
    }
