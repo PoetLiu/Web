@@ -690,6 +690,15 @@ body {
     top: -10px;
 }
 
+#wifi_24g_pwd_section {
+    padding: 5px 0 15px;
+    position: relative;
+}
+
+#wifi_24g_pwd_section input {
+    vertical-align: inherit;
+}
+
 .radio {
     width: 49px;
     height: 16px;
