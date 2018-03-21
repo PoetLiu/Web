@@ -14,7 +14,7 @@ function initWifiSetPage() {
 
    function paintView(data) {
         $.each(dom, function (id, item) {
-            console.log(id, item, data[id]);
+            // console.log(id, item, data[id]);
             if (data[id] !== undefined) {
                 $(item).val(data[id]);
             }

@@ -92,7 +92,7 @@ function aesDecrypt(key) {
        padding: CryptoJS.pad.Pkcs7
    });
    plaintext    = plaintext.toString(CryptoJS.enc.Utf8);
-   console.log(ciphertext, cipher, plaintext);
+   // console.log(ciphertext, cipher, plaintext);
    return plaintext;
 }
 
