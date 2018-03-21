@@ -38,7 +38,7 @@ function loadHtml(html, onSuccess) {
     });
 }
 
-function get_rand_key() {
+function get_rand_key(key_index) {
     var calleeFn = arguments.callee;
     var ret = {
         "rand_key": "",
@@ -49,7 +49,7 @@ function get_rand_key() {
         url: "/router/get_rand_key.cgi",
         data: {
             "noneed": "noneed",
-            "key_index": ""
+            "key_index": key_index || ""
         },
         dataType: "json",
         async: false,
@@ -79,6 +79,21 @@ function aesEncrypt(data, key) {
     });
     console.log(data, key, cipher.ciphertext.toString());
     return key.key_index + cipher.ciphertext.toString();
+}
+
+function aesDecrypt(key) {
+   var keyIdx = key.substring(0, 32), ciphertext = key.substring(32);
+   var cipher = CryptoJS.enc.Hex.parse(ciphertext).toString(CryptoJS.enc.Base64);
+   var rand_key = get_rand_key(keyIdx).rand_key, keyHex = CryptoJS.enc.Hex.parse(rand_key);
+   var iv = CryptoJS.enc.Latin1.parse("360luyou@install");
+   var plaintext = CryptoJS.AES.decrypt(cipher, keyHex, {
+       iv: iv,
+       mode: CryptoJS.mode.CBC,
+       padding: CryptoJS.pad.Pkcs7
+   });
+   plaintext    = plaintext.toString(CryptoJS.enc.Utf8);
+   // console.log(ciphertext, cipher, plaintext);
+   return plaintext;
 }
 
 function resizeAppPage() {

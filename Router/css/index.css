@@ -686,9 +686,18 @@ body {
     text-align: center;
 }
 
-#hide-ssid-intro {
+#wifi_24g_hide_ssid_intro {
     position: relative;
     top: -10px;
+}
+
+#wifi_24g_pwd_section {
+    padding: 5px 0 15px;
+    position: relative;
+}
+
+#wifi_24g_pwd_section input {
+    vertical-align: inherit;
 }
 
 .radio {
