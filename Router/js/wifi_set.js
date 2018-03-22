@@ -1,10 +1,15 @@
 function initWifiSetPage() {
+    var testCircle = 0, testMode = false;
+    var wifi_cfg, wifiEnableId = "#wifi_24g_enable",
+        wifiEncryptModeId = "#wifi_24g_encrypt_mode",
+        wifiPwdId = "#wifi_24g_pwd", wifiPwdSectionId = "#wifi_24g_pwd_section";
+
     var dom = {
         "AP_SSID": {
             id: "#wifi_24g_ssid"
         },
         "wire_enable": {
-            id: "#wifi_24g_enable",
+            id: wifiEnableId,
             val: function (v) {
                 wifiEnable(this.id, v === "1");
             }
@@ -13,10 +18,14 @@ function initWifiSetPage() {
             id: "#wifi_24g_bandwidth"
         },
         "ap_mode": {
-            id: "#wifi_24g_encrypt_mode"
+            id: wifiEncryptModeId,
+            val: function (v) {
+                $(this.id).val(v);
+                wifiPwdSectionShow($(this.id).val() !== "0");
+            }
         },
         "password": {
-            id: "#wifi_24g_pwd"
+            id: wifiPwdId
         },
         "channel_num": {
             id: "#wifi_24g_channel"
@@ -29,13 +38,17 @@ function initWifiSetPage() {
         }
     };
 
-    var testCircle = 0, testMode = false;
-    var wifi_cfg;
-
+    function wifiPwdSectionShow(en) {
+        en ? $(wifiPwdSectionId).show() : $(wifiPwdSectionId).hide();
+    }
 
     function wifiEnable(id, en) {
-        $(id).removeClass(en ? "radio_off":"radio_on")
-            .addClass(en ? "radio_on":"radio_off");
+        $(id).removeClass(en ? "radio_off" : "radio_on")
+            .addClass(en ? "radio_on" : "radio_off");
+    }
+
+    function wifiEnableToggle(id) {
+        wifiEnable(id, $(id).hasClass("radio_off"));
     }
 
     function paintView(data) {
@@ -70,6 +83,16 @@ function initWifiSetPage() {
                     "wire_enable": "1"
                 });
                 break;
+            case 4:
+                paintView({
+                    "ap_mode": "0"
+                });
+                break;
+            case 5:
+                paintView({
+                    "ap_mode": "4"
+                });
+                break;
             default:
                 ret = -1;
         }
@@ -96,6 +119,16 @@ function initWifiSetPage() {
             port_id: "WIFI1",
             ap_mode: 0
         };
+
+        $(wifiEnableId).click(function (e) {
+            //console.log(e);
+            wifiEnableToggle("#" + e.target.id);
+        });
+
+        $(wifiEncryptModeId).change(function (e) {
+            // console.log(e);
+            wifiPwdSectionShow($("#" + e.target.id).val() !== "0");
+        });
 
         if (testMode) {
             console.log("auto Test Begin!");
