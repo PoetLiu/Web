@@ -27,7 +27,7 @@ function initWifiSetPage() {
             val: function (v) {
                 if (v) {
                     $(this.id).val(v);
-                    wifiPwdSectionShow($(this.id).val() !== "0");
+                    $(this.id).change();
                 } else {
                     return $(this.id).val();
                 }
@@ -116,6 +116,7 @@ function initWifiSetPage() {
 
         if (testCases[testCircle]) {
             data2View(testCases[testCircle]);
+            view2Data();
             testCircle++;
         } else {
             ret = -1;
