@@ -70,9 +70,16 @@ function initWifiSetPage() {
         if (en !== undefined) {
             $(id).removeClass(en ? "radio_off" : "radio_on")
                 .addClass(en ? "radio_on" : "radio_off");
+            wifiFormEnable(en);
         } else {
             return $(id).hasClass("radio_on");
         }
+    }
+
+    function wifiFormEnable(en) {
+        $.each(dom, function (id, item) {
+            $(item.id).prop("disabled", !en);
+        });
     }
 
     function wifiEnableToggle(id) {
