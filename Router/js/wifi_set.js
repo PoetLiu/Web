@@ -33,7 +33,7 @@ function initWifiSetPage() {
                 var cur = data["status_channel_num"];
                 $(this.id).val(v);
                 if (v === "0") {
-                    $(this.id+' option[value="0"]').text("自动（当前信道 "+cur+"）");
+                    $(this.id + ' option[value="0"]').text("自动（当前信道 " + cur + "）");
                 }
             }
         },
@@ -68,43 +68,28 @@ function initWifiSetPage() {
     }
 
     function autoTest() {
-        var ret = 0;
-        switch (testCircle) {
-            case 0:
-                paintView({
-                    "SSID_broadcast": "1"
-                });
-                break;
-            case 1:
-                paintView({
-                    "SSID_broadcast": "0"
-                });
-                break;
-            case 2:
-                paintView({
-                    "wire_enable": "0"
-                });
-                break;
-            case 3:
-                paintView({
-                    "wire_enable": "1"
-                });
-                break;
-            case 4:
-                paintView({
-                    "ap_mode": "0"
-                });
-                break;
-            case 5:
-                paintView({
-                    "ap_mode": "4"
-                });
-                break;
-            default:
-                ret = -1;
-        }
-        if (ret === 0) {
+        var ret = 0, testCases = [
+            {"SSID_broadcast": "1"},
+            {"SSID_broadcast": "0"},
+            {"wire_enable": "0"},
+            {"wire_enable": "1"},
+            {"ap_mode": "0"},
+            {"ap_mode": "4"},
+            {
+                "channel_num": "0",
+                "status_channel_num": "10"
+            },
+            {
+                "channel_num": "11",
+                "status_channel_num": "11"
+            }
+        ];
+
+        if (testCases[testCircle]) {
+            paintView(testCases[testCircle]);
             testCircle++;
+        } else {
+            ret = -1;
         }
         return ret;
     }
