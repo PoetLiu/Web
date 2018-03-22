@@ -28,7 +28,14 @@ function initWifiSetPage() {
             id: wifiPwdId
         },
         "channel_num": {
-            id: "#wifi_24g_channel"
+            id: "#wifi_24g_channel",
+            val: function (v, data) {
+                var cur = data["status_channel_num"];
+                $(this.id).val(v);
+                if (v === "0") {
+                    $(this.id+' option[value="0"]').text("自动（当前信道 "+cur+"）");
+                }
+            }
         },
         "SSID_broadcast": {
             id: "#wifi_24g_hide_ssid",
@@ -55,7 +62,7 @@ function initWifiSetPage() {
         $.each(dom, function (id, item) {
             // console.log(id, item, data[id]);
             if (data[id] !== undefined) {
-                item.val ? item.val(data[id]) : $(item.id).val(data[id]);
+                item.val ? item.val(data[id], data) : $(item.id).val(data[id], data);
             }
         });
     }
