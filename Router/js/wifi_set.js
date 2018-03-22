@@ -1,16 +1,23 @@
 function initWifiSetPage() {
     var testCircle = 0, testMode = false;
-    var wifi_cfg, wifiEnableId = "#wifi_24g_enable",
+    var wifiCfg = {}, wifiEnableId = "#wifi_24g_enable",
         wifiEncryptModeId = "#wifi_24g_encrypt_mode",
         wifiPwdId = "#wifi_24g_pwd", wifiPwdSectionId = "#wifi_24g_pwd_section",
         wifiSubmitId ="#wifi_24g_submit_btn";
-
+    var P = {
+            ap_id: 0,
+            network_mode: 999,
+            port_id: "WIFI1",
+            ap_mode: 0
+        };
     var dom = {
         "AP_SSID": {
-            id: "#wifi_24g_ssid"
+            id: "#wifi_24g_ssid",
+            type:"base"
         },
         "wire_enable": {
             id: wifiEnableId,
+            type:"base",
             val: function (v) {
                 if (v) {
                     wifiEnable(this.id, v === "1");
@@ -20,10 +27,12 @@ function initWifiSetPage() {
             }
         },
         "channel_width": {
-            id: "#wifi_24g_bandwidth"
+            id: "#wifi_24g_bandwidth",
+            type:"base"
         },
         "ap_mode": {
             id: wifiEncryptModeId,
+            type:"sec",
             val: function (v) {
                 if (v) {
                     $(this.id).val(v);
@@ -33,11 +42,13 @@ function initWifiSetPage() {
                 }
             }
         },
-        "password": {
-            id: wifiPwdId
+        "wpa_key": {
+            id: wifiPwdId,
+            type:"sec"
         },
         "channel_num": {
             id: "#wifi_24g_channel",
+            type:"base",
             val: function (v, data) {
                 if (v) {
                     var cur = data["status_channel_num"];
@@ -52,6 +63,7 @@ function initWifiSetPage() {
         },
         "SSID_broadcast": {
             id: "#wifi_24g_hide_ssid",
+            type:"base",
             val: function (v) {
                 if (v) {
                     $(this.id).prop("checked", v === "0");
@@ -82,6 +94,38 @@ function initWifiSetPage() {
         });
     }
 
+    function wifiFormCk(cfg) {
+       return true;
+    }
+
+    function wifiCfgChanged(cfg) {
+        var nowCfg = $.extend(true, {}, wifiCfg, cfg);
+        return JSON.stringify(wifiCfg) !== JSON.stringify(nowCfg);
+    }
+
+    function wifiFormSubmit(cfg) {
+        if (!wifiCfgChanged(cfg)) {
+            console.log("Form cfg doesn't change, abort.");
+            return;
+        }
+
+        var base = $.extend({}, P, wifiCfg.base, cfg.base),
+        doneCnt = 0;
+        console.log(base);
+        $.post("/router/wire_bas_ap_set.cgi", base, done);
+
+        var sec = $.extend({}, P, wifiCfg.sec, cfg.sec);
+        console.log(sec);
+        $.post("/router/wireless_sec_set.cgi", sec, done);
+
+        function done() {
+            doneCnt++;
+            if (doneCnt === 2) {
+                wifiFormGet();
+            }
+        }
+    }
+
     function wifiEnableToggle(id) {
         wifiEnable(id, $(id).hasClass("radio_off"));
     }
@@ -96,11 +140,12 @@ function initWifiSetPage() {
     }
 
     function view2Data() {
-        var data = {};
+        var data = {"sec":{}, "base":{}};
         $.each(dom, function (id, item) {
-            data[id] = item.val ? item.val() : $(item.id).val();
+            data[item.type][id] = item.val ? item.val() : $(item.id).val();
         });
         console.log(data);
+        return data;
     }
 
     function autoTest() {
@@ -141,14 +186,22 @@ function initWifiSetPage() {
         }, 1000);
     }
 
-    function initView() {
-        var p = {
-            ap_id: 0,
-            network_mode: 999,
-            port_id: "WIFI1",
-            ap_mode: 0
-        };
+    function wifiFormGet() {
+        $.post("/router/wireless_base_show.cgi", P, function (data) {
+            data = eval("(" + data + ")");
+            wifiCfg.base = data;
+            data2View(data);
+        });
 
+        $.post("/router/wireless_sec_show.cgi", P, function (data) {
+            data = eval("(" + data + ")");
+            data.wpa_key = aesDecrypt(data.wpa_key);
+            wifiCfg.sec = data;
+            data2View(data);
+        });
+    }
+
+    function initView() {
         $(wifiEnableId).click(function (e) {
             //console.log(e);
             wifiEnableToggle("#" + e.target.id);
@@ -160,7 +213,10 @@ function initWifiSetPage() {
         });
 
         $(wifiSubmitId).click(function (e) {
-            view2Data();
+            var data = view2Data();
+            if (wifiFormCk(data)) {
+                wifiFormSubmit(data);
+            }
         });
 
         if (testMode) {
@@ -169,16 +225,7 @@ function initWifiSetPage() {
             return;
         }
 
-        $.post("/router/wireless_base_show.cgi", p, function (data) {
-            data = eval("(" + data + ")");
-            data2View(data);
-        });
-
-        $.post("/router/wireless_sec_show.cgi", p, function (data) {
-            data = eval("(" + data + ")");
-            data.password = aesDecrypt(data.wpa_key);
-            data2View(data);
-        });
+        wifiFormGet();
     }
 
     showPathNav("我的安全路由", "WiFi设置");
