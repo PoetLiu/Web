@@ -34,22 +34,15 @@ function initWifiSetPage() {
 
 
     function wifiEnable(id, en) {
-        if (en) {
-            $(id).removeClass("radio_off").addClass("radio_on");
-        } else {
-            $(id).removeClass("radio_on").addClass("radio_off");
-        }
+        $(id).removeClass(en ? "radio_off":"radio_on")
+            .addClass(en ? "radio_on":"radio_off");
     }
 
     function paintView(data) {
         $.each(dom, function (id, item) {
             // console.log(id, item, data[id]);
             if (data[id] !== undefined) {
-                if (item.val) {
-                    item.val(data[id]);
-                } else {
-                    $(item.id).val(data[id]);
-                }
+                item.val ? item.val(data[id]) : $(item.id).val(data[id]);
             }
         });
     }
@@ -61,28 +54,27 @@ function initWifiSetPage() {
                 paintView({
                     "SSID_broadcast": "1"
                 });
-                testCircle++;
                 break;
             case 1:
                 paintView({
                     "SSID_broadcast": "0"
                 });
-                testCircle++;
                 break;
             case 2:
                 paintView({
                     "wire_enable": "0"
                 });
-                testCircle++;
                 break;
             case 3:
                 paintView({
                     "wire_enable": "1"
                 });
-                testCircle++;
                 break;
             default:
                 ret = -1;
+        }
+        if (ret === 0) {
+            testCircle++;
         }
         return ret;
     }
