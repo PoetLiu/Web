@@ -2,7 +2,8 @@ function initWifiSetPage() {
     var testCircle = 0, testMode = false;
     var wifi_cfg, wifiEnableId = "#wifi_24g_enable",
         wifiEncryptModeId = "#wifi_24g_encrypt_mode",
-        wifiPwdId = "#wifi_24g_pwd", wifiPwdSectionId = "#wifi_24g_pwd_section";
+        wifiPwdId = "#wifi_24g_pwd", wifiPwdSectionId = "#wifi_24g_pwd_section",
+        wifiSubmitId ="#wifi_24g_submit_btn";
 
     var dom = {
         "AP_SSID": {
@@ -11,7 +12,11 @@ function initWifiSetPage() {
         "wire_enable": {
             id: wifiEnableId,
             val: function (v) {
-                wifiEnable(this.id, v === "1");
+                if (v) {
+                    wifiEnable(this.id, v === "1");
+                } else {
+                    return wifiEnable(this.id) ? "1":"0";
+                }
             }
         },
         "channel_width": {
@@ -20,8 +25,12 @@ function initWifiSetPage() {
         "ap_mode": {
             id: wifiEncryptModeId,
             val: function (v) {
-                $(this.id).val(v);
-                wifiPwdSectionShow($(this.id).val() !== "0");
+                if (v) {
+                    $(this.id).val(v);
+                    wifiPwdSectionShow($(this.id).val() !== "0");
+                } else {
+                    return $(this.id).val();
+                }
             }
         },
         "password": {
@@ -30,17 +39,25 @@ function initWifiSetPage() {
         "channel_num": {
             id: "#wifi_24g_channel",
             val: function (v, data) {
-                var cur = data["status_channel_num"];
-                $(this.id).val(v);
-                if (v === "0") {
-                    $(this.id + ' option[value="0"]').text("自动（当前信道 " + cur + "）");
+                if (v) {
+                    var cur = data["status_channel_num"];
+                    $(this.id).val(v);
+                    if (v === "0") {
+                        $(this.id + ' option[value="0"]').text("自动（当前信道 " + cur + "）");
+                    }
+                } else {
+                    return $(this.id).val();
                 }
             }
         },
         "SSID_broadcast": {
             id: "#wifi_24g_hide_ssid",
             val: function (v) {
-                $(this.id).prop("checked", v === "0");
+                if (v) {
+                    $(this.id).prop("checked", v === "0");
+                } else {
+                    return $(this.id).prop("checked") ? "0":"1";
+                }
             }
         }
     };
@@ -50,21 +67,33 @@ function initWifiSetPage() {
     }
 
     function wifiEnable(id, en) {
-        $(id).removeClass(en ? "radio_off" : "radio_on")
-            .addClass(en ? "radio_on" : "radio_off");
+        if (en !== undefined) {
+            $(id).removeClass(en ? "radio_off" : "radio_on")
+                .addClass(en ? "radio_on" : "radio_off");
+        } else {
+            return $(id).hasClass("radio_on");
+        }
     }
 
     function wifiEnableToggle(id) {
         wifiEnable(id, $(id).hasClass("radio_off"));
     }
 
-    function paintView(data) {
+    function data2View(data) {
         $.each(dom, function (id, item) {
             // console.log(id, item, data[id]);
             if (data[id] !== undefined) {
                 item.val ? item.val(data[id], data) : $(item.id).val(data[id], data);
             }
         });
+    }
+
+    function view2Data() {
+        var data = {};
+        $.each(dom, function (id, item) {
+            data[id] = item.val ? item.val() : $(item.id).val();
+        });
+        console.log(data);
     }
 
     function autoTest() {
@@ -86,7 +115,7 @@ function initWifiSetPage() {
         ];
 
         if (testCases[testCircle]) {
-            paintView(testCases[testCircle]);
+            data2View(testCases[testCircle]);
             testCircle++;
         } else {
             ret = -1;
@@ -122,6 +151,10 @@ function initWifiSetPage() {
             wifiPwdSectionShow($("#" + e.target.id).val() !== "0");
         });
 
+        $(wifiSubmitId).click(function (e) {
+            view2Data();
+        });
+
         if (testMode) {
             console.log("auto Test Begin!");
             autoTestRun();
@@ -130,13 +163,13 @@ function initWifiSetPage() {
 
         $.post("/router/wireless_base_show.cgi", p, function (data) {
             data = eval("(" + data + ")");
-            paintView(data);
+            data2View(data);
         });
 
         $.post("/router/wireless_sec_show.cgi", p, function (data) {
             data = eval("(" + data + ")");
             data.password = aesDecrypt(data.wpa_key);
-            paintView(data);
+            data2View(data);
         });
     }
 
