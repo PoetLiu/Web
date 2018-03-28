@@ -207,7 +207,6 @@ function initWifiSetPage() {
             channel_width: wifiCfg.base.channel_width
         };
         $.post("/router/wireless_get_best_channel.cgi", p, function (data) {
-            var d = {};
             data = eval("(" + data + ")");
             if (wifiCfg.base.channel_num === "0") {
                 wifiCfg.base.status_channel_num = data.best_channel;
