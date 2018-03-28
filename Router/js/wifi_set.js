@@ -111,11 +111,12 @@ function initWifiSetPage() {
 
         var base = $.extend({}, P, wifiCfg.base, cfg.base),
         doneCnt = 0;
-        console.log(base);
+        // console.log(base);
         $.post("/router/wire_bas_ap_set.cgi", base, done);
 
         var sec = $.extend({}, P, wifiCfg.sec, cfg.sec);
-        console.log(sec);
+        // console.log(sec);
+        sec.wpa_key = aesEncrypt(sec.wpa_key);
         $.post("/router/wireless_sec_set.cgi", sec, done);
 
         function done() {
