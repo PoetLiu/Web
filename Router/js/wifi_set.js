@@ -3,7 +3,8 @@ function initWifiSetPage() {
     var wifiCfg = {}, wifiEnableId = "#wifi_24g_enable",
         wifiEncryptModeId = "#wifi_24g_encrypt_mode",
         wifiPwdId = "#wifi_24g_pwd", wifiPwdSectionId = "#wifi_24g_pwd_section",
-        wifiSubmitId = "#wifi_24g_submit_btn", bestChannelId = "#best_channel";
+        wifiSubmitId = "#wifi_24g_submit_btn", bestChannelId = "#best_channel",
+        wifiPwdStrengthBarId = "#wifi_24g_strength_bar";
     var P = {
         ap_id: 0,
         network_mode: 999,
@@ -239,6 +240,58 @@ function initWifiSetPage() {
         showMessage(MsgType.LOADING, "最佳信道搜索中......", false);
     }
 
+    var strengthData = {
+        "weak": {
+            id: 0,
+            text: "弱"
+        },
+        "middle": {
+            id: 1,
+            text: "中"
+        },
+        "strong": {
+            id: 2,
+            text: "强"
+        }
+    };
+
+    function wifiPwdStrengthGet(pwd) {
+        var l = pwd.length;
+        if (l <= 0) {
+            return null;
+        } else if (l <= 6) {
+            return "weak";
+        } else if (l <= 8) {
+            return "middle";
+        } else {
+            return "strong";
+        }
+    }
+
+    function wifiPwdStrengthBarSet(en, strength) {
+        // console.log(en, strength);
+        if (!en || !strength) {
+            $(wifiPwdStrengthBarId).hide();
+            return;
+        }
+
+        var s = strengthData[strength], cnt = 0;
+        $(wifiPwdStrengthBarId).children().each(function (id, e) {
+            $(e).removeClass("weak middle strong");
+            $(e).html("");
+            if (cnt <= s.id) {
+                $(e).addClass(strength);
+                if (cnt === s.id) {
+                    $(e).html(s.text);
+                }
+            } else {
+                $(e).addClass("weak");
+            }
+            cnt++;
+        });
+        $(wifiPwdStrengthBarId).show();
+    }
+
     function initView() {
         $(wifiEnableId).click(function (e) {
             //console.log(e);
@@ -247,7 +300,16 @@ function initWifiSetPage() {
 
         $(wifiEncryptModeId).change(function (e) {
             // console.log(e);
-            wifiPwdSectionShow($("#" + e.target.id).val() !== "0");
+            wifiPwdSectionShow($(e.target).val() !== "0");
+        });
+
+        $(wifiPwdId).on("keyup paste focus", function (e) {
+            var strength = wifiPwdStrengthGet($(e.target).val());
+            wifiPwdStrengthBarSet(true, strength);
+        });
+
+        $(wifiPwdId).blur(function (e) {
+            wifiPwdStrengthBarSet(false);
         });
 
         $(wifiSubmitId).click(function (e) {

@@ -44,3 +44,7 @@ label[class|=top] {
 label[class|=middle] {
     vertical-align: middle;
 }
+
+.hide {
+    display: none;
+}

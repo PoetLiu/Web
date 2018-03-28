@@ -705,6 +705,35 @@ body {
     vertical-align: inherit;
 }
 
+#wifi_24g_strength_bar {
+    position: absolute;
+    height: 18px;
+    width: 258px;
+    top: 44px;
+}
+
+.form .strength_bar .weak {
+    background-color: #AAABAB;
+}
+
+.form .strength_bar .middle {
+    background-color: #FFBF37;
+}
+
+.form .strength_bar .strong {
+    background-color: #00E146;
+}
+
+.form .strength_bar .level {
+    margin-right: 1px;
+    float: left;
+    height: 18px;
+    line-height: 18px;
+    width: 85px;
+    text-align: center;
+    color: white;
+}
+
 .radio {
     width: 49px;
     height: 16px;
