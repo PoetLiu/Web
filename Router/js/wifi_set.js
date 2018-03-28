@@ -3,36 +3,36 @@ function initWifiSetPage() {
     var wifiCfg = {}, wifiEnableId = "#wifi_24g_enable",
         wifiEncryptModeId = "#wifi_24g_encrypt_mode",
         wifiPwdId = "#wifi_24g_pwd", wifiPwdSectionId = "#wifi_24g_pwd_section",
-        wifiSubmitId ="#wifi_24g_submit_btn", bestChannelId="#best_channel";
+        wifiSubmitId = "#wifi_24g_submit_btn", bestChannelId = "#best_channel";
     var P = {
-            ap_id: 0,
-            network_mode: 999,
-            port_id: "WIFI1",
-            ap_mode: 0
-        };
+        ap_id: 0,
+        network_mode: 999,
+        port_id: "WIFI1",
+        ap_mode: 0
+    };
     var dom = {
         "AP_SSID": {
             id: "#wifi_24g_ssid",
-            type:"base"
+            type: "base"
         },
         "wire_enable": {
             id: wifiEnableId,
-            type:"base",
+            type: "base",
             val: function (v) {
                 if (v) {
                     wifiEnable(this.id, v === "1");
                 } else {
-                    return wifiEnable(this.id) ? "1":"0";
+                    return wifiEnable(this.id) ? "1" : "0";
                 }
             }
         },
         "channel_width": {
             id: "#wifi_24g_bandwidth",
-            type:"base"
+            type: "base"
         },
         "ap_mode": {
             id: wifiEncryptModeId,
-            type:"sec",
+            type: "sec",
             val: function (v) {
                 if (v) {
                     $(this.id).val(v);
@@ -44,11 +44,11 @@ function initWifiSetPage() {
         },
         "wpa_key": {
             id: wifiPwdId,
-            type:"sec"
+            type: "sec"
         },
         "channel_num": {
             id: "#wifi_24g_channel",
-            type:"base",
+            type: "base",
             val: function (v, data) {
                 if (v) {
                     var cur = data["status_channel_num"];
@@ -63,12 +63,22 @@ function initWifiSetPage() {
         },
         "SSID_broadcast": {
             id: "#wifi_24g_hide_ssid",
-            type:"base",
+            type: "base",
             val: function (v) {
                 if (v) {
                     $(this.id).prop("checked", v === "0");
                 } else {
-                    return $(this.id).prop("checked") ? "0":"1";
+                    return $(this.id).prop("checked") ? "0" : "1";
+                }
+            }
+        },
+        "best_channel_set": {
+            id: "#best_channel",
+            disable: function (en) {
+                if (en) {
+                    $(this.id).off("click").addClass("disable");
+                } else {
+                    $(this.id).on("click", bestChannelAutoSet).removeClass("disable");
                 }
             }
         }
@@ -90,12 +100,12 @@ function initWifiSetPage() {
 
     function wifiFormEnable(en) {
         $.each(dom, function (id, item) {
-            $(item.id).prop("disabled", !en);
+            item.disable ? item.disable(!en) : $(item.id).prop("disabled", !en);
         });
     }
 
     function wifiFormCk(cfg) {
-       return true;
+        return true;
     }
 
     function wifiCfgChanged(cfg) {
@@ -111,7 +121,7 @@ function initWifiSetPage() {
         }
 
         var base = $.extend({}, P, wifiCfg.base, cfg.base),
-        doneCnt = 0;
+            doneCnt = 0;
         // console.log(base);
         $.post("/router/wire_bas_ap_set.cgi", base, done);
 
@@ -148,9 +158,11 @@ function initWifiSetPage() {
     }
 
     function view2Data() {
-        var data = {"sec":{}, "base":{}};
+        var data = {"sec": {}, "base": {}};
         $.each(dom, function (id, item) {
-            data[item.type][id] = item.val ? item.val() : $(item.id).val();
+            if (item.type) {
+                data[item.type][id] = item.val ? item.val() : $(item.id).val();
+            }
         });
         console.log(data);
         return data;
@@ -208,7 +220,7 @@ function initWifiSetPage() {
             data2View(data);
         });
     }
-    
+
     function bestChannelAutoSet() {
         var p = {
             port_id: P.port_id,
@@ -219,7 +231,7 @@ function initWifiSetPage() {
             if (wifiCfg.base.channel_num === "0") {
                 wifiCfg.base.status_channel_num = data.best_channel;
             } else {
-                wifiCfg.base.channel_num    = data.best_channel;
+                wifiCfg.base.channel_num = data.best_channel;
             }
             data2View(wifiCfg.base);
             showMessage(MsgType.SUCCESS, "设置成功");
@@ -245,9 +257,7 @@ function initWifiSetPage() {
             }
         });
 
-        $(bestChannelId).click(function (e) {
-             bestChannelAutoSet();
-        });
+        $(bestChannelId).click(bestChannelAutoSet);
 
         if (testMode) {
             console.log("auto Test Begin!");
