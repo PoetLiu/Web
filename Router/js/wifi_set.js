@@ -3,7 +3,7 @@ function initWifiSetPage() {
     var wifiCfg = {}, wifiEnableId = "#wifi_24g_enable",
         wifiEncryptModeId = "#wifi_24g_encrypt_mode",
         wifiPwdId = "#wifi_24g_pwd", wifiPwdSectionId = "#wifi_24g_pwd_section",
-        wifiSubmitId ="#wifi_24g_submit_btn";
+        wifiSubmitId ="#wifi_24g_submit_btn", bestChannelId="#best_channel";
     var P = {
             ap_id: 0,
             network_mode: 999,
@@ -200,6 +200,23 @@ function initWifiSetPage() {
             data2View(data);
         });
     }
+    
+    function bestChannelAutoSet() {
+        var p = {
+            port_id: P.port_id,
+            channel_width: wifiCfg.base.channel_width
+        };
+        $.post("/router/wireless_get_best_channel.cgi", p, function (data) {
+            var d = {};
+            data = eval("(" + data + ")");
+            if (wifiCfg.base.channel_num === "0") {
+                wifiCfg.base.status_channel_num = data.best_channel;
+            } else {
+                wifiCfg.base.channel_num    = data.best_channel;
+            }
+            data2View(wifiCfg.base);
+        });
+    }
 
     function initView() {
         $(wifiEnableId).click(function (e) {
@@ -217,6 +234,10 @@ function initWifiSetPage() {
             if (wifiFormCk(data)) {
                 wifiFormSubmit(data);
             }
+        });
+
+        $(bestChannelId).click(function (e) {
+             bestChannelAutoSet();
         });
 
         if (testMode) {

@@ -669,13 +669,13 @@ body {
     margin-bottom: 0;
 }
 
-.form .item.best-channel-item {
+.form .item.best_channel_item {
     height: 20px;
     line-height: 20px;
     position: relative;
 }
 
-.form .item.best-channel-item a {
+.form .item.best_channel_item a {
     position: absolute;
     left:42.5%;
     top: 0;
