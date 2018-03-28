@@ -215,7 +215,9 @@ function initWifiSetPage() {
                 wifiCfg.base.channel_num    = data.best_channel;
             }
             data2View(wifiCfg.base);
+            showMessage(MsgType.SUCCESS, "设置成功");
         });
+        showMessage(MsgType.LOADING, "最佳信道搜索中......", false);
     }
 
     function initView() {

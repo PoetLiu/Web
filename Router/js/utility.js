@@ -120,15 +120,19 @@ function resizeAppPage() {
 }
 
 var msgBox;
-function showMessage(type, title, message) {
+function showMessage(type, message, autoHide) {
     msgBox = msgBox || new MsgBox("init");
     msgBox.showMsg({
-        msg: title,
-        autoHide: true,
+        msg: message,
+        autoHide: autoHide === undefined?true:autoHide,
         type: type
     });
-    console.log(title, message);
+    console.log(message);
 }
+
+function hideMessage() {
+    msgBox.hide();
+};
 
 /*
 *  MsgBox begin.
@@ -154,6 +158,9 @@ MsgBox.prototype.getImgSrc = function() {
             break;
         case MsgType.SUCCESS:
             s   = "./image/msg-success.png";
+            break;
+        case MsgType.LOADING:
+            s   = "./image/loading.gif";
             break;
     }
     console.log(this, s);
@@ -181,7 +188,9 @@ MsgBox.prototype.setup = function (cfg) {
     var c = this.cfg;
 
     if (cfg) {
-        c.autoHide = cfg.autoHide || c.autoHide;
+        if (cfg.autoHide !== undefined ) {
+            c.autoHide = cfg.autoHide;
+        }
         c.type = cfg.type || c.type;
         c.msg = cfg.msg || c.msg;
         c.duration = cfg.duration || c.duration;
@@ -189,7 +198,7 @@ MsgBox.prototype.setup = function (cfg) {
     }
 
     this.$img.attr('src', this.getImgSrc());
-    this.$msg.append(c.msg);
+    this.$msg.html(c.msg);
 };
 
 MsgBox.prototype.showMsg = function (cfg) {
@@ -212,9 +221,10 @@ MsgBox.prototype.hide = function () {
 };
 
 var MsgType = {
-    NOTICE: 1,
-    ERROR:  2,
-    SUCCESS: 3
+    NOTICE:     1,
+    ERROR:      2,
+    SUCCESS:    3,
+    LOADING:    4
 };
 
 function showPathNav(main, sub) {

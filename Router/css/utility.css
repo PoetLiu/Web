@@ -10,8 +10,7 @@
 }
 
 .msg-box {
-    width: 250px;
-    height: 150px;
+    width: 280px;
     border-radius: 5px;
     border: solid 1px #cccccc;
     position: fixed;
@@ -25,6 +24,7 @@
     background-color: white;
     text-align: center;
     z-index: 2;
+    padding: 5px 10px;
 }
 
 .msg-box img {
@@ -32,7 +32,9 @@
 }
 
 .msg-box .title {
-    font-size: 15px;
+    font-size: 14px;
+    line-height: 21px;
+    color: #636363;
 }
 
 label[class|=top] {
