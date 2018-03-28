@@ -106,6 +106,7 @@ function initWifiSetPage() {
     function wifiFormSubmit(cfg) {
         if (!wifiCfgChanged(cfg)) {
             console.log("Form cfg doesn't change, abort.");
+            showMessage(MsgType.SUCCESS, "设置成功");
             return;
         }
 
@@ -119,9 +120,15 @@ function initWifiSetPage() {
         sec.wpa_key = aesEncrypt(sec.wpa_key);
         $.post("/router/wireless_sec_set.cgi", sec, done);
 
+        showMessage(MsgType.LOADING, "正在保存参数...", false);
+
         function done() {
             doneCnt++;
             if (doneCnt === 2) {
+                showMessage(MsgType.LOADING, "请稍后,即将完成您的配置...", false);
+                window.setTimeout(function () {
+                    showMessage(MsgType.SUCCESS, "设置成功");
+                }, 7000);
                 wifiFormGet();
             }
         }
