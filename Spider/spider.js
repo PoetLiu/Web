@@ -10,7 +10,7 @@ superagent.get(URL)
 	.end((err, res) => {
 		let _pageUrls = [];
 		let data = JSON.parse(res.text);
-		console.log(data)
+		//console.log(data)
 		data.subjects.forEach((val) => {
 			_pageUrls.push(val.url);
 		});
@@ -31,7 +31,7 @@ let ep = eventproxy.create('pageUrls', (pageUrls) => {      //创建一个监听
                 $('span[property="v:genre"]').each(function (index) {
                     _data.type += ($(this).text() + (index == $('span[property="v:genre"]').length - 1 ? '' : '、'));
                 });
-                console.log(_data);
+                //console.log(_data);
             });
         setTimeout(() => {
             callback(null, url);
