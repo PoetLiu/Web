@@ -1,5 +1,5 @@
 "use strict";
-var URL="https://movie.douban.com/j/search_subjects?type=movie&tag=%E7%83%AD%E9%97%A8&page_limit=50&page_start=0"
+let URL="https://movie.douban.com/j/search_subjects?type=movie&tag=%E7%83%AD%E9%97%A8&page_limit=50&page_start=0"
 let superagent = require('superagent'), 
     cheerio = require('cheerio'),       
     eventproxy = require('eventproxy'), 
@@ -15,15 +15,15 @@ superagent.get(URL)
 			_pageUrls.push(val.url);
 		});
 		ep.emit('pageUrls', _pageUrls);	// 监听相关实例，完成之后告诉pageUrls
-	})
+	});
 
 let ep = eventproxy.create('pageUrls', (pageUrls) => {      //创建一个监听实例
     let _http = (url, callback) => {
         let _delay = parseInt((Math.random() * 30000000) % 1000, 10);   //随机延时请求
         superagent.get(url)
             .end((err, res) => {
-                var $ = cheerio.load(res.text);     //用cheerio获取整个页面DOM对象
-                var _data = {title:'', type: '', directories: '', scriptwriter: '', actors: ''};
+                let $ = cheerio.load(res.text);     //用cheerio获取整个页面DOM对象
+                let _data = {title:'', type: '', directories: '', scriptwriter: '', actors: ''};
                 _data.title = $('#content h1 span').text();
                 _data.directories = $('#info .attrs').eq(0).text();
                 _data.scriptwriter = $('#info .attrs').eq(1).text();
